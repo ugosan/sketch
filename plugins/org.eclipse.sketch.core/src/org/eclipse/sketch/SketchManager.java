@@ -11,17 +11,9 @@
 package org.eclipse.sketch;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
-import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.GraphicalViewer;
-import org.eclipse.gef.NodeEditPart;
-import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.sketch.agentobserver.ISketchManagerObserver;
 import org.eclipse.sketch.agentobserver.ISubject;
@@ -88,44 +80,6 @@ public class SketchManager implements ISubject, ISketchProducer{
 	public void newSketch(Sketch s) {
 		this.sketch = s;
 		notifyAgents();
-	}
-
-
-	
-	public void drawElement(IElementType element, Point location, Dimension size){
-		CreateViewRequest createRequest = CreateViewRequestFactory.getCreateShapeRequest(element,editor.getDiagramEditPart().getDiagramPreferencesHint());
-
-		createRequest.setLocation(location);
-		createRequest.setSize(size);
-		
-		Command command = editor.getDiagramEditPart().getCommand(createRequest);
-		
-		command.execute();		
-	}
-	
-	public void drawElement(Command c){
-		
-		c.execute();
-
-	}
-	
-	
-	/**
-	 * Retrieves the NodeEditPart containing a given point
-	 * 
-	 * @param p
-	 * @return
-	 */
-	public NodeEditPart isInsideSomePart(Point p){		
-		Iterator i = editor.getDiagramEditPart().getChildren().iterator();
-		while (i.hasNext()) {
-			NodeEditPart object = (NodeEditPart) i.next();
-			Rectangle r = object.getFigure().getBounds();
-			if(r.contains(p))
-				return object;
-			
-		}		
-		return null;
 	}
 
 	

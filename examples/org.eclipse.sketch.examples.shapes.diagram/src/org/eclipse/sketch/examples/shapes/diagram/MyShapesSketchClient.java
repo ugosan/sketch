@@ -34,6 +34,7 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.workspace.AbstractEMFOperation;
+import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.NodeEditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
@@ -194,13 +195,14 @@ public class MyShapesSketchClient implements ISketchListener{
 			Command selectNewelement = new Command(){
 			
 				public void execute() {
-				
-					editor.getDiagramEditPart().getViewer().getControl().setFocus();
+					GraphicalViewer viewer = (GraphicalViewer) editor.getAdapter(GraphicalViewer.class);
+				    
+					viewer.getControl().setFocus();
 					
 					//selects the last created element
 				    NodeEditPart object = (NodeEditPart) editor.getDiagramEditPart().getChildren().get(editor.getDiagramEditPart().getChildren().size()-1);
 
-					editor.getDiagramGraphicalViewer().select(object);
+					viewer.select(object);
 	
 				}
 			
@@ -252,14 +254,7 @@ public class MyShapesSketchClient implements ISketchListener{
 
 	@Override
 	public void receiveNewProcessedGesture(Sketch s) {
-		if(s.getQuantizedPoints().size()<5){
-			final DiagramEditor editor = (DiagramEditor) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
-
-			//editor.g
-			
-		   //	s.getLocation()
-			System.out.println(s.getLocation());
-		}
+		//process a new gesture
 		
 	}
 	
