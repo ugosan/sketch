@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Sketch
+Bundle-SymbolicName: org.eclipse.sketch.core;singleton:=true
+Bundle-Version: 0.1.0
+Bundle-Activator: org.eclipse.sketch.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.gef;bundle-version="3.5.0",
+ org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.2.0"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: org.eclipse.sketch,
+ org.eclipse.sketch.chain,
+ org.eclipse.sketch.clientobserver,
+ org.eclipse.sketch.ui.views
+Bundle-ClassPath: .
