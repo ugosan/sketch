@@ -18,7 +18,7 @@
    <extension point="org.eclipse.ui.editors" id="gmf-editor">
       <?gmfgen generated="false"?>
       <editor
-         id="org.eclipse.sketch.shapesapp.shapes.diagram.part.ShapesDiagramEditorID"
+         id="org.eclipse.sketch.examples.shapes.diagram.part.ShapesDiagramEditorID"
          name="%editorName"
          icon="icons/diagram_icon.png"
          extensions="shapes"
@@ -56,10 +56,10 @@
       <!--<actionSet
             label="%initDiagramActionLabel"
             visible="false"
-            id="org.eclipse.sketch.shapesapp.diagram.InitDiagram">
+            id="org.eclipse.sketch.examples.diagram.InitDiagram">
          <action
                label="%initDiagramActionLabel"
-               class="org.eclipse.sketch.shapesapp.shapes.diagram.part.ShapesInitDiagramFileAction"
+               class="org.eclipse.sketch.examples.shapes.diagram.part.ShapesInitDiagramFileAction"
                menubarPath="file/additions"
                id="org.eclipse.sketch.shapesapp.diagram.InitDiagramAction">
          </action>
@@ -386,32 +386,32 @@
       <actionSet
             label="%applicationActionSetLabel"
             visible="true"
-            id="org.eclipse.sketch.shapesapp.diagram.ActionSet">
+            id="org.eclipse.sketch.examples.shapes.diagram.ActionSet">
          <action
                label="%newDiagramActionLabel"
                class="org.eclipse.sketch.examples.shapes.diagram.application.DiagramEditorActionBarAdvisor$NewDiagramAction"
                menubarPath="file/new/additions"
-               id="org.eclipse.sketch.shapesapp.diagram.NewDiagramAction">
+               id="org.eclipse.sketch.examples.shapes.diagram.NewDiagramAction">
          </action>
          <action
                label="%aboutActionLabel"
                class="org.eclipse.sketch.examples.shapes.diagram.application.DiagramEditorActionBarAdvisor$AboutAction"
                menubarPath="help/additions"
-               id="org.eclipse.sketch.shapesapp.diagram.AboutAction">
+               id="org.eclipse.sketch.examples.shapes.diagram.AboutAction">
          </action>
         <!-- <action
                label="%openURIActionLabel"
-               definitionId="org.eclipse.sketch.shapesapp.diagram.OpenURICommand"
-               class="org.eclipse.sketch.shapesapp.shapes.diagram.application.DiagramEditorActionBarAdvisor$OpenURIAction"
+               definitionId="org.eclipse.sketch.examples.shapes.diagram.OpenURICommand"
+               class="org.eclipse.sketch.examples.shapes.shapes.diagram.application.DiagramEditorActionBarAdvisor$OpenURIAction"
                menubarPath="file/additions"
-               id="org.eclipse.sketch.shapesapp.diagram.OpenURIAction">
+               id="org.eclipse.sketch.examples.shapes.diagram.OpenURIAction">
          </action>-->
          <action
                label="%openActionLabel"
-               definitionId="org.eclipse.sketch.shapesapp.diagram.OpenCommand"
+               definitionId="org.eclipse.sketch.examples.shapes.diagram.OpenCommand"
                class="org.eclipse.sketch.examples.shapes.diagram.application.DiagramEditorActionBarAdvisor$OpenAction"
                menubarPath="file/additions"
-               id="org.eclipse.sketch.shapesapp.diagram.OpenAction">
+               id="org.eclipse.sketch.examples.shapes.diagram.OpenAction">
          </action>
       </actionSet>
    </extension>

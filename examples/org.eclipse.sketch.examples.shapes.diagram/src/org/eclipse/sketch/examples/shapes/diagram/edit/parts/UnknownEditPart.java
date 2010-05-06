@@ -132,7 +132,7 @@ public class UnknownEditPart extends ShapeNodeEditPart {
 	 */
 	protected IFigure createNodeShape() {
 
-		Bundle bundle = Platform.getBundle("org.eclipse.sketch.shapesapp");
+		Bundle bundle = Platform.getBundle("org.eclipse.sketch.examples.shapes");
 		try {
 
 			NodeImpl n = (NodeImpl) getModel();
