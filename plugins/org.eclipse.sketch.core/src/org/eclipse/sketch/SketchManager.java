@@ -16,6 +16,7 @@ import java.util.Iterator;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.NodeEditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
@@ -75,9 +76,14 @@ public class SketchManager implements ISubject, ISketchProducer{
 	public void setEditor(DiagramEditor editor) {
 		this.editor = editor;
 	}
+	
 	public DiagramEditor getEditor() {
 		return editor;
 	}	
+	
+	public GraphicalViewer getViewer() {
+		return (GraphicalViewer) getEditor().getAdapter(GraphicalViewer.class);
+	}
 	
 	public void newSketch(Sketch s) {
 		this.sketch = s;
