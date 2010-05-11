@@ -5,7 +5,7 @@
     xmlns:gmfgen="http://www.eclipse.org/gmf/2009/GenModel" packageNamePrefix="org.eclipse.sketch.examples.shapes.diagram"
     sameFileForDiagramAndModel="true"
     diagramFileExtension="shapes"
-    copyrightText="Copyright (c) 2010 The Eclipse Foundation and others.&#xA;All rights reserved. This program and the accompanying materials&#xA;are made available under the terms of the Eclipse Public License v1.0&#xA;which accompanies this distribution, and is available at&#xA;http://www.eclipse.org/legal/epl-v10.html&#xA; &#xA; Contributors:&#xA; &#x9;Ugo Sangiorgi &lt;ugo.sangiorgi@gmail.com> - Initial contribution">
+    copyrightText="Copyright (c) 2010 Ugo Sangiorgi and others.&#xA;All rights reserved. This program and the accompanying materials&#xA;are made available under the terms of the Eclipse Public License v1.0&#xA;which accompanies this distribution, and is available at&#xA;http://www.eclipse.org/legal/epl-v10.html&#xA; &#xA; Contributors:&#xA; &#x9;Ugo Sangiorgi &lt;ugo.sangiorgi@gmail.com> - Initial contribution">
   <diagram
       visualID="1000"
       editPartClassName="DiagramEditPart"
