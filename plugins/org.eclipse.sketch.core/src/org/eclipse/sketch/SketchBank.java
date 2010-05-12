@@ -30,8 +30,9 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 
 /**
  * Very basic implementation of a Sketch database, using properties and storing ONLY the sketched in string form (based on
- * Coyette's article).
- * TODO: store the whole Sketch object.
+ * work from Adrien Coyette, Sascha Schimke, Jean Vanderdonckt, and Claus Vielhauer - http://www.isys.ucl.ac.be/bchi/publications/2007/Schimke-Interact2007.pdf).
+ *
+ * TODO: store the whole Sketch object - bug https://bugs.eclipse.org/bugs/show_bug.cgi?id=312513.
  * @author  Ugo Sangiorgi
  */
 public class SketchBank {

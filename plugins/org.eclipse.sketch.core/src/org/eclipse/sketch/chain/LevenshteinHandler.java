@@ -17,7 +17,11 @@ import java.util.HashMap;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.sketch.Sketch;
 import org.eclipse.sketch.SketchBank;
-
+/**
+ * Recognize the sketch based on its string form, based on work from Adrien Coyette, Sascha Schimke, Jean Vanderdonckt, and Claus Vielhauer - http://www.isys.ucl.ac.be/bchi/publications/2007/Schimke-Interact2007.pdf
+ * @author ugo
+ *
+ */
 public class LevenshteinHandler extends SketchChainHandler {
  
 	 
@@ -73,7 +77,11 @@ public class LevenshteinHandler extends SketchChainHandler {
 
 	
 	/**
-	 * @author Chas Emerick  
+	 * String distance algorithm as implemented by Chas Emerick (http://www.merriampark.com/ldjava.htm) based on the 
+	 * original source of Michael Gilleland (http://www.merriampark.com/ld.htm) 
+	 * 
+	 * @author Chas Emerick http://www.merriampark.com/ldjava.htm  
+	 * @author Michael Gilleland http://www.merriampark.com/ld.htm
 	 * @param s
 	 * @param t
 	 * @return

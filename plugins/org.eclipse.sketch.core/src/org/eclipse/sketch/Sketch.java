@@ -100,6 +100,7 @@ public class Sketch {
 	 * turn this sketch into a word based on cardinal points:
 	 * 1 means North, 2 NorthEast, 3 East, 4 SouthEast, 5 South, 6 SouthWest, 7 West, 8 NorthWest 
 	 * 0 means a pen lift (another stroke)
+	 * Based on work from Adrien Coyette, Sascha Schimke, Jean Vanderdonckt, and Claus Vielhauer - http://www.isys.ucl.ac.be/bchi/publications/2007/Schimke-Interact2007.pdf
 	 * @return
 	 */
 	private String stringify(){

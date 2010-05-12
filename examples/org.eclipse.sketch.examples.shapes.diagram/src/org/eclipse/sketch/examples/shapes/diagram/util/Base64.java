@@ -1,21 +1,27 @@
 
 /**
- * Copyright (c) 2010 Ugo Sangiorgi and others.
+ * Copyright (c) (c) Robert Harder.
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
  *  http://www.eclipse.org/legal/epl-v10.html
  *  
  *  Contributors:
- *  Ugo Sangiorgi <ugo.sangiorgi@gmail.com> - Initial contribution
+ *  
  *  Robert Harder <rob@iharder.net>
  * 
  *
  * $Id$
  */ 
+
+
  package org.eclipse.sketch.examples.shapes.diagram.util;
 
 /**
+ * <p>This file is distributed under the
+ * <a href="http://www.opensource.org/licenses/eclipse-1.0.php">Eclipse Public License</a>.
+ * A warm "Thank You" goes out to the open source community for all their contributions to the common good.</p>
+ * 
  * <p>Encodes and decodes to and from Base64 notation.</p>
  * <p>Homepage: <a href="http://iharder.net/base64">http://iharder.net/base64</a>.</p>
  * 
