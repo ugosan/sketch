@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cspecExtension xmlns:com="http://www.eclipse.org/buckminster/Common-1.0"
+                    xmlns="http://www.eclipse.org/buckminster/CSpec-1.0">
+    <actions>
+        <public name="create.feature" actor="ant">
+            <actorProperties>
+                <property key="buildFile" value="build/feature.ant" />
+                <property key="targets" value="create.feature" />
+            </actorProperties>
+            <properties>
+                <property key="profile" value="SketchProfile" />
+                <property key="iu" value="org.eclipse.sketch.site" />
+            </properties>
+            <prerequisites alias="repository">
+                <attribute name="site.p2" />
+            </prerequisites>
+            <products alias="destination" base="${buckminster.output}">
+                <path path="sketch.${target.ws}.${target.os}.${target.arch}/" />
+            </products>
+        </public>
+        <public name="create.feature.zip" actor="ant">
+            <actorProperties>
+                <property key="buildFileId" value="buckminster.pdetasks" />
+                <property key="targets" value="create.zip" />
+            </actorProperties>
+            <prerequisites alias="action.requirements">
+                <attribute name="create.feature" />
+            </prerequisites>
+            <products alias="action.output" base="${buckminster.output}">
+                <path path="sketch.${target.ws}.${target.os}.${target.arch}.zip" />
+            </products>
+        </public>
+    </actions>
+</cspecExtension>
+
