@@ -82,15 +82,16 @@ public abstract class SketchTool extends AbstractTool{
 		
 
 		SketchRecognizerControlView control = ((SketchRecognizerControlView) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().findView("org.eclipse.sketch.ui.views.SketchRecognizerControlView"));
-		penupdownTolerance  = control.getTolerance();		
-		grid = control.getGridSize();
-		showSamples = control.getShowSamples();
+		penupdownTolerance  = control!=null?control.getTolerance():1600;		
+		grid = control!=null?control.getGridSize():2;
+		showSamples = control!=null?control.getShowSamples():false;
 		
 		
 		gc = new GC(manager.getEditor().getDiagramGraphicalViewer().getControl());
 		gc.setAntialias(SWT.ON);
 		
-		gc.setLineWidth(((SketchRecognizerControlView) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().findView("org.eclipse.sketch.ui.views.SketchRecognizerControlView")).getLineWidth());
+		int linewidth = control!=null?control.getLineWidth():1;	
+		gc.setLineWidth(linewidth);
 		color = new Color(gc.getDevice(),getStrokeColor());
 		gc.setForeground(color);
 		
@@ -115,8 +116,11 @@ public abstract class SketchTool extends AbstractTool{
 		thread.done = true;
 
 		try{
+			
 			SketchRecognizerControlView view = (SketchRecognizerControlView) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().findView("org.eclipse.sketch.ui.views.SketchRecognizerControlView");			
+			if(view != null){
 			manager.detach(view.getControl());
+			}
 			}catch(Exception e){
 				//e.printStackTrace();
 			}
@@ -128,8 +132,10 @@ public abstract class SketchTool extends AbstractTool{
 	public void activate() {
 		try{
 			SketchRecognizerControlView view = (SketchRecognizerControlView) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().findView("org.eclipse.sketch.ui.views.SketchRecognizerControlView");
-			view.getControl().setTypes(SketchBank.getInstance().getAvailableTypes());
-			manager.attach(view.getControl());
+			if(view != null){
+				view.getControl().setTypes(SketchBank.getInstance().getAvailableTypes());
+				manager.attach(view.getControl());
+			}
 			}catch(Exception e){
 				//e.printStackTrace();
 			}
