@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ASCII"?>
+<dawngenmodel:DawnGenerator xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:dawngenmodel="http://www.eclipse.org/emf/cdo/dawn/2010/GenModel">
+  <emfFragmentgenerator fragmentName="org.eclipse.sketch.examples.shapes.editor.dawn" dawnEditorClassName="DawnShapesEditor">
+    <emfGenModel href="shapes.genmodel#/"/>
+  </emfFragmentgenerator>
+  <gmfFragmentgenerator fragmentName="org.eclipse.sketch.examples.shapes.diagram.dawn" dawnEditorClassName="DawnShapesDiagramEditor" dawnDocumentProviderClassName="DawnShapesDocumentProvider" dawnEditorUtilClassName="DawnShapesDiagramEditorUtil" dawnCreationWizardClassName="DawnShapesCreationWizard" dawnCanonicalEditingPolicyClassName="DawnDiagramCanonicalEditPolicy" dawnDiagramEditPartClassName="DawnDiagramEditPart" dawnEditPartFactoryClassName="DawnShapesEditPartFactory" dawnEditPartProviderClassName="DawnShapesEditPartProvider" dawnEditPolicyProviderClassName="DawnShapesEditPolicyProvider">
+    <GMFGenEditorGenerator href="shapes.gmfgen#/"/>
+  </gmfFragmentgenerator>
+</dawngenmodel:DawnGenerator>

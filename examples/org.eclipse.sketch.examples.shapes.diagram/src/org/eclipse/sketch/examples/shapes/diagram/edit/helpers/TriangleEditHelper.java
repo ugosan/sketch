@@ -10,8 +10,8 @@
  *  
  *
  * $Id$
- */ 
- package org.eclipse.sketch.examples.shapes.diagram.edit.helpers;
+ */
+package org.eclipse.sketch.examples.shapes.diagram.edit.helpers;
 
 /**
  * @generated

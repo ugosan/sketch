@@ -10,8 +10,8 @@
  *  
  *
  * $Id$
- */ 
- package org.eclipse.sketch.examples.shapes.diagram.application;
+ */
+package org.eclipse.sketch.examples.shapes.diagram.application;
 
 import java.io.File;
 

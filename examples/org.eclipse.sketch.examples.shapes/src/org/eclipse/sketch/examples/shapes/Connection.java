@@ -16,6 +16,7 @@ package org.eclipse.sketch.examples.shapes;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -31,47 +32,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * @model kind="class"
  * @generated
  */
-public class Connection extends EObjectImpl implements AbstractConnection {
-	/**
-	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSource()
-	 * @generated
-	 * @ordered
-	 */
-	protected Shape source;
-
-	/**
-	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTarget()
-	 * @generated
-	 * @ordered
-	 */
-	protected Shape target;
-
-	/**
-	 * The default value of the '{@link #getLabel() <em>Label</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLabel()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String LABEL_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getLabel() <em>Label</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLabel()
-	 * @generated
-	 * @ordered
-	 */
-	protected String label = LABEL_EDEFAULT;
-
+public class Connection extends CDOObjectImpl implements AbstractConnection {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -92,6 +53,16 @@ public class Connection extends EObjectImpl implements AbstractConnection {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected int eStaticFeatureCount() {
+		return 0;
+	}
+
+	/**
 	 * Returns the value of the '<em><b>Source</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -106,24 +77,7 @@ public class Connection extends EObjectImpl implements AbstractConnection {
 	 * @generated
 	 */
 	public Shape getSource() {
-		if (source != null && source.eIsProxy()) {
-			InternalEObject oldSource = (InternalEObject)source;
-			source = (Shape)eResolveProxy(oldSource);
-			if (source != oldSource) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ShapesPackage.CONNECTION__SOURCE, oldSource, source));
-			}
-		}
-		return source;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Shape basicGetSource() {
-		return source;
+		return (Shape)eGet(ShapesPackage.Literals.ABSTRACT_CONNECTION__SOURCE, true);
 	}
 
 	/**
@@ -135,10 +89,7 @@ public class Connection extends EObjectImpl implements AbstractConnection {
 	 * @generated
 	 */
 	public void setSource(Shape newSource) {
-		Shape oldSource = source;
-		source = newSource;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ShapesPackage.CONNECTION__SOURCE, oldSource, source));
+		eSet(ShapesPackage.Literals.ABSTRACT_CONNECTION__SOURCE, newSource);
 	}
 
 	/**
@@ -156,24 +107,7 @@ public class Connection extends EObjectImpl implements AbstractConnection {
 	 * @generated
 	 */
 	public Shape getTarget() {
-		if (target != null && target.eIsProxy()) {
-			InternalEObject oldTarget = (InternalEObject)target;
-			target = (Shape)eResolveProxy(oldTarget);
-			if (target != oldTarget) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ShapesPackage.CONNECTION__TARGET, oldTarget, target));
-			}
-		}
-		return target;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Shape basicGetTarget() {
-		return target;
+		return (Shape)eGet(ShapesPackage.Literals.ABSTRACT_CONNECTION__TARGET, true);
 	}
 
 	/**
@@ -185,10 +119,7 @@ public class Connection extends EObjectImpl implements AbstractConnection {
 	 * @generated
 	 */
 	public void setTarget(Shape newTarget) {
-		Shape oldTarget = target;
-		target = newTarget;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ShapesPackage.CONNECTION__TARGET, oldTarget, target));
+		eSet(ShapesPackage.Literals.ABSTRACT_CONNECTION__TARGET, newTarget);
 	}
 
 	/**
@@ -206,7 +137,7 @@ public class Connection extends EObjectImpl implements AbstractConnection {
 	 * @generated
 	 */
 	public String getLabel() {
-		return label;
+		return (String)eGet(ShapesPackage.Literals.ABSTRACT_CONNECTION__LABEL, true);
 	}
 
 	/**
@@ -218,106 +149,7 @@ public class Connection extends EObjectImpl implements AbstractConnection {
 	 * @generated
 	 */
 	public void setLabel(String newLabel) {
-		String oldLabel = label;
-		label = newLabel;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ShapesPackage.CONNECTION__LABEL, oldLabel, label));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ShapesPackage.CONNECTION__SOURCE:
-				if (resolve) return getSource();
-				return basicGetSource();
-			case ShapesPackage.CONNECTION__TARGET:
-				if (resolve) return getTarget();
-				return basicGetTarget();
-			case ShapesPackage.CONNECTION__LABEL:
-				return getLabel();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ShapesPackage.CONNECTION__SOURCE:
-				setSource((Shape)newValue);
-				return;
-			case ShapesPackage.CONNECTION__TARGET:
-				setTarget((Shape)newValue);
-				return;
-			case ShapesPackage.CONNECTION__LABEL:
-				setLabel((String)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ShapesPackage.CONNECTION__SOURCE:
-				setSource((Shape)null);
-				return;
-			case ShapesPackage.CONNECTION__TARGET:
-				setTarget((Shape)null);
-				return;
-			case ShapesPackage.CONNECTION__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ShapesPackage.CONNECTION__SOURCE:
-				return source != null;
-			case ShapesPackage.CONNECTION__TARGET:
-				return target != null;
-			case ShapesPackage.CONNECTION__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
-		}
-		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (label: ");
-		result.append(label);
-		result.append(')');
-		return result.toString();
+		eSet(ShapesPackage.Literals.ABSTRACT_CONNECTION__LABEL, newLabel);
 	}
 
 } // Connection

@@ -10,8 +10,8 @@
  *  
  *
  * $Id$
- */ 
- package org.eclipse.sketch.examples.shapes.diagram.preferences;
+ */
+package org.eclipse.sketch.examples.shapes.diagram.preferences;
 
 import org.eclipse.gmf.runtime.diagram.ui.preferences.AppearancePreferencePage;
 import org.eclipse.sketch.examples.shapes.diagram.part.ShapesDiagramEditorPlugin;

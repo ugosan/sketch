@@ -17,6 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
@@ -37,87 +38,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * @model kind="class"
  * @generated
  */
-public class Unknown extends EObjectImpl implements Shape {
-	/**
-	 * The default value of the '{@link #getSvg() <em>Svg</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSvg()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String SVG_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getSvg() <em>Svg</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSvg()
-	 * @generated
-	 * @ordered
-	 */
-	protected String svg = SVG_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getLabel() <em>Label</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLabel()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String LABEL_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getLabel() <em>Label</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLabel()
-	 * @generated
-	 * @ordered
-	 */
-	protected String label = LABEL_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getMeta() <em>Meta</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMeta()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String META_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getMeta() <em>Meta</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMeta()
-	 * @generated
-	 * @ordered
-	 */
-	protected String meta = META_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getElement() <em>Element</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getElement()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String ELEMENT_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getElement() <em>Element</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getElement()
-	 * @generated
-	 * @ordered
-	 */
-	protected String element = ELEMENT_EDEFAULT;
-
+public class Unknown extends CDOObjectImpl implements Shape {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -138,6 +59,16 @@ public class Unknown extends EObjectImpl implements Shape {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected int eStaticFeatureCount() {
+		return 0;
+	}
+
+	/**
 	 * Returns the value of the '<em><b>Svg</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -152,7 +83,7 @@ public class Unknown extends EObjectImpl implements Shape {
 	 * @generated
 	 */
 	public String getSvg() {
-		return svg;
+		return (String)eGet(ShapesPackage.Literals.SHAPE__SVG, true);
 	}
 
 	/**
@@ -164,10 +95,7 @@ public class Unknown extends EObjectImpl implements Shape {
 	 * @generated
 	 */
 	public void setSvg(String newSvg) {
-		String oldSvg = svg;
-		svg = newSvg;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ShapesPackage.UNKNOWN__SVG, oldSvg, svg));
+		eSet(ShapesPackage.Literals.SHAPE__SVG, newSvg);
 	}
 
 	/**
@@ -185,7 +113,7 @@ public class Unknown extends EObjectImpl implements Shape {
 	 * @generated
 	 */
 	public String getLabel() {
-		return label;
+		return (String)eGet(ShapesPackage.Literals.SHAPE__LABEL, true);
 	}
 
 	/**
@@ -197,10 +125,7 @@ public class Unknown extends EObjectImpl implements Shape {
 	 * @generated
 	 */
 	public void setLabel(String newLabel) {
-		String oldLabel = label;
-		label = newLabel;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ShapesPackage.UNKNOWN__LABEL, oldLabel, label));
+		eSet(ShapesPackage.Literals.SHAPE__LABEL, newLabel);
 	}
 
 	/**
@@ -218,7 +143,7 @@ public class Unknown extends EObjectImpl implements Shape {
 	 * @generated
 	 */
 	public String getMeta() {
-		return meta;
+		return (String)eGet(ShapesPackage.Literals.UNKNOWN__META, true);
 	}
 
 	/**
@@ -230,10 +155,7 @@ public class Unknown extends EObjectImpl implements Shape {
 	 * @generated
 	 */
 	public void setMeta(String newMeta) {
-		String oldMeta = meta;
-		meta = newMeta;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ShapesPackage.UNKNOWN__META, oldMeta, meta));
+		eSet(ShapesPackage.Literals.UNKNOWN__META, newMeta);
 	}
 
 	/**
@@ -251,7 +173,7 @@ public class Unknown extends EObjectImpl implements Shape {
 	 * @generated
 	 */
 	public String getElement() {
-		return element;
+		return (String)eGet(ShapesPackage.Literals.UNKNOWN__ELEMENT, true);
 	}
 
 	/**
@@ -263,120 +185,7 @@ public class Unknown extends EObjectImpl implements Shape {
 	 * @generated
 	 */
 	public void setElement(String newElement) {
-		String oldElement = element;
-		element = newElement;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ShapesPackage.UNKNOWN__ELEMENT, oldElement, element));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ShapesPackage.UNKNOWN__SVG:
-				return getSvg();
-			case ShapesPackage.UNKNOWN__LABEL:
-				return getLabel();
-			case ShapesPackage.UNKNOWN__META:
-				return getMeta();
-			case ShapesPackage.UNKNOWN__ELEMENT:
-				return getElement();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ShapesPackage.UNKNOWN__SVG:
-				setSvg((String)newValue);
-				return;
-			case ShapesPackage.UNKNOWN__LABEL:
-				setLabel((String)newValue);
-				return;
-			case ShapesPackage.UNKNOWN__META:
-				setMeta((String)newValue);
-				return;
-			case ShapesPackage.UNKNOWN__ELEMENT:
-				setElement((String)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ShapesPackage.UNKNOWN__SVG:
-				setSvg(SVG_EDEFAULT);
-				return;
-			case ShapesPackage.UNKNOWN__LABEL:
-				setLabel(LABEL_EDEFAULT);
-				return;
-			case ShapesPackage.UNKNOWN__META:
-				setMeta(META_EDEFAULT);
-				return;
-			case ShapesPackage.UNKNOWN__ELEMENT:
-				setElement(ELEMENT_EDEFAULT);
-				return;
-		}
-		super.eUnset(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ShapesPackage.UNKNOWN__SVG:
-				return SVG_EDEFAULT == null ? svg != null : !SVG_EDEFAULT.equals(svg);
-			case ShapesPackage.UNKNOWN__LABEL:
-				return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
-			case ShapesPackage.UNKNOWN__META:
-				return META_EDEFAULT == null ? meta != null : !META_EDEFAULT.equals(meta);
-			case ShapesPackage.UNKNOWN__ELEMENT:
-				return ELEMENT_EDEFAULT == null ? element != null : !ELEMENT_EDEFAULT.equals(element);
-		}
-		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (svg: ");
-		result.append(svg);
-		result.append(", label: ");
-		result.append(label);
-		result.append(", meta: ");
-		result.append(meta);
-		result.append(", element: ");
-		result.append(element);
-		result.append(')');
-		return result.toString();
+		eSet(ShapesPackage.Literals.UNKNOWN__ELEMENT, newElement);
 	}
 
 } // Unknown

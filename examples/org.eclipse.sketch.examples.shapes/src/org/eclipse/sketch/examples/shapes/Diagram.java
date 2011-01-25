@@ -13,6 +13,7 @@
  */
 package org.eclipse.sketch.examples.shapes;
 
+import org.eclipse.emf.cdo.CDOObject;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -20,6 +21,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.internal.cdo.CDOObjectImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -43,29 +45,10 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @see org.eclipse.sketch.examples.shapes.ShapesPackage#getDiagram()
  * @model kind="class"
+ * @extends CDOObject
  * @generated
  */
-public class Diagram extends EObjectImpl implements EObject {
-	/**
-	 * The cached value of the '{@link #getShapes() <em>Shapes</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getShapes()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Shape> shapes;
-
-	/**
-	 * The cached value of the '{@link #getConnections() <em>Connections</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getConnections()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<AbstractConnection> connections;
-
+public class Diagram extends CDOObjectImpl implements CDOObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -86,6 +69,16 @@ public class Diagram extends EObjectImpl implements EObject {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected int eStaticFeatureCount() {
+		return 0;
+	}
+
+	/**
 	 * Returns the value of the '<em><b>Shapes</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.sketch.examples.shapes.Shape}.
 	 * <!-- begin-user-doc -->
@@ -99,11 +92,9 @@ public class Diagram extends EObjectImpl implements EObject {
 	 * @model containment="true"
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public EList<Shape> getShapes() {
-		if (shapes == null) {
-			shapes = new EObjectContainmentEList<Shape>(Shape.class, this, ShapesPackage.DIAGRAM__SHAPES);
-		}
-		return shapes;
+		return (EList<Shape>)eGet(ShapesPackage.Literals.DIAGRAM__SHAPES, true);
 	}
 
 	/**
@@ -120,98 +111,9 @@ public class Diagram extends EObjectImpl implements EObject {
 	 * @model containment="true"
 	 * @generated
 	 */
-	public EList<AbstractConnection> getConnections() {
-		if (connections == null) {
-			connections = new EObjectContainmentEList<AbstractConnection>(AbstractConnection.class, this, ShapesPackage.DIAGRAM__CONNECTIONS);
-		}
-		return connections;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ShapesPackage.DIAGRAM__SHAPES:
-				return ((InternalEList<?>)getShapes()).basicRemove(otherEnd, msgs);
-			case ShapesPackage.DIAGRAM__CONNECTIONS:
-				return ((InternalEList<?>)getConnections()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-			case ShapesPackage.DIAGRAM__SHAPES:
-				return getShapes();
-			case ShapesPackage.DIAGRAM__CONNECTIONS:
-				return getConnections();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@SuppressWarnings("unchecked")
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-			case ShapesPackage.DIAGRAM__SHAPES:
-				getShapes().clear();
-				getShapes().addAll((Collection<? extends Shape>)newValue);
-				return;
-			case ShapesPackage.DIAGRAM__CONNECTIONS:
-				getConnections().clear();
-				getConnections().addAll((Collection<? extends AbstractConnection>)newValue);
-				return;
-		}
-		super.eSet(featureID, newValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-			case ShapesPackage.DIAGRAM__SHAPES:
-				getShapes().clear();
-				return;
-			case ShapesPackage.DIAGRAM__CONNECTIONS:
-				getConnections().clear();
-				return;
-		}
-		super.eUnset(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-			case ShapesPackage.DIAGRAM__SHAPES:
-				return shapes != null && !shapes.isEmpty();
-			case ShapesPackage.DIAGRAM__CONNECTIONS:
-				return connections != null && !connections.isEmpty();
-		}
-		return super.eIsSet(featureID);
+	public EList<AbstractConnection> getConnections() {
+		return (EList<AbstractConnection>)eGet(ShapesPackage.Literals.DIAGRAM__CONNECTIONS, true);
 	}
 
 } // Diagram

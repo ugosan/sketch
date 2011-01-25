@@ -10,8 +10,8 @@
  *  
  *
  * $Id$
- */ 
- package org.eclipse.sketch.examples.shapes.diagram.edit.commands;
+ */
+package org.eclipse.sketch.examples.shapes.diagram.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -83,9 +83,9 @@ public class DashedConnectionReorientCommand extends EditElementCommand {
 			return false;
 		}
 		Diagram container = (Diagram) getLink().eContainer();
-		return ShapesBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistDashedConnection_4002(container, getNewSource(),
-						target);
+		return ShapesBaseItemSemanticEditPolicy.getLinkConstraints()
+				.canExistDashedConnection_4002(container, getLink(),
+						getNewSource(), target);
 	}
 
 	/**
@@ -100,8 +100,8 @@ public class DashedConnectionReorientCommand extends EditElementCommand {
 			return false;
 		}
 		Diagram container = (Diagram) getLink().eContainer();
-		return ShapesBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistDashedConnection_4002(container, source,
+		return ShapesBaseItemSemanticEditPolicy.getLinkConstraints()
+				.canExistDashedConnection_4002(container, getLink(), source,
 						getNewTarget());
 	}
 

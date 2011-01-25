@@ -10,8 +10,8 @@
  *  
  *
  * $Id$
- */ 
- package org.eclipse.sketch.examples.shapes.diagram.edit.commands;
+ */
+package org.eclipse.sketch.examples.shapes.diagram.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -81,7 +81,7 @@ public class ConnectionCreateCommand extends EditElementCommand {
 		if (getContainer() == null) {
 			return false;
 		}
-		return ShapesBaseItemSemanticEditPolicy.LinkConstraints
+		return ShapesBaseItemSemanticEditPolicy.getLinkConstraints()
 				.canCreateConnection_4001(getContainer(), getSource(),
 						getTarget());
 	}

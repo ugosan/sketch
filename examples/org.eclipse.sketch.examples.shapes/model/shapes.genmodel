@@ -6,13 +6,15 @@
     editorDirectory="/org.eclipse.sketch.examples.shapes.editor/src" modelPluginID="org.eclipse.sketch.examples.shapes"
     modelName="Shapes" modelPluginClass="" editPluginClass="org.eclipse.sketch.examples.shapes.provider.ShapesEditPlugin"
     editorPluginClass="org.eclipse.sketch.examples.shapes.presentation.ShapesEditorPlugin"
+    rootExtendsInterface="org.eclipse.emf.cdo.CDOObject" rootExtendsClass="org.eclipse.emf.internal.cdo.CDOObjectImpl"
     rootImplementsInterface="" suppressInterfaces="true" featureMapWrapperClass=""
-    richClientPlatform="true" testsDirectory="/org.eclipse.sketch.examples.shapes.tests/src"
+    reflectiveDelegation="true" testsDirectory="/org.eclipse.sketch.examples.shapes.tests/src"
     testSuiteClass="org.eclipse.sketch.examples.shapes.tests.ShapesAllTests" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="6.0" copyrightFields="false" editPluginID="org.eclipse.sketch.examples.shapes.edit"
+    featureDelegation="Reflective" complianceLevel="6.0" copyrightFields="false" editPluginID="org.eclipse.sketch.examples.shapes.edit"
     editorPluginID="org.eclipse.sketch.examples.shapes.editor" testsPluginID="org.eclipse.sketch.examples.shapes.tests"
-    interfaceNamePattern="" classNamePattern="">
+    interfaceNamePattern="" classNamePattern="" runtimePlatform="RCP">
   <foreignModel>shapes.ecore</foreignModel>
+  <modelPluginVariables>CDO=org.eclipse.emf.cdo</modelPluginVariables>
   <genPackages prefix="Shapes" basePackage="org.eclipse.sketch.examples" disposableProviderFactory="true"
       ecorePackage="shapes.ecore#/">
     <genClasses ecoreClass="shapes.ecore#//Diagram">

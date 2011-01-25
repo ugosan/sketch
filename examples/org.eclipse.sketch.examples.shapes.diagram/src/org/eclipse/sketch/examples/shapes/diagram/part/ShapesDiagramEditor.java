@@ -10,8 +10,8 @@
  *  
  *
  * $Id$
- */ 
- package org.eclipse.sketch.examples.shapes.diagram.part;
+ */
+package org.eclipse.sketch.examples.shapes.diagram.part;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.ui.URIEditorInput;
@@ -68,8 +68,8 @@ public class ShapesDiagramEditor extends DiagramDocumentEditor {
 						View v = (View) model;
 
 						return new PropertySource(v.getElement(),
-								(IItemPropertySource) fAdapterFactory.adapt(v
-										.getElement(),
+								(IItemPropertySource) fAdapterFactory.adapt(
+										v.getElement(),
 										IItemPropertySource.class));
 					} else {
 						return adapterFactoryConentProvider

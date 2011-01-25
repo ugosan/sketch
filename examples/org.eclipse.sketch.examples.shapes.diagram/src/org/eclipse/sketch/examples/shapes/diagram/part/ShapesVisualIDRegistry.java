@@ -10,8 +10,8 @@
  *  
  *
  * $Id$
- */ 
- package org.eclipse.sketch.examples.shapes.diagram.part;
+ */
+package org.eclipse.sketch.examples.shapes.diagram.part;
 
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EAnnotation;
@@ -94,7 +94,7 @@ public class ShapesVisualIDRegistry {
 	 * @generated
 	 */
 	public static String getType(int visualID) {
-		return String.valueOf(visualID);
+		return Integer.toString(visualID);
 	}
 
 	/**
@@ -175,11 +175,6 @@ public class ShapesVisualIDRegistry {
 			}
 		}
 		switch (containerVisualID) {
-		case UnknownEditPart.VISUAL_ID:
-			if (UnknownLabelEditPart.VISUAL_ID == nodeVisualID) {
-				return true;
-			}
-			break;
 		case DiagramEditPart.VISUAL_ID:
 			if (SquareEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
@@ -188,6 +183,11 @@ public class ShapesVisualIDRegistry {
 				return true;
 			}
 			if (UnknownEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case UnknownEditPart.VISUAL_ID:
+			if (UnknownLabelEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;

@@ -46,7 +46,7 @@ public class ShapesFactory extends EFactoryImpl {
 	 */
 	public static ShapesFactory init() {
 		try {
-			ShapesFactory theShapesFactory = (ShapesFactory)EPackage.Registry.INSTANCE.getEFactory("shapes"); 
+			ShapesFactory theShapesFactory = (ShapesFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/sketch/shapes"); 
 			if (theShapesFactory != null) {
 				return theShapesFactory;
 			}
@@ -75,12 +75,12 @@ public class ShapesFactory extends EFactoryImpl {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case ShapesPackage.DIAGRAM: return createDiagram();
-			case ShapesPackage.SQUARE: return createSquare();
-			case ShapesPackage.TRIANGLE: return createTriangle();
-			case ShapesPackage.UNKNOWN: return createUnknown();
-			case ShapesPackage.CONNECTION: return createConnection();
-			case ShapesPackage.DASHED_CONNECTION: return createDashedConnection();
+			case ShapesPackage.DIAGRAM: return (EObject)createDiagram();
+			case ShapesPackage.SQUARE: return (EObject)createSquare();
+			case ShapesPackage.TRIANGLE: return (EObject)createTriangle();
+			case ShapesPackage.UNKNOWN: return (EObject)createUnknown();
+			case ShapesPackage.CONNECTION: return (EObject)createConnection();
+			case ShapesPackage.DASHED_CONNECTION: return (EObject)createDashedConnection();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}

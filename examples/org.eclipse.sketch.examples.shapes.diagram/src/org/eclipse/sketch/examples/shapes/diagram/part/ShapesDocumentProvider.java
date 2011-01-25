@@ -10,8 +10,8 @@
  *  
  *
  * $Id$
- */ 
- package org.eclipse.sketch.examples.shapes.diagram.part;
+ */
+package org.eclipse.sketch.examples.shapes.diagram.part;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -71,11 +72,10 @@ public class ShapesDocumentProvider extends AbstractDocumentProvider implements
 							IStatus.ERROR,
 							ShapesDiagramEditorPlugin.ID,
 							0,
-							NLS
-									.bind(
-											Messages.ShapesDocumentProvider_IncorrectInputError,
-											new Object[] { element,
-													"org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ 
+							NLS.bind(
+									Messages.ShapesDocumentProvider_IncorrectInputError,
+									new Object[] { element,
+											"org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ 
 							null));
 		}
 		IEditorInput editorInput = (IEditorInput) element;
@@ -97,11 +97,10 @@ public class ShapesDocumentProvider extends AbstractDocumentProvider implements
 							IStatus.ERROR,
 							ShapesDiagramEditorPlugin.ID,
 							0,
-							NLS
-									.bind(
-											Messages.ShapesDocumentProvider_IncorrectInputError,
-											new Object[] { element,
-													"org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ 
+							NLS.bind(
+									Messages.ShapesDocumentProvider_IncorrectInputError,
+									new Object[] { element,
+											"org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ 
 							null));
 		}
 		IDocument document = createEmptyDocument();
@@ -128,9 +127,9 @@ public class ShapesDocumentProvider extends AbstractDocumentProvider implements
 	 */
 	private long computeModificationStamp(ResourceSetInfo info) {
 		int result = 0;
-		for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
-				.getLoadedResourcesIterator(); it.hasNext();) {
-			Resource nextResource = (Resource) it.next();
+		for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it
+				.hasNext();) {
+			Resource nextResource = it.next();
 			File file = getFile(nextResource);
 			if (file != null && file.exists()) {
 				result += file.lastModified();
@@ -157,12 +156,10 @@ public class ShapesDocumentProvider extends AbstractDocumentProvider implements
 		editingDomain
 				.setID("org.eclipse.sketch.examples.shapes.diagram.EditingDomain"); //$NON-NLS-1$
 		final NotificationFilter diagramResourceModifiedFilter = NotificationFilter
-				.createNotifierFilter(editingDomain.getResourceSet()).and(
-						NotificationFilter
-								.createEventTypeFilter(Notification.ADD)).and(
-						NotificationFilter.createFeatureFilter(
-								ResourceSet.class,
-								ResourceSet.RESOURCE_SET__RESOURCES));
+				.createNotifierFilter(editingDomain.getResourceSet())
+				.and(NotificationFilter.createEventTypeFilter(Notification.ADD))
+				.and(NotificationFilter.createFeatureFilter(ResourceSet.class,
+						ResourceSet.RESOURCE_SET__RESOURCES));
 		editingDomain.getResourceSet().eAdapters().add(new Adapter() {
 
 			private Notifier myTarger;
@@ -212,8 +209,8 @@ public class ShapesDocumentProvider extends AbstractDocumentProvider implements
 				}
 				if (!resource.isLoaded()) {
 					try {
-						Map options = new HashMap(GMFResourceFactory
-								.getDefaultLoadOptions());
+						Map options = new HashMap(
+								GMFResourceFactory.getDefaultLoadOptions());
 						// @see 171060 
 						// options.put(org.eclipse.emf.ecore.xmi.XMLResource.OPTION_RECORD_UNKNOWN_FEATURE, Boolean.TRUE);
 						resource.load(options);
@@ -263,11 +260,10 @@ public class ShapesDocumentProvider extends AbstractDocumentProvider implements
 							IStatus.ERROR,
 							ShapesDiagramEditorPlugin.ID,
 							0,
-							NLS
-									.bind(
-											Messages.ShapesDocumentProvider_IncorrectInputError,
-											new Object[] { element,
-													"org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ 
+							NLS.bind(
+									Messages.ShapesDocumentProvider_IncorrectInputError,
+									new Object[] { element,
+											"org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ 
 							null));
 		}
 	}
@@ -367,9 +363,9 @@ public class ShapesDocumentProvider extends AbstractDocumentProvider implements
 	protected void updateCache(Object element) throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
-					.getLoadedResourcesIterator(); it.hasNext();) {
-				Resource nextResource = (Resource) it.next();
+			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it
+					.hasNext();) {
+				Resource nextResource = it.next();
 				File file = getFile(nextResource);
 				if (file != null && file.exists() && !file.canWrite()) {
 					info.setReadOnly(true);
@@ -412,9 +408,9 @@ public class ShapesDocumentProvider extends AbstractDocumentProvider implements
 			throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
-					.getLoadedResourcesIterator(); it.hasNext();) {
-				Resource nextResource = (Resource) it.next();
+			for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it
+					.hasNext();) {
+				Resource nextResource = it.next();
 				handleElementChanged(info, nextResource, monitor);
 			}
 			return;
@@ -443,14 +439,12 @@ public class ShapesDocumentProvider extends AbstractDocumentProvider implements
 				monitor.beginTask(
 						Messages.ShapesDocumentProvider_SaveDiagramTask, info
 								.getResourceSet().getResources().size() + 1); //"Saving diagram"
-				for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
-						.getLoadedResourcesIterator(); it.hasNext();) {
-					Resource nextResource = (Resource) it.next();
-					monitor
-							.setTaskName(NLS
-									.bind(
-											Messages.ShapesDocumentProvider_SaveNextResourceTask,
-											nextResource.getURI()));
+				for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it
+						.hasNext();) {
+					Resource nextResource = it.next();
+					monitor.setTaskName(NLS
+							.bind(Messages.ShapesDocumentProvider_SaveNextResourceTask,
+									nextResource.getURI()));
 					if (nextResource.isLoaded()
 							&& !info.getEditingDomain()
 									.isReadOnly(nextResource)) {
@@ -461,8 +455,8 @@ public class ShapesDocumentProvider extends AbstractDocumentProvider implements
 							fireElementStateChangeFailed(element);
 							throw new CoreException(new Status(IStatus.ERROR,
 									ShapesDiagramEditorPlugin.ID,
-									EditorStatusCodes.RESOURCE_FAILURE, e
-											.getLocalizedMessage(), null));
+									EditorStatusCodes.RESOURCE_FAILURE,
+									e.getLocalizedMessage(), null));
 						}
 					}
 					monitor.worked(1);
@@ -475,7 +469,7 @@ public class ShapesDocumentProvider extends AbstractDocumentProvider implements
 			}
 		} else {
 			URI newResoruceURI;
-			List affectedFiles = null;
+			List<IFile> affectedFiles = null;
 			if (element instanceof URIEditorInput) {
 				newResoruceURI = ((URIEditorInput) element).getURI();
 			} else {
@@ -485,11 +479,10 @@ public class ShapesDocumentProvider extends AbstractDocumentProvider implements
 								IStatus.ERROR,
 								ShapesDiagramEditorPlugin.ID,
 								0,
-								NLS
-										.bind(
-												Messages.ShapesDocumentProvider_IncorrectInputError,
-												new Object[] { element,
-														"org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ 
+								NLS.bind(
+										Messages.ShapesDocumentProvider_IncorrectInputError,
+										new Object[] { element,
+												"org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ 
 								null));
 			}
 			if (false == document instanceof IDiagramDocument) {
@@ -507,10 +500,11 @@ public class ShapesDocumentProvider extends AbstractDocumentProvider implements
 			final Diagram diagramCopy = (Diagram) EcoreUtil
 					.copy(diagramDocument.getDiagram());
 			try {
-				new AbstractTransactionalCommand(diagramDocument
-						.getEditingDomain(), NLS.bind(
-						Messages.ShapesDocumentProvider_SaveAsOperation,
-						diagramCopy.getName()), affectedFiles) {
+				new AbstractTransactionalCommand(
+						diagramDocument.getEditingDomain(),
+						NLS.bind(
+								Messages.ShapesDocumentProvider_SaveAsOperation,
+								diagramCopy.getName()), affectedFiles) {
 					protected CommandResult doExecuteWithResult(
 							IProgressMonitor monitor, IAdaptable info)
 							throws ExecutionException {
@@ -522,13 +516,13 @@ public class ShapesDocumentProvider extends AbstractDocumentProvider implements
 			} catch (ExecutionException e) {
 				fireElementStateChangeFailed(element);
 				throw new CoreException(new Status(IStatus.ERROR,
-						ShapesDiagramEditorPlugin.ID, 0, e
-								.getLocalizedMessage(), null));
+						ShapesDiagramEditorPlugin.ID, 0,
+						e.getLocalizedMessage(), null));
 			} catch (IOException e) {
 				fireElementStateChangeFailed(element);
 				throw new CoreException(new Status(IStatus.ERROR,
-						ShapesDiagramEditorPlugin.ID, 0, e
-								.getLocalizedMessage(), null));
+						ShapesDiagramEditorPlugin.ID, 0,
+						e.getLocalizedMessage(), null));
 			}
 			newResource.unload();
 		}
@@ -688,9 +682,9 @@ public class ShapesDocumentProvider extends AbstractDocumentProvider implements
 		/**
 		 * @generated
 		 */
-		public Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/getLoadedResourcesIterator() {
-			return new ArrayList/*<org.eclipse.emf.ecore.resource.Resource>*/(
-					getResourceSet().getResources()).iterator();
+		public Iterator<Resource> getLoadedResourcesIterator() {
+			return new ArrayList<Resource>(getResourceSet().getResources())
+					.iterator();
 		}
 
 		/**
@@ -705,9 +699,9 @@ public class ShapesDocumentProvider extends AbstractDocumentProvider implements
 		 */
 		public void dispose() {
 			getResourceSet().eAdapters().remove(myResourceSetListener);
-			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = getLoadedResourcesIterator(); it
+			for (Iterator<Resource> it = getLoadedResourcesIterator(); it
 					.hasNext();) {
-				Resource resource = (Resource) it.next();
+				Resource resource = it.next();
 				resource.unload();
 			}
 			getEditingDomain().dispose();
@@ -784,11 +778,11 @@ public class ShapesDocumentProvider extends AbstractDocumentProvider implements
 		 */
 		public ResourceSetModificationListener(ResourceSetInfo info) {
 			myInfo = info;
-			myModifiedFilter = NotificationFilter.createEventTypeFilter(
-					Notification.SET).or(
-					NotificationFilter
-							.createEventTypeFilter(Notification.UNSET)).and(
-					NotificationFilter.createFeatureFilter(Resource.class,
+			myModifiedFilter = NotificationFilter
+					.createEventTypeFilter(Notification.SET)
+					.or(NotificationFilter
+							.createEventTypeFilter(Notification.UNSET))
+					.and(NotificationFilter.createFeatureFilter(Resource.class,
 							Resource.RESOURCE__IS_MODIFIED));
 		}
 
@@ -821,12 +815,11 @@ public class ShapesDocumentProvider extends AbstractDocumentProvider implements
 							}
 						}
 						if (dirtyStateChanged) {
-							fireElementDirtyStateChanged(myInfo
-									.getEditorInput(), modified);
+							fireElementDirtyStateChanged(
+									myInfo.getEditorInput(), modified);
 
 							if (!modified) {
-								myInfo
-										.setModificationStamp(computeModificationStamp(myInfo));
+								myInfo.setModificationStamp(computeModificationStamp(myInfo));
 							}
 						}
 					}

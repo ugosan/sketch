@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.sketch.examples.shapes.diagram; singleton:=true
-Bundle-Version: 0.1.0
+Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: org.eclipse.sketch.examples.shapes.diagram.part.ShapesDiagramEditorPlugin
 Bundle-Vendor: %providerName
@@ -50,3 +50,5 @@ Require-Bundle: org.eclipse.core.runtime,
  org.apache.xml.serializer;bundle-version="2.7.1",
  org.eclipse.sketch.core
 Eclipse-LazyStart: true
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

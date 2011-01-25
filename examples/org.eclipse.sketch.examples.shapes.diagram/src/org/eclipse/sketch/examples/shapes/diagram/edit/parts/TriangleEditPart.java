@@ -10,15 +10,17 @@
  *  
  *
  * $Id$
- */ 
- package org.eclipse.sketch.examples.shapes.diagram.edit.parts;
+ */
+package org.eclipse.sketch.examples.shapes.diagram.edit.parts;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.ScalablePolygonShape;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Point;
@@ -85,7 +87,7 @@ public class TriangleEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
-		LayoutEditPolicy lep = new LayoutEditPolicy() {
+		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child
@@ -111,8 +113,7 @@ public class TriangleEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		TriangleFigure figure = new TriangleFigure();
-		return primaryShape = figure;
+		return primaryShape = new TriangleFigure();
 	}
 
 	/**
@@ -206,8 +207,8 @@ public class TriangleEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSource() {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+	public List<IElementType> getMARelTypesOnSource() {
+		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
 		types.add(ShapesElementTypes.Connection_4001);
 		types.add(ShapesElementTypes.DashedConnection_4002);
 		return types;
@@ -216,9 +217,9 @@ public class TriangleEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSourceAndTarget(
+	public List<IElementType> getMARelTypesOnSourceAndTarget(
 			IGraphicalEditPart targetEditPart) {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if (targetEditPart instanceof SquareEditPart) {
 			types.add(ShapesElementTypes.Connection_4001);
 		}
@@ -243,25 +244,15 @@ public class TriangleEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForTarget(
-			IElementType relationshipType) {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if (relationshipType == ShapesElementTypes.Connection_4001) {
 			types.add(ShapesElementTypes.Square_2001);
-		}
-		if (relationshipType == ShapesElementTypes.Connection_4001) {
 			types.add(ShapesElementTypes.Triangle_2002);
-		}
-		if (relationshipType == ShapesElementTypes.Connection_4001) {
 			types.add(ShapesElementTypes.Unknown_2003);
-		}
-		if (relationshipType == ShapesElementTypes.DashedConnection_4002) {
+		} else if (relationshipType == ShapesElementTypes.DashedConnection_4002) {
 			types.add(ShapesElementTypes.Square_2001);
-		}
-		if (relationshipType == ShapesElementTypes.DashedConnection_4002) {
 			types.add(ShapesElementTypes.Triangle_2002);
-		}
-		if (relationshipType == ShapesElementTypes.DashedConnection_4002) {
 			types.add(ShapesElementTypes.Unknown_2003);
 		}
 		return types;
@@ -270,8 +261,8 @@ public class TriangleEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnTarget() {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+	public List<IElementType> getMARelTypesOnTarget() {
+		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
 		types.add(ShapesElementTypes.Connection_4001);
 		types.add(ShapesElementTypes.DashedConnection_4002);
 		return types;
@@ -280,25 +271,15 @@ public class TriangleEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForSource(
-			IElementType relationshipType) {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if (relationshipType == ShapesElementTypes.Connection_4001) {
 			types.add(ShapesElementTypes.Square_2001);
-		}
-		if (relationshipType == ShapesElementTypes.Connection_4001) {
 			types.add(ShapesElementTypes.Triangle_2002);
-		}
-		if (relationshipType == ShapesElementTypes.Connection_4001) {
 			types.add(ShapesElementTypes.Unknown_2003);
-		}
-		if (relationshipType == ShapesElementTypes.DashedConnection_4002) {
+		} else if (relationshipType == ShapesElementTypes.DashedConnection_4002) {
 			types.add(ShapesElementTypes.Square_2001);
-		}
-		if (relationshipType == ShapesElementTypes.DashedConnection_4002) {
 			types.add(ShapesElementTypes.Triangle_2002);
-		}
-		if (relationshipType == ShapesElementTypes.DashedConnection_4002) {
 			types.add(ShapesElementTypes.Unknown_2003);
 		}
 		return types;
@@ -307,7 +288,7 @@ public class TriangleEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public class TriangleFigure extends Shape {
+	public class TriangleFigure extends ScalablePolygonShape {
 
 		/**
 		 * @generated
@@ -323,83 +304,6 @@ public class TriangleEditPart extends ShapeNodeEditPart {
 			this.setLineWidth(2);
 			this.setForegroundColor(ColorConstants.darkGray);
 			this.setBackgroundColor(THIS_BACK);
-		}
-
-		/**
-		 * @generated
-		 */
-		private final PointList myTemplate = new PointList();
-		/**
-		 * @generated
-		 */
-		private Rectangle myTemplateBounds;
-
-		/**
-		 * @generated
-		 */
-		public void addPoint(Point point) {
-			myTemplate.addPoint(point);
-			myTemplateBounds = null;
-		}
-
-		/**
-		 * @generated
-		 */
-		protected void fillShape(Graphics graphics) {
-			Rectangle bounds = getBounds();
-			graphics.pushState();
-			graphics.translate(bounds.x, bounds.y);
-			graphics.fillPolygon(scalePointList());
-			graphics.popState();
-		}
-
-		/**
-		 * @generated
-		 */
-		protected void outlineShape(Graphics graphics) {
-			Rectangle bounds = getBounds();
-			graphics.pushState();
-			graphics.translate(bounds.x, bounds.y);
-			graphics.drawPolygon(scalePointList());
-			graphics.popState();
-		}
-
-		/**
-		 * @generated
-		 */
-		private Rectangle getTemplateBounds() {
-			if (myTemplateBounds == null) {
-				myTemplateBounds = myTemplate.getBounds().getCopy().union(0, 0);
-				//just safety -- we are going to use this as divider 
-				if (myTemplateBounds.width < 1) {
-					myTemplateBounds.width = 1;
-				}
-				if (myTemplateBounds.height < 1) {
-					myTemplateBounds.height = 1;
-				}
-			}
-			return myTemplateBounds;
-		}
-
-		/**
-		 * @generated
-		 */
-		private int[] scalePointList() {
-			Rectangle pointsBounds = getTemplateBounds();
-			Rectangle actualBounds = getBounds();
-
-			float xScale = ((float) actualBounds.width) / pointsBounds.width;
-			float yScale = ((float) actualBounds.height) / pointsBounds.height;
-
-			if (xScale == 1 && yScale == 1) {
-				return myTemplate.toIntArray();
-			}
-			int[] scaled = (int[]) myTemplate.toIntArray().clone();
-			for (int i = 0; i < scaled.length; i += 2) {
-				scaled[i] = (int) Math.floor(scaled[i] * xScale);
-				scaled[i + 1] = (int) Math.floor(scaled[i + 1] * yScale);
-			}
-			return scaled;
 		}
 
 	}

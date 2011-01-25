@@ -10,10 +10,11 @@
  *  
  *
  * $Id$
- */ 
- package org.eclipse.sketch.examples.shapes.diagram.part;
+ */
+package org.eclipse.sketch.examples.shapes.diagram.part;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.gef.Tool;
@@ -23,6 +24,7 @@ import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.palette.ToolEntry;
 import org.eclipse.gmf.runtime.diagram.ui.tools.UnspecifiedTypeConnectionTool;
 import org.eclipse.gmf.runtime.diagram.ui.tools.UnspecifiedTypeCreationTool;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.sketch.examples.shapes.diagram.AnnotateSketchTool;
 import org.eclipse.sketch.examples.shapes.diagram.ShapesSketchTool;
 import org.eclipse.sketch.examples.shapes.diagram.providers.ShapesElementTypes;
@@ -60,18 +62,15 @@ public class ShapesPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createSquare1CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
-		types.add(ShapesElementTypes.Square_2001);
 		NodeToolEntry entry = new NodeToolEntry(
 				Messages.Square1CreationTool_title,
-				Messages.Square1CreationTool_desc, types);
+				Messages.Square1CreationTool_desc,
+				Collections.singletonList(ShapesElementTypes.Square_2001));
 		entry.setId("createSquare1CreationTool"); //$NON-NLS-1$
-		entry
-				.setSmallIcon(ShapesDiagramEditorPlugin
-						.findImageDescriptor("/org.eclipse.sketch.examples.shapes/icons/square_small.png")); //$NON-NLS-1$
-		entry
-				.setLargeIcon(ShapesDiagramEditorPlugin
-						.findImageDescriptor("/org.eclipse.sketch.examples.shapes/icons/square_large.png")); //$NON-NLS-1$
+		entry.setSmallIcon(ShapesDiagramEditorPlugin
+				.findImageDescriptor("/org.eclipse.sketch.examples.shapes/icons/square_small.png")); //$NON-NLS-1$
+		entry.setLargeIcon(ShapesDiagramEditorPlugin
+				.findImageDescriptor("/org.eclipse.sketch.examples.shapes/icons/square_large.png")); //$NON-NLS-1$
 		return entry;
 	}
 
@@ -79,18 +78,15 @@ public class ShapesPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createTriangle2CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
-		types.add(ShapesElementTypes.Triangle_2002);
 		NodeToolEntry entry = new NodeToolEntry(
 				Messages.Triangle2CreationTool_title,
-				Messages.Triangle2CreationTool_desc, types);
+				Messages.Triangle2CreationTool_desc,
+				Collections.singletonList(ShapesElementTypes.Triangle_2002));
 		entry.setId("createTriangle2CreationTool"); //$NON-NLS-1$
-		entry
-				.setSmallIcon(ShapesDiagramEditorPlugin
-						.findImageDescriptor("/org.eclipse.sketch.examples.shapes/icons/triangle_small.png")); //$NON-NLS-1$
-		entry
-				.setLargeIcon(ShapesDiagramEditorPlugin
-						.findImageDescriptor("/org.eclipse.sketch.examples.shapes/icons/triangle_large.png")); //$NON-NLS-1$
+		entry.setSmallIcon(ShapesDiagramEditorPlugin
+				.findImageDescriptor("/org.eclipse.sketch.examples.shapes/icons/triangle_small.png")); //$NON-NLS-1$
+		entry.setLargeIcon(ShapesDiagramEditorPlugin
+				.findImageDescriptor("/org.eclipse.sketch.examples.shapes/icons/triangle_large.png")); //$NON-NLS-1$
 		return entry;
 	}
 
@@ -98,18 +94,15 @@ public class ShapesPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createConnection3CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
-		types.add(ShapesElementTypes.Connection_4001);
 		LinkToolEntry entry = new LinkToolEntry(
 				Messages.Connection3CreationTool_title,
-				Messages.Connection3CreationTool_desc, types);
+				Messages.Connection3CreationTool_desc,
+				Collections.singletonList(ShapesElementTypes.Connection_4001));
 		entry.setId("createConnection3CreationTool"); //$NON-NLS-1$
-		entry
-				.setSmallIcon(ShapesDiagramEditorPlugin
-						.findImageDescriptor("/org.eclipse.sketch.examples.shapes/icons/connection_small.png")); //$NON-NLS-1$
-		entry
-				.setLargeIcon(ShapesDiagramEditorPlugin
-						.findImageDescriptor("/org.eclipse.sketch.examples.shapes/icons/connection_large.png")); //$NON-NLS-1$
+		entry.setSmallIcon(ShapesDiagramEditorPlugin
+				.findImageDescriptor("/org.eclipse.sketch.examples.shapes/icons/connection_small.png")); //$NON-NLS-1$
+		entry.setLargeIcon(ShapesDiagramEditorPlugin
+				.findImageDescriptor("/org.eclipse.sketch.examples.shapes/icons/connection_large.png")); //$NON-NLS-1$
 		return entry;
 	}
 
@@ -117,18 +110,16 @@ public class ShapesPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createDashedConnection4CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
-		types.add(ShapesElementTypes.DashedConnection_4002);
 		LinkToolEntry entry = new LinkToolEntry(
 				Messages.DashedConnection4CreationTool_title,
-				Messages.DashedConnection4CreationTool_desc, types);
+				Messages.DashedConnection4CreationTool_desc,
+				Collections
+						.singletonList(ShapesElementTypes.DashedConnection_4002));
 		entry.setId("createDashedConnection4CreationTool"); //$NON-NLS-1$
-		entry
-				.setSmallIcon(ShapesDiagramEditorPlugin
-						.findImageDescriptor("/org.eclipse.sketch.examples.shapes/icons/dconnection_small.png")); //$NON-NLS-1$
-		entry
-				.setLargeIcon(ShapesDiagramEditorPlugin
-						.findImageDescriptor("/org.eclipse.sketch.examples.shapes/icons/dconnection_large.png")); //$NON-NLS-1$
+		entry.setSmallIcon(ShapesDiagramEditorPlugin
+				.findImageDescriptor("/org.eclipse.sketch.examples.shapes/icons/dconnection_small.png")); //$NON-NLS-1$
+		entry.setLargeIcon(ShapesDiagramEditorPlugin
+				.findImageDescriptor("/org.eclipse.sketch.examples.shapes/icons/dconnection_large.png")); //$NON-NLS-1$
 		return entry;
 	}
 
@@ -140,12 +131,10 @@ public class ShapesPaletteFactory {
 				Messages.FreeSketch5CreationTool_desc, null, null) {
 		};
 		entry.setId("createFreeSketch5CreationTool"); //$NON-NLS-1$
-		entry
-				.setSmallIcon(ShapesDiagramEditorPlugin
-						.findImageDescriptor("/org.eclipse.sketch.examples.shapes/icons/Pen.gif")); //$NON-NLS-1$
-		entry
-				.setLargeIcon(ShapesDiagramEditorPlugin
-						.findImageDescriptor("/org.eclipse.sketch.examples.shapes/icons/Pen.gif")); //$NON-NLS-1$
+		entry.setSmallIcon(ShapesDiagramEditorPlugin
+				.findImageDescriptor("/org.eclipse.sketch.examples.shapes/icons/Pen.gif")); //$NON-NLS-1$
+		entry.setLargeIcon(ShapesDiagramEditorPlugin
+				.findImageDescriptor("/org.eclipse.sketch.examples.shapes/icons/Pen.gif")); //$NON-NLS-1$
 		entry.setToolClass(ShapesSketchTool.class);
 		return entry;
 	}
@@ -158,12 +147,10 @@ public class ShapesPaletteFactory {
 				Messages.Annotation6CreationTool_desc, null, null) {
 		};
 		entry.setId("createAnnotation6CreationTool"); //$NON-NLS-1$
-		entry
-				.setSmallIcon(ShapesDiagramEditorPlugin
-						.findImageDescriptor("/org.eclipse.sketch.examples.shapes/icons/annotation.gif")); //$NON-NLS-1$
-		entry
-				.setLargeIcon(ShapesDiagramEditorPlugin
-						.findImageDescriptor("/org.eclipse.sketch.examples.shapes/icons/annotation.gif")); //$NON-NLS-1$
+		entry.setSmallIcon(ShapesDiagramEditorPlugin
+				.findImageDescriptor("/org.eclipse.sketch.examples.shapes/icons/annotation.gif")); //$NON-NLS-1$
+		entry.setLargeIcon(ShapesDiagramEditorPlugin
+				.findImageDescriptor("/org.eclipse.sketch.examples.shapes/icons/annotation.gif")); //$NON-NLS-1$
 		entry.setToolClass(AnnotateSketchTool.class);
 		return entry;
 	}
@@ -176,13 +163,13 @@ public class ShapesPaletteFactory {
 		/**
 		 * @generated
 		 */
-		private final List elementTypes;
+		private final List<IElementType> elementTypes;
 
 		/**
 		 * @generated
 		 */
 		private NodeToolEntry(String title, String description,
-				List elementTypes) {
+				List<IElementType> elementTypes) {
 			super(title, description, null, null);
 			this.elementTypes = elementTypes;
 		}
@@ -205,13 +192,13 @@ public class ShapesPaletteFactory {
 		/**
 		 * @generated
 		 */
-		private final List relationshipTypes;
+		private final List<IElementType> relationshipTypes;
 
 		/**
 		 * @generated
 		 */
 		private LinkToolEntry(String title, String description,
-				List relationshipTypes) {
+				List<IElementType> relationshipTypes) {
 			super(title, description, null, null);
 			this.relationshipTypes = relationshipTypes;
 		}

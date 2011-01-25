@@ -50,7 +50,7 @@ public class ShapesPackage extends EPackageImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String eNS_URI = "shapes";
+	public static final String eNS_URI = "http://www.eclipse.org/sketch/shapes";
 
 	/**
 	 * The package namespace name.

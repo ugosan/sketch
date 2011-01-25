@@ -13,7 +13,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="shapes"
-            class="shapes.ShapesPackage"
+            class="org.eclipse.sketch.examples.shapes.ShapesPackage"
             genModel="model/shapes.genmodel"/>
    </extension>
    <extension

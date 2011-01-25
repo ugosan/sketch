@@ -10,10 +10,11 @@
  *  
  *
  * $Id$
- */ 
- package org.eclipse.sketch.examples.shapes.diagram.edit.parts;
+ */
+package org.eclipse.sketch.examples.shapes.diagram.edit.parts;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.draw2d.ColorConstants;
@@ -82,7 +83,7 @@ public class SquareEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
-		LayoutEditPolicy lep = new LayoutEditPolicy() {
+		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child
@@ -108,8 +109,7 @@ public class SquareEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		SquareFigure figure = new SquareFigure();
-		return primaryShape = figure;
+		return primaryShape = new SquareFigure();
 	}
 
 	/**
@@ -203,8 +203,8 @@ public class SquareEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSource() {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+	public List<IElementType> getMARelTypesOnSource() {
+		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
 		types.add(ShapesElementTypes.Connection_4001);
 		types.add(ShapesElementTypes.DashedConnection_4002);
 		return types;
@@ -213,9 +213,9 @@ public class SquareEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSourceAndTarget(
+	public List<IElementType> getMARelTypesOnSourceAndTarget(
 			IGraphicalEditPart targetEditPart) {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if (targetEditPart instanceof org.eclipse.sketch.examples.shapes.diagram.edit.parts.SquareEditPart) {
 			types.add(ShapesElementTypes.Connection_4001);
 		}
@@ -240,25 +240,15 @@ public class SquareEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForTarget(
-			IElementType relationshipType) {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if (relationshipType == ShapesElementTypes.Connection_4001) {
 			types.add(ShapesElementTypes.Square_2001);
-		}
-		if (relationshipType == ShapesElementTypes.Connection_4001) {
 			types.add(ShapesElementTypes.Triangle_2002);
-		}
-		if (relationshipType == ShapesElementTypes.Connection_4001) {
 			types.add(ShapesElementTypes.Unknown_2003);
-		}
-		if (relationshipType == ShapesElementTypes.DashedConnection_4002) {
+		} else if (relationshipType == ShapesElementTypes.DashedConnection_4002) {
 			types.add(ShapesElementTypes.Square_2001);
-		}
-		if (relationshipType == ShapesElementTypes.DashedConnection_4002) {
 			types.add(ShapesElementTypes.Triangle_2002);
-		}
-		if (relationshipType == ShapesElementTypes.DashedConnection_4002) {
 			types.add(ShapesElementTypes.Unknown_2003);
 		}
 		return types;
@@ -267,8 +257,8 @@ public class SquareEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnTarget() {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+	public List<IElementType> getMARelTypesOnTarget() {
+		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
 		types.add(ShapesElementTypes.Connection_4001);
 		types.add(ShapesElementTypes.DashedConnection_4002);
 		return types;
@@ -277,25 +267,15 @@ public class SquareEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForSource(
-			IElementType relationshipType) {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if (relationshipType == ShapesElementTypes.Connection_4001) {
 			types.add(ShapesElementTypes.Square_2001);
-		}
-		if (relationshipType == ShapesElementTypes.Connection_4001) {
 			types.add(ShapesElementTypes.Triangle_2002);
-		}
-		if (relationshipType == ShapesElementTypes.Connection_4001) {
 			types.add(ShapesElementTypes.Unknown_2003);
-		}
-		if (relationshipType == ShapesElementTypes.DashedConnection_4002) {
+		} else if (relationshipType == ShapesElementTypes.DashedConnection_4002) {
 			types.add(ShapesElementTypes.Square_2001);
-		}
-		if (relationshipType == ShapesElementTypes.DashedConnection_4002) {
 			types.add(ShapesElementTypes.Triangle_2002);
-		}
-		if (relationshipType == ShapesElementTypes.DashedConnection_4002) {
 			types.add(ShapesElementTypes.Unknown_2003);
 		}
 		return types;
@@ -313,25 +293,6 @@ public class SquareEditPart extends ShapeNodeEditPart {
 			this.setLineWidth(2);
 			this.setForegroundColor(ColorConstants.darkGray);
 			this.setBackgroundColor(THIS_BACK);
-		}
-
-		/**
-		 * @generated
-		 */
-		private boolean myUseLocalCoordinates = false;
-
-		/**
-		 * @generated
-		 */
-		protected boolean useLocalCoordinates() {
-			return myUseLocalCoordinates;
-		}
-
-		/**
-		 * @generated
-		 */
-		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
-			myUseLocalCoordinates = useLocalCoordinates;
 		}
 
 	}

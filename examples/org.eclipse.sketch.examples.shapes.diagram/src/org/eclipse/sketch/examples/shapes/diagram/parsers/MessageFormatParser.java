@@ -10,9 +10,8 @@
  *  
  *
  * $Id$
- */ 
- package org.eclipse.sketch.examples.shapes.diagram.parsers;
-
+ */
+package org.eclipse.sketch.examples.shapes.diagram.parsers;
 
 import java.text.FieldPosition;
 import java.text.MessageFormat;

@@ -13,6 +13,7 @@
  */
 package org.eclipse.sketch.examples.shapes;
 
+import org.eclipse.emf.cdo.CDOObject;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -31,9 +32,10 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see org.eclipse.sketch.examples.shapes.ShapesPackage#getAbstractConnection()
  * @model kind="class" interface="true" abstract="true"
+ * @extends CDOObject
  * @generated
  */
-public interface AbstractConnection extends EObject {
+public interface AbstractConnection extends CDOObject {
 	/**
 	 * Returns the value of the '<em><b>Source</b></em>' reference.
 	 * <!-- begin-user-doc -->

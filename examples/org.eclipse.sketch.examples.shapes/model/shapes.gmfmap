@@ -38,6 +38,8 @@
   <nodes>
     <containmentFeature
         href="shapes.ecore#//Diagram/shapes"/>
+    <childrenFeature
+        href="shapes.ecore#//Diagram/shapes"/>
     <ownedChild>
       <domainMetaElement
           href="shapes.ecore#//Unknown"/>
