@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<fragment>
+<extension
+         point="org.eclipse.ui.editors">
+      <editor
+
+            class="org.eclipse.sketch.examples.shapes.diagram.part.DawnShapesDiagramEditor"
+            contributorClass="org.eclipse.sketch.examples.shapes.diagram.part.ShapesDiagramActionBarContributor"
+            default="true"
+	            extensions="shapes"
+	            icon="icons/obj16/ShapesDiagramFile.gif"
+	            id="org.eclipse.sketch.examples.shapes.diagram.part.DawnShapesDiagramEditor"
+	            matchingStrategy="org.eclipse.sketch.examples.shapes.diagram.part.ShapesMatchingStrategy"
+	            name="Dawn Shapes Diagram">
+	      </editor>
+	   </extension>
+	       <extension
+          point="org.eclipse.ui.newWizards">
+       <wizard
+             category="org.eclipse.ui.Examples"
+             class="org.eclipse.sketch.examples.shapes.diagram.part.DawnShapesCreationWizard"
+             icon="icons/obj16/ShapesDiagramFile.gif"
+             id="org.eclipse.sketch.examples.shapes.diagram.part.DawnShapesCreationWizard"
+             name="Dawn Shapes Diagram">
+          <description>
+             description body text
+          </description>
+       </wizard>
+
+    </extension>
+        <extension
+              point="org.eclipse.gmf.runtime.diagram.ui.resources.editor.documentProviders">
+           <provider
+                 class="org.eclipse.sketch.examples.shapes.diagram.part.DawnShapesDocumentProvider"
+                 documentType="org.eclipse.gmf.runtime.diagram.ui.editor.IDocument"
+                 id="org.eclipse.sketch.examples.shapes.diagram.part.DawnShapesDocumentProvider"
+                 inputTypes="org.eclipse.emf.common.ui.URIEditorInput">
+           </provider>
+        </extension>
+       <extension
+             point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
+          <editpolicyProvider
+                class="org.eclipse.sketch.examples.shapes.diagram.providers.DawnShapesEditPolicyProvider">
+             <Priority
+                   name="Low">
+             </Priority>
+          </editpolicyProvider>
+       </extension>
+      <extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders" id="ep-provider">
+      <?gmfgen generated="true"?>
+      <editpartProvider class="org.eclipse.sketch.examples.shapes.diagram.providers.DawnShapesEditPartProvider">
+         <Priority name="Medium"/>
+         <object class="org.eclipse.gmf.runtime.notation.Diagram" id="generated-diagram">
+            <method name="getType()" value="Shapes"/>
+         </object>
+         <context views="generated-diagram"/>
+      </editpartProvider>
+     </extension>
+</fragment>
+

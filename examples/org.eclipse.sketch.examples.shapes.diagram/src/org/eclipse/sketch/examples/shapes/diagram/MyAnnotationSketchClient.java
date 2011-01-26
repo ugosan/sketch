@@ -168,7 +168,6 @@ public class MyAnnotationSketchClient implements ISketchListener{
 			createRequest.setLocation(s.getLocation());
 			createRequest.setSize(s.getSize());
 			
-			
 			//command to add the element to the model
 			Command c = new Command(){
 
@@ -206,6 +205,7 @@ public class MyAnnotationSketchClient implements ISketchListener{
 
 					editor.getDiagramGraphicalViewer().select(object);
 	
+					System.out.println(editor.getDiagramGraphicalViewer());
 				}
 			
 			};

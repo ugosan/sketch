@@ -292,14 +292,17 @@ public abstract class SketchTool extends AbstractTool{
 
 								manager.newSketch(sketch);
 
+								//erases the drawing area
 								manager.getEditor().getDiagramGraphicalViewer().getControl().redraw();	 
 
+								
 								cleanup();
 							}
 						}
 					}  
 
 				});  
+				
 				try {  
 					Thread.sleep(penupdownTolerance/3);  
 				} catch (InterruptedException e) {  
