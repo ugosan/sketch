@@ -97,8 +97,7 @@ public class UnknownEditPart extends ShapeNodeEditPart {
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
-		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE,
-				new ResizableShapeLabelEditPolicy());
+		//installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE,new ResizableShapeLabelEditPolicy());
 	}
 
 	/**
@@ -138,10 +137,9 @@ public class UnknownEditPart extends ShapeNodeEditPart {
 			NodeImpl n = (NodeImpl) getModel();
 			Unknown s = (Unknown) n.basicGetElement();
 
-			if (s.getSvg() != null) {
+			if (s!=null&&s.getSvg() != null) {
 
-				IWorkspaceRoot myWorkspaceRoot = ResourcesPlugin.getWorkspace()
-						.getRoot();
+				IWorkspaceRoot myWorkspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
 				File imgfile = myWorkspaceRoot.getLocation().append(
 						"s" + System.currentTimeMillis() + ".svg").toFile();
 
@@ -452,8 +450,10 @@ public class UnknownEditPart extends ShapeNodeEditPart {
 
 			Unknown model = (Unknown) ((ShapeImpl) getModel())
 					.basicGetElement();
+			if(model !=null)
+			{
 			setToolTip(new Label(model.getElement()));
-
+			}
 			this.image = i;
 
 			this.setMaintainAspectRatio(true);
