@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <description url="http://eclipse.org/sketch">
+	Sketch is cool.
+   </description>
+   <feature url="features/org.eclipse.sketch_0.0.0.qualifier.jar" id="org.eclipse.sketch" version="0.0.0" patch="true">
+      <category name="Eclipse Sketch (Incubation)"/>
+   </feature>
+   <category-def name="Eclipse Sketch (Incubation)" label="Eclipse Sketch (Incubation)">
+      <description>
+         Eclipse Sketch (Incubation)
+      </description>
+   </category-def>
+</site>

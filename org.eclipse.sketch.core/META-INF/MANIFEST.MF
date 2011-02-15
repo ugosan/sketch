@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Sketch
+Bundle-Name: Sketch (Incubation)
 Bundle-SymbolicName: org.eclipse.sketch.core;singleton:=true
-Bundle-Version: 0.1.0
+Bundle-Version: 0.1.0.qualifier
 Bundle-Activator: org.eclipse.sketch.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
@@ -14,4 +14,3 @@ Export-Package: org.eclipse.sketch,
  org.eclipse.sketch.chain,
  org.eclipse.sketch.clientobserver,
  org.eclipse.sketch.ui.views
-Bundle-ClassPath: .
