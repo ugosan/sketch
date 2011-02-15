@@ -32,6 +32,7 @@
       <unsubscribe>https://dev.eclipse.org/mailman/listinfo/sketch-dev</unsubscribe>
       <archive>http://dev.eclipse.org/mhonarc/lists/sketch-dev</archive>
     </mailingList>
+  </mailingLists>
 
   <issueManagement>
     <url>https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced;product=Sketch;classification=Technology</url>
