@@ -88,6 +88,9 @@
 
   <modules>
     <module>org.eclipse.sketch.core</module>
+
+    <module>org.eclipse.sketch.feature</module>
+    <module>org.eclipse.sketch.site</module>
   </modules>
 
   <repositories>
