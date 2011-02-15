@@ -8,7 +8,7 @@ Github vs. Eclipse git
 
 This project was forked on github in order to easily disseminate the contributions among the community. In fact, the github repository is merely a mirror of the Eclipse repository.
 
-If you want to stay always up-to-date with the latest changes, [fork](https://github.com/ugosan/sketch/fork) the ugosan repository Github.
+If you want to stay always up-to-date with the latest changes, [fork](https://github.com/ugosan/sketch/fork) the [ugosan](https://github.com/ugosan/sketch) repository Github.
 
 
 Contributing
