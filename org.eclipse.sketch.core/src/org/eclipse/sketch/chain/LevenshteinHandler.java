@@ -61,7 +61,8 @@ public class LevenshteinHandler extends SketchChainHandler {
 				
 				result_map.put(type, new Integer(average));
 				debug += "\tAverage distance from "+type+": "+average+"\n";
-			}else{ 
+			}else
+			{ 
 				result_map.put(type, new Integer(-1));
 				debug += "\tAverage distance from "+type+": -1\n";
 			}
