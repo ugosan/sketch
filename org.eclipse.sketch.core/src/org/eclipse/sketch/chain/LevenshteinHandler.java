@@ -14,9 +14,11 @@ package org.eclipse.sketch.chain;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.eclipse.emf.ecore.xmi.IllegalValueException;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.sketch.Sketch;
 import org.eclipse.sketch.SketchBank;
+import org.eclipse.sketch.exceptions.IllegalLengthException;
 /**
  * Recognize the sketch based on its string form, based on work from Adrien Coyette, Sascha Schimke, Jean Vanderdonckt, and Claus Vielhauer - http://www.isys.ucl.ac.be/bchi/publications/2007/Schimke-Interact2007.pdf
  * @author ugo
@@ -48,20 +50,46 @@ public class LevenshteinHandler extends SketchChainHandler {
 			//debug += "\n\t is it a "+type.getDisplayName()+"?";
 			
 			ArrayList<String> sketches = SketchBank.getInstance().getSketches(type);
-			if(sketches.size()>0){
+			if(sketches!=null && sketches.size()>0){
 				int sum = 0;
-				for(int x=0;x<sketches.size();x++){
-				
-					int distance = run(dna,sketches.get(x));
-					sum += distance;
-					
+				for(int x=0;x<sketches.size();x++)
+				{
+					String bankDna = sketches.get(x);
+					try 
+					{
+						String stretchedDna; 
+						if (bankDna.length() > dna.length())
+							stretchedDna = stretch(dna, bankDna.length());
+						else
+						{
+							stretchedDna = dna;
+							bankDna = stretch(bankDna, dna.length());
+						}						
+						
+						System.out.println(type);
+						System.out.println("dna : "+stretchedDna);
+						System.out.println("bank: "+bankDna);
+						int distance = run(stretchedDna,bankDna);
+						System.out.println("Distance (stretch) :"+distance);
+						System.out.println("Distance (normal)  :"+run(dna,sketches.get(x)));
+						
+						float normalized_distance = (float)distance/stretchedDna.length();
+						
+						sum += (int)(normalized_distance*100);
+					}
+					catch (IllegalLengthException e) 
+					{
+						System.err.println("ERROR : can't stretch this dna");
+						e.printStackTrace();
+					}					
 				}
 				
 				int average = sum/sketches.size();
 				
 				result_map.put(type, new Integer(average));
 				debug += "\tAverage distance from "+type+": "+average+"\n";
-			}else
+			}
+			else
 			{ 
 				result_map.put(type, new Integer(-1));
 				debug += "\tAverage distance from "+type+": -1\n";
@@ -75,8 +103,70 @@ public class LevenshteinHandler extends SketchChainHandler {
 		System.out.println(debug);
 		return this;
 	}
-
 	
+	/**
+	 * Stretch the Dna so that it has a given length (bigger than its current length)
+	 * @param dna the dna to b stretched
+	 * @param length the length to reach
+	 * @throws IllegalLengthException when the length to obtain is smaller than the 
+	 * current length of the Dna
+	 * @return the new Dna, stretched
+	 */
+	private String stretch(String dna, int length) throws IllegalLengthException 
+	{
+		int curlength = dna.length();
+		
+		//Handling lengths that are too big
+			if (curlength > length)
+				throw new IllegalLengthException(length);
+			if (curlength == length)
+				return dna;
+		
+		float step = curlength/(float)(length-curlength);
+		
+		StringBuffer out = new StringBuffer();
+		
+		
+		System.out.println(dna + "; length:"+curlength+"; step:"+step);
+		//if (step > 0)
+		{
+			for (float i=0; i<curlength; i+=step)
+			{
+				if (i+step > curlength)
+				{
+					out.append(dna.substring((int)i));
+					if (out.length() < length)
+						out.append(dna.charAt((int)(dna.length()-1)));
+				}
+				else
+					out.append(dna.substring((int)i,(int)(i+step)))
+					   .append(dna.charAt((int)(i+step-1)));
+				//System.out.println(out.toString());
+			}
+		}
+		return out.toString();
+	}
+	/**
+	 * Test function
+	 */
+	public static void main(String args[])
+	{
+		LevenshteinHandler l = new LevenshteinHandler();
+		try 
+		{
+			String a;
+			a = l.stretch("1234567890", 10); 
+			System.out.println(a+";length:"+a.length());
+			
+			a = l.stretch("3333345555567777899990", 95); 
+			System.out.println(a+";length:"+a.length());
+			
+			a = l.stretch("86666666666655554444443323222222211118117887877770", 95); 
+			System.out.println(a+";length:"+a.length());
+		} 
+		catch (IllegalLengthException e) {e.printStackTrace();}
+	}
+
 	/**
 	 * String distance algorithm as implemented by Chas Emerick (http://www.merriampark.com/ldjava.htm) based on the 
 	 * original source of Michael Gilleland (http://www.merriampark.com/ld.htm) 
