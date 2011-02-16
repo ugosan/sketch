@@ -1,0 +1,7 @@
+# Tracing options for the org.eclipse.sketch.examples.shapes.diagram plug-in
+
+# Common issues
+org.eclipse.sketch.examples.shapes.diagram/debug=false
+
+# Visual IDs
+org.eclipse.sketch.examples.shapes.diagram/debug/visualID=false

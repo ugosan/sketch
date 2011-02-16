@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gmftool:ToolRegistry xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:gmftool="http://www.eclipse.org/gmf/2005/ToolDefinition">
+  <palette
+      title="shapesPalette">
+    <tools
+        xsi:type="gmftool:ToolGroup"
+        title="shapes">
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Square"
+          description="Create new Square">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/square_small.png"
+            bundle="org.eclipse.sketch.examples.shapes"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/square_large.png"
+            bundle="org.eclipse.sketch.examples.shapes"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Triangle"
+          description="Create new Triangle">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/triangle_small.png"
+            bundle="org.eclipse.sketch.examples.shapes"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/triangle_large.png"
+            bundle="org.eclipse.sketch.examples.shapes"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Connection"
+          description="Creates a Connection">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/connection_small.png"
+            bundle="org.eclipse.sketch.examples.shapes"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/connection_large.png"
+            bundle="org.eclipse.sketch.examples.shapes"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="DashedConnection"
+          description="Creates a Dashed Connection">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/dconnection_small.png"
+            bundle="org.eclipse.sketch.examples.shapes"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="icons/dconnection_large.png"
+            bundle="org.eclipse.sketch.examples.shapes"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:GenericTool"
+          title="Free Sketch"
+          description="Sketch"
+          toolClass="org.eclipse.sketch.examples.shapes.diagram.ShapesSketchTool">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/Pen.gif"
+            bundle="org.eclipse.sketch.examples.shapes"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/Pen.gif"
+            bundle="org.eclipse.sketch.examples.shapes"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:GenericTool"
+          title="Annotation"
+          description="Annotation tool"
+          toolClass="org.eclipse.sketch.examples.shapes.diagram.AnnotateSketchTool">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/annotation.gif"
+            bundle="org.eclipse.sketch.examples.shapes"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/annotation.gif"
+            bundle="org.eclipse.sketch.examples.shapes"/>
+      </tools>
+    </tools>
+  </palette>
+</gmftool:ToolRegistry>
