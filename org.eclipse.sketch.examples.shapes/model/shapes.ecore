@@ -16,8 +16,11 @@
   <eClassifiers xsi:type="ecore:EClass" name="Square" eSuperTypes="#//Shape"/>
   <eClassifiers xsi:type="ecore:EClass" name="Triangle" eSuperTypes="#//Shape"/>
   <eClassifiers xsi:type="ecore:EClass" name="Unknown" eSuperTypes="#//Shape">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="meta" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="meta" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="element" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dna" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="####"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Connection" eSuperTypes="#//AbstractConnection"/>
   <eClassifiers xsi:type="ecore:EClass" name="DashedConnection" eSuperTypes="#//AbstractConnection"/>

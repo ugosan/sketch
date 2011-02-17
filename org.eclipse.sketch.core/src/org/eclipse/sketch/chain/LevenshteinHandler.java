@@ -52,6 +52,8 @@ public class LevenshteinHandler extends SketchChainHandler {
 			ArrayList<String> sketches = SketchBank.getInstance().getSketches(type);
 			if(sketches!=null && sketches.size()>0){
 				int sum = 0;
+				int sum2 = 0; //comparison var, can be removed in the release
+				
 				for(int x=0;x<sketches.size();x++)
 				{
 					String bankDna = sketches.get(x);
@@ -69,13 +71,18 @@ public class LevenshteinHandler extends SketchChainHandler {
 						System.out.println(type);
 						System.out.println("dna : "+stretchedDna);
 						System.out.println("bank: "+bankDna);
-						int distance = run(stretchedDna,bankDna);
-						System.out.println("Distance (stretch) :"+distance);
-						System.out.println("Distance (normal)  :"+run(dna,sketches.get(x)));
 						
-						float normalized_distance = (float)distance/stretchedDna.length();
+						int distance = run(stretchedDna,bankDna);						
+						float normalized_distance = 100*(float)distance/stretchedDna.length();
+						System.out.println("Distance % (stretch)   :"+normalized_distance);
 						
-						sum += (int)(normalized_distance*100);
+						//This block of code is for comparison, it can be removed in the release 
+							int distance2 = run(dna,sketches.get(x));						
+							float normalized_distance2 = 100*(float)distance2/Math.max(dna.length(), sketches.get(x).length()); //can
+							System.out.println("Distance % (nostretch) :"+normalized_distance2);
+
+						sum += (int)normalized_distance;
+						sum2 += (int)normalized_distance2;
 					}
 					catch (IllegalLengthException e) 
 					{
@@ -85,14 +92,15 @@ public class LevenshteinHandler extends SketchChainHandler {
 				}
 				
 				int average = sum/sketches.size();
+				int average2 = sum2/sketches.size(); //can be removed in release
 				
 				result_map.put(type, new Integer(average));
-				debug += "\tAverage distance from "+type+": "+average+"\n";
+				debug += "\tAverage distance from "+type+":\t"+average+"\t"+average2+"\n";
 			}
 			else
 			{ 
 				result_map.put(type, new Integer(-1));
-				debug += "\tAverage distance from "+type+": -1\n";
+				debug += "\tAverage distance from "+type+":\t-1\n";
 			}
 			
 		}

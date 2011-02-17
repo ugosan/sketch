@@ -263,13 +263,22 @@ public class ShapesPackage extends EPackageImpl {
 	public static final int UNKNOWN__ELEMENT = SHAPE_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Dna</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int UNKNOWN__DNA = SHAPE_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Unknown</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	public static final int UNKNOWN_FEATURE_COUNT = SHAPE_FEATURE_COUNT + 2;
+	public static final int UNKNOWN_FEATURE_COUNT = SHAPE_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.sketch.examples.shapes.AbstractConnection <em>Abstract Connection</em>}' class.
@@ -666,6 +675,20 @@ public class ShapesPackage extends EPackageImpl {
 	}
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.sketch.examples.shapes.Unknown#getDna <em>Dna</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Dna</em>'.
+	 * @see org.eclipse.sketch.examples.shapes.Unknown#getDna()
+	 * @see #getUnknown()
+	 * @generated
+	 */
+	public EAttribute getUnknown_Dna() {
+		return (EAttribute)unknownEClass.getEStructuralFeatures().get(2);
+	}
+
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.sketch.examples.shapes.Connection <em>Connection</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -785,6 +808,7 @@ public class ShapesPackage extends EPackageImpl {
 		unknownEClass = createEClass(UNKNOWN);
 		createEAttribute(unknownEClass, UNKNOWN__META);
 		createEAttribute(unknownEClass, UNKNOWN__ELEMENT);
+		createEAttribute(unknownEClass, UNKNOWN__DNA);
 
 		connectionEClass = createEClass(CONNECTION);
 
@@ -844,8 +868,9 @@ public class ShapesPackage extends EPackageImpl {
 		initEClass(triangleEClass, Triangle.class, "Triangle", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(unknownEClass, Unknown.class, "Unknown", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getUnknown_Meta(), ecorePackage.getEString(), "meta", null, 0, 1, Unknown.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUnknown_Meta(), ecorePackage.getEString(), "meta", "", 0, 1, Unknown.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getUnknown_Element(), ecorePackage.getEString(), "element", null, 0, 1, Unknown.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUnknown_Dna(), ecorePackage.getEString(), "dna", "####", 0, 1, Unknown.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(connectionEClass, Connection.class, "Connection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -970,6 +995,14 @@ public class ShapesPackage extends EPackageImpl {
 		 * @generated
 		 */
 		public static final EAttribute UNKNOWN__ELEMENT = eINSTANCE.getUnknown_Element();
+
+		/**
+		 * The meta object literal for the '<em><b>Dna</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public static final EAttribute UNKNOWN__DNA = eINSTANCE.getUnknown_Dna();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.sketch.examples.shapes.Connection <em>Connection</em>}' class.

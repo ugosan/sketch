@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <ul>
  *   <li>{@link org.eclipse.sketch.examples.shapes.Unknown#getMeta <em>Meta</em>}</li>
  *   <li>{@link org.eclipse.sketch.examples.shapes.Unknown#getElement <em>Element</em>}</li>
+ *   <li>{@link org.eclipse.sketch.examples.shapes.Unknown#getDna <em>Dna</em>}</li>
  * </ul>
  * </p>
  *
@@ -86,7 +87,7 @@ public class Unknown extends EObjectImpl implements Shape {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String META_EDEFAULT = null;
+	protected static final String META_EDEFAULT = "";
 
 	/**
 	 * The cached value of the '{@link #getMeta() <em>Meta</em>}' attribute.
@@ -117,6 +118,26 @@ public class Unknown extends EObjectImpl implements Shape {
 	 * @ordered
 	 */
 	protected String element = ELEMENT_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getDna() <em>Dna</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDna()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String DNA_EDEFAULT = "####";
+
+	/**
+	 * The cached value of the '{@link #getDna() <em>Dna</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDna()
+	 * @generated
+	 * @ordered
+	 */
+	protected String dna = DNA_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -205,6 +226,7 @@ public class Unknown extends EObjectImpl implements Shape {
 
 	/**
 	 * Returns the value of the '<em><b>Meta</b></em>' attribute.
+	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Meta</em>' attribute isn't clear,
@@ -214,7 +236,7 @@ public class Unknown extends EObjectImpl implements Shape {
 	 * @return the value of the '<em>Meta</em>' attribute.
 	 * @see #setMeta(String)
 	 * @see org.eclipse.sketch.examples.shapes.ShapesPackage#getUnknown_Meta()
-	 * @model
+	 * @model default=""
 	 * @generated
 	 */
 	public String getMeta() {
@@ -270,6 +292,40 @@ public class Unknown extends EObjectImpl implements Shape {
 	}
 
 	/**
+	 * Returns the value of the '<em><b>Dna</b></em>' attribute.
+	 * The default value is <code>"####"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Dna</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Dna</em>' attribute.
+	 * @see #setDna(String)
+	 * @see org.eclipse.sketch.examples.shapes.ShapesPackage#getUnknown_Dna()
+	 * @model default="####"
+	 * @generated
+	 */
+	public String getDna() {
+		return dna;
+	}
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.sketch.examples.shapes.Unknown#getDna <em>Dna</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Dna</em>' attribute.
+	 * @see #getDna()
+	 * @generated
+	 */
+	public void setDna(String newDna) {
+		String oldDna = dna;
+		dna = newDna;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ShapesPackage.UNKNOWN__DNA, oldDna, dna));
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -285,6 +341,8 @@ public class Unknown extends EObjectImpl implements Shape {
 				return getMeta();
 			case ShapesPackage.UNKNOWN__ELEMENT:
 				return getElement();
+			case ShapesPackage.UNKNOWN__DNA:
+				return getDna();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -308,6 +366,9 @@ public class Unknown extends EObjectImpl implements Shape {
 				return;
 			case ShapesPackage.UNKNOWN__ELEMENT:
 				setElement((String)newValue);
+				return;
+			case ShapesPackage.UNKNOWN__DNA:
+				setDna((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -333,6 +394,9 @@ public class Unknown extends EObjectImpl implements Shape {
 			case ShapesPackage.UNKNOWN__ELEMENT:
 				setElement(ELEMENT_EDEFAULT);
 				return;
+			case ShapesPackage.UNKNOWN__DNA:
+				setDna(DNA_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -353,6 +417,8 @@ public class Unknown extends EObjectImpl implements Shape {
 				return META_EDEFAULT == null ? meta != null : !META_EDEFAULT.equals(meta);
 			case ShapesPackage.UNKNOWN__ELEMENT:
 				return ELEMENT_EDEFAULT == null ? element != null : !ELEMENT_EDEFAULT.equals(element);
+			case ShapesPackage.UNKNOWN__DNA:
+				return DNA_EDEFAULT == null ? dna != null : !DNA_EDEFAULT.equals(dna);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -375,6 +441,8 @@ public class Unknown extends EObjectImpl implements Shape {
 		result.append(meta);
 		result.append(", element: ");
 		result.append(element);
+		result.append(", dna: ");
+		result.append(dna);
 		result.append(')');
 		return result.toString();
 	}
