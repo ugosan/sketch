@@ -24,7 +24,6 @@ public class SketchRecognizerControlView extends ViewPart{
 	}
 
 	public SketchRecognizerControlView() {
-		
 	}
 
 	
@@ -57,7 +56,7 @@ public class SketchRecognizerControlView extends ViewPart{
 	}
 	
 	public boolean getShowSamples(){
-		return control.checkBox.getSelection();
+		return control.samplescheckBox.getSelection();
 	}
 	
 	public int getLineWidth(){

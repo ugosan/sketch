@@ -90,7 +90,7 @@ public class SketchBank {
 
 	}
 	
-	public ArrayList getAvailableTypes(){
+	public ArrayList<Object> getAvailableTypes(){
 		return types;
 	}
 

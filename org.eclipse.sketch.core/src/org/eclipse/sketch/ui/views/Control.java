@@ -63,18 +63,20 @@ public class Control extends Composite implements ISketchListener {
 	protected Label label21 = null;
 	protected FormToolkit formToolkit = null;   //  @jve:decl-index=0:visual-constraint=""
 	protected Combo combo = null;
-	protected ArrayList types;  //  @jve:decl-index=0:
+	protected ArrayList<Object> types;  //  @jve:decl-index=0:
 	protected Sketch sketch;
 	protected Label label5 = null;
 	protected Spinner spinner1 = null;
 	protected Composite composite4 = null;
-	protected Button checkBox = null;
+	protected Button samplescheckBox = null;
+	protected Button interpcheckBox = null;
 	private Button button1 = null;
 	public Control(Composite parent, int style) {
 		super(parent, style);
 		initialize();
 	}
 
+	@SuppressWarnings("unused")
 	protected void initialize() {
 		label21 = new Label(this, SWT.NONE);
 		label21.setText("Recognition");
@@ -148,8 +150,8 @@ public class Control extends Composite implements ISketchListener {
 		
 		this.setSize(new Point(353, 319));
 		createCombo();
-		Label filler2 = new Label(this, SWT.NONE);
-		Label filler4 = new Label(this, SWT.NONE);
+		/*Label filler2 = */new Label(this, SWT.NONE);
+		/*Label filler4 = */new Label(this, SWT.NONE);
 		button1 = new Button(this, SWT.NONE);
 		button1.setText("ok");
 		button1.addMouseListener(new MouseListener(){
@@ -292,7 +294,7 @@ public class Control extends Composite implements ISketchListener {
 	
 	}
 
-	public void setTypes(ArrayList types) {
+	public void setTypes(ArrayList<Object> types) {
 		this.types = types;
 		combo.removeAll();
 		combo.add("New sketch! Please select");
@@ -319,8 +321,8 @@ public class Control extends Composite implements ISketchListener {
 		rowLayout4.type = SWT.HORIZONTAL;
 		composite4 = new Composite(this, SWT.NONE);
 		composite4.setLayout(rowLayout4);
-		checkBox = new Button(composite4, SWT.CHECK);
-		checkBox.setText("Show samples");
+		samplescheckBox = new Button(composite4, SWT.CHECK);
+		samplescheckBox.setText("Show samples");
 	}
 
 	@Override
