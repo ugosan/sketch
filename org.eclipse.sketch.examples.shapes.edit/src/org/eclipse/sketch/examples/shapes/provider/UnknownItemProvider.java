@@ -74,6 +74,7 @@ public class UnknownItemProvider
 			addLabelPropertyDescriptor(object);
 			addMetaPropertyDescriptor(object);
 			addElementPropertyDescriptor(object);
+			addDnaPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -145,6 +146,28 @@ public class UnknownItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Dna feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDnaPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Unknown_dna_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Unknown_dna_feature", "_UI_Unknown_type"),
+				 ShapesPackage.Literals.UNKNOWN__DNA,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns Unknown.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -185,6 +208,7 @@ public class UnknownItemProvider
 			case ShapesPackage.UNKNOWN__LABEL:
 			case ShapesPackage.UNKNOWN__META:
 			case ShapesPackage.UNKNOWN__ELEMENT:
+			case ShapesPackage.UNKNOWN__DNA:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
