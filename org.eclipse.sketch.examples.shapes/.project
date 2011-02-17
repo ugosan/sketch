@@ -3,6 +3,7 @@
 	<name>org.eclipse.sketch.examples.shapes</name>
 	<comment></comment>
 	<projects>
+		<project>org.eclipse.sketch.core</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
