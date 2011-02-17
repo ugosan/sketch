@@ -247,7 +247,8 @@ public class MyShapesSketchClient implements ISketchListener{
 			}
 			unknown_element.eSet(ShapesPackage.UNKNOWN__ELEMENT,best_guess_element);
 			unknown_element.eSet(ShapesPackage.UNKNOWN__META,meta);
-
+			System.out.println(unknown_element.getDna());
+			unknown_element.eSet(ShapesPackage.UNKNOWN__DNA, s.getDna());
 		}
 		
 	}
