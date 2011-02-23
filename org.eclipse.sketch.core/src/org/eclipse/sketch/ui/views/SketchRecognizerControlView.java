@@ -18,6 +18,12 @@ import org.eclipse.ui.part.ViewPart;
 // TODO move everything from ui to a separate plugin
 public class SketchRecognizerControlView extends ViewPart{
 
+	 /**
+     * The ID of the view as specified by the extension.
+     */
+    public static final String ID = "org.eclipse.sketch.ui.views.SketchRecognizerControlView";
+
+    
 	Control control;
 	public Control getControl() {
 		return control;

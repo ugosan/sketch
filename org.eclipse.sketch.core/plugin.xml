@@ -3,19 +3,30 @@
 <plugin>
 <extension
       point="org.eclipse.ui.views">
-   <category
-         id="org.eclipse.sketch.ui.views.SketchRecognizerControl"
-         name="Control">
-   </category>
+
+    <category
+            name="Sketch Controls"
+            id="org.eclipse.sketch.controls">
+      </category>
+   
    <view
          allowMultiple="false"
-         category="org.eclipse.sketch.ui.views.SketchRecognizerControlView"
+         category="org.eclipse.sketch.controls"
          class="org.eclipse.sketch.ui.views.SketchRecognizerControlView"
          icon="icons/config.gif"
          id="org.eclipse.sketch.ui.views.SketchRecognizerControlView"
          name="Control"
          restorable="true">
    </view>
+   <view
+            name="Sketches"
+            icon="icons/config.gif"
+            category="org.eclipse.sketch.controls"
+            class="org.eclipse.sketch.ui.views.SketchesView"
+            id="org.eclipse.sketch.ui.views.SketchesView"
+ 			restorable="true">
+   </view>
+   
 </extension>
 
 </plugin>

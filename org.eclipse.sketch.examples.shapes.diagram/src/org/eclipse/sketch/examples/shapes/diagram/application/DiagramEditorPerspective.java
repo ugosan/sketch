@@ -31,9 +31,9 @@ public class DiagramEditorPerspective implements IPerspectiveFactory {
 		IFolderLayout right = layout.createFolder(
 				"right", IPageLayout.RIGHT, 0.7f, layout.getEditorArea()); //$NON-NLS-1$
 
-		right
-				.addView("org.eclipse.sketch.ui.views.SketchRecognizerControlView");
-
+		right.addView("org.eclipse.sketch.ui.views.SketchRecognizerControlView");
+		right.addView("org.eclipse.sketch.ui.views.SketchesView");
+		
 		IFolderLayout bottom = layout.createFolder(
 				"left", IPageLayout.BOTTOM, 0.7f, layout.getEditorArea()); //$NON-NLS-1$
 
