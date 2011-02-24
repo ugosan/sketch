@@ -13,6 +13,7 @@ package org.eclipse.sketch;
 
 import java.util.ArrayList;
 
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.tools.AbstractTool;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
@@ -45,6 +46,7 @@ public abstract class SketchTool extends AbstractTool{
 	
 	private Color color;
 	private Color sampleColor;
+	private Color interpColor;
 	
 	
 	//Default Parameters
@@ -94,8 +96,9 @@ public abstract class SketchTool extends AbstractTool{
 		gc.setLineWidth(linewidth);
 		color = new Color(gc.getDevice(),getStrokeColor());
 		gc.setForeground(color);
-		
+
 		sampleColor = new Color(gc.getDevice(),160,0,60);
+		interpColor = new Color(gc.getDevice(),0,160,60);
 		
 		SketchBank.getInstance().setTypes(getTypes());
 		
@@ -152,12 +155,14 @@ public abstract class SketchTool extends AbstractTool{
 		quantizedPoints.add(qp);
 		
 		points.add(getLocation());
-
 		
+		prev_qp = null;		
 		
 		return super.handleButtonDown(button);
 	}
 	
+	
+	private Point prev_qp=null;
 	
 	@Override
 	protected final boolean handleDrag() {
@@ -175,9 +180,9 @@ public abstract class SketchTool extends AbstractTool{
 		Point point1 = points.get(points.size()-2);
 		Point point2 = points.get(points.size()-1);
 		
-		/* euclidean distance ..?
-		double pqx = (Math.abs(point2.x - point1.x))^2;
-		double pqy = (Math.abs(point2.y - point1.y))^2;
+		 /*euclidean distance ..?
+		double pqx = (point2.x - point1.x); pqx*=pqx;
+		double pqy = (point2.y - point1.y); pqy*=pqy;
 		System.out.println(Math.sqrt(pqx+pqy));
 		if(Math.sqrt(pqx+pqy)>=2){
 			gc.setAlpha(70);
@@ -189,30 +194,65 @@ public abstract class SketchTool extends AbstractTool{
 		//updates the editor view
 		gc.drawLine(point1.x, point1.y, point2.x, point2.y);
 
-		
 		count++;
-		if(count==grid){
-		
+		if(count==grid)
+		{		
+			Point location = getLocation();
 			Point qp = new Point();
-			qp.setLocation(Math.round(getLocation().x / grid) * grid, Math.round(getLocation().y / grid) * grid);
-			quantizedPoints.add(qp);
+			qp.setLocation(Math.round(location.x / grid), Math.round(location.y / grid));
 			
-			if(showSamples){
-				gc.setForeground(sampleColor);
+			if (prev_qp!=null)
+			{
+				Dimension diff = qp.getDifference(prev_qp);
 				
-				gc.drawRectangle(qp.x,qp.y,2,2);
-				gc.setForeground(color);
-				
+				if (Math.abs(diff.width) > 1 || Math.abs(diff.height) > 1)
+				{					
+					int max_diff = (int)Math.max(Math.abs(diff.width), Math.abs(diff.height));
+					float deltax = diff.width  / (float)max_diff * 1;
+					float deltay = diff.height / (float)max_diff * 1;
+					
+					for (int i=0; i<max_diff; i++)
+					{
+						Point interp = new Point(prev_qp);
+						interp.x += deltax*i;
+						interp.y += deltay*i;
+						addQP(interp, true);
+					}
+						
+					/*}
+					float a = (prev_qp.y-qp.y)/(float)(prev_qp.x-qp.x);
+					float b = qp.y - a*qp.x;*/
+					
+				}
 			}
-			
+					
+			//Final point, the one that is recorded
+			addQP(qp, false);
 			
 			count=0;
+			prev_qp = qp;
 		}
 		
 			
 		return true;
 	}
 	
+	private void addQP(Point qp, boolean interpolated)
+	{
+		quantizedPoints.add(qp.getScaled(grid));
+
+		if(showSamples)
+		{
+			if (interpolated)
+				gc.setForeground(interpColor);
+			else
+				gc.setForeground(sampleColor);
+			
+			gc.drawRectangle(qp.x*grid,qp.y*grid,2,2);
+			gc.setForeground(color);
+			
+		}	
+	}
 	
 /*
 
@@ -238,6 +278,8 @@ public abstract class SketchTool extends AbstractTool{
 		points.add(new Point(-1,-1));
 		quantizedPoints.add(new Point(-1,-1));
 		
+		prev_qp = null;
+		
 		
 		return super.handleButtonUp(button);
 	}
@@ -248,6 +290,8 @@ public abstract class SketchTool extends AbstractTool{
 	public void cleanup(){
 		points.clear();
 		quantizedPoints.clear();
+		
+		prev_qp = null;
 		
 		penuptime = -1;
 	}

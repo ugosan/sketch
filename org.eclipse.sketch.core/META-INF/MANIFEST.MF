@@ -8,9 +8,26 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.gef;bundle-version="3.5.0",
  org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.2.0"
-Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: org.eclipse.sketch,
- org.eclipse.sketch.chain,
- org.eclipse.sketch.clientobserver,
- org.eclipse.sketch.ui.views
+Export-Package: org.eclipse.sketch;
+  uses:="org.eclipse.gmf.runtime.emf.type.core,
+   org.eclipse.sketch.agentobserver,
+   org.eclipse.ui.plugin,
+   org.eclipse.sketch.clientobserver,
+   org.eclipse.gef.tools,
+   org.eclipse.gmf.runtime.diagram.ui.parts,
+   org.eclipse.draw2d.geometry,
+   org.eclipse.swt.graphics,
+   org.osgi.framework,
+   org.eclipse.swt.widgets,
+   org.eclipse.gef",
+ org.eclipse.sketch.chain;uses:="org.eclipse.sketch",
+ org.eclipse.sketch.clientobserver;uses:="org.eclipse.sketch",
+ org.eclipse.sketch.ui.views;
+  uses:="org.eclipse.sketch.clientobserver,
+   org.eclipse.ui.part,
+   org.eclipse.swt.widgets,
+   org.eclipse.sketch,
+   org.eclipse.ui.forms.widgets"
+Bundle-ClassPath: gallery-0.5.2.jar,
+ .

@@ -62,6 +62,7 @@ public class SketchRecognizer extends Thread implements ISketchManagerObserver {
 							
 							for(int i=0;i<sketches.size();i++){
 								Sketch sketch = sketches.get(i);
+								sketches.remove(sketch);
 								String debug = "-------------------------------------------------------------------------------------\n";
 								debug += "RECAGENT sees a new sketch\n";
 								debug += sketch;
@@ -69,7 +70,6 @@ public class SketchRecognizer extends Thread implements ISketchManagerObserver {
 								System.out.println(debug);
 
 								SketchChainHandler result = getChain().perform(sketch);
-								sketches.remove(sketch);
 								
 								if(result instanceof ConnectionHandler){
 									//TODO: bring all the code that resides inside the handler to here, for creation

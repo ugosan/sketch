@@ -22,8 +22,55 @@ import org.eclipse.draw2d.geometry.Point;
  * regarding the recognition made somewhere else.
  * @author Ugo Sangiorgi
  */
-public class Sketch {
-
+public class Sketch 
+{	
+	/**
+	 * Defines the DNA of a sketch. It is basically a String, with some useful methods
+	 * (as reverting the DNA)
+	 * @author Olivier Bourdoux <olivier.bourdoux@gmail.com>
+	 */
+	public static class Dna
+	{
+		private String value;
+		
+		public Dna(String v)
+		{ value = v; }
+		
+		public String toString()
+		{ return value; }
+		
+		/**
+		 * @return the reverse DNA of this instance
+		 */
+		public Dna reverse()
+		{
+			StringBuffer out = new StringBuffer();
+			StringBuffer buf = new StringBuffer();
+			
+			int l = value.length();
+			for (int i=0; i!=l; ++i)
+			{
+				int c = Integer.parseInt(value.substring(i, i+1));
+				
+				if (c==0)
+				{
+					if (buf.length()!=0)
+					{
+						out.append(buf.reverse().append(0));
+						buf = new StringBuffer();
+					}
+				}
+				else
+				{
+					c = (c+3)%8+1; //computes the reverse direction
+					buf.append(c);
+				}
+			}
+			
+			return new Dna(out./*reverse().*/toString());
+		}
+	}
+// ------------------------------------------------------------------------------
 
 	public static String ELEMENT_RESULT_KEY = "ELEMENT_RESULT_KEY_HashMap_IElementType_Integer";
 
@@ -32,7 +79,7 @@ public class Sketch {
 	
 	private Point location;
 	private Dimension size;
-	private String dna;
+	private Dna dna;
 	
 	
 	//result of a computation
@@ -83,18 +130,18 @@ public class Sketch {
 	 */
 	public String getDna() {
 		if(dna==null)
-			dna = stringify();
-		return dna;
+			dna = buildDna();
+		return dna.toString();
 	}
 
-	public void setDna(String dna) {
+	/* Olivier : DNA should not be changed outside of a sketch
+	   public void setDna(String dna) {
 		this.dna = dna;
 	}
-
 	
 	public void appendDna(String character){
 		dna += character;
-	}
+	}*/
 	
 	/**
 	 * turn this sketch into a word based on cardinal points:
@@ -103,7 +150,7 @@ public class Sketch {
 	 * Based on work from Adrien Coyette, Sascha Schimke, Jean Vanderdonckt, and Claus Vielhauer - http://www.isys.ucl.ac.be/bchi/publications/2007/Schimke-Interact2007.pdf
 	 * @return
 	 */
-	private String stringify(){
+	private Dna buildDna(){
 		String s = "";
 
 		for(int i=0;i<quantizedPoints.size();i++){
@@ -147,7 +194,7 @@ public class Sketch {
 		}
 
 
-		return s;
+		return new Dna(s);
 	}
 	
 	/**
@@ -171,6 +218,7 @@ public class Sketch {
 	}
 
 	public void setQuantizedPoints(ArrayList<Point> quantizedPoints) {
+		System.out.println(quantizedPoints);
 		this.quantizedPoints = quantizedPoints;
 	}
 	
@@ -246,6 +294,17 @@ public class Sketch {
 		return s;
 	}
 	
+	/**
+	 * Test method for Sketch.Dna
+	 */
+	public static void main(String args[])
+	{
+		Sketch.Dna dna = new Sketch.Dna("11111012340");
+		Sketch.Dna dna2 = new Sketch.Dna("123450");
+		System.out.println(dna);
+		System.out.println(dna.reverse());
+		System.out.println(dna.reverse().reverse());
+	}
 
 	
 }

@@ -11,22 +11,24 @@
 package org.eclipse.sketch.chain;
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 
+import org.eclipse.emf.ecore.xmi.IllegalValueException;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.sketch.Sketch;
 import org.eclipse.sketch.SketchBank;
+import org.eclipse.sketch.exceptions.IllegalLengthException;
+import org.eclipse.sketch.util.*;
 /**
  * Recognize the sketch based on its string form, based on work from Adrien Coyette, Sascha Schimke, Jean Vanderdonckt, and Claus Vielhauer - http://www.isys.ucl.ac.be/bchi/publications/2007/Schimke-Interact2007.pdf
  * @author ugo
  *
  */
-public class LevenshteinHandler extends SketchChainHandler {
- 
+public class LevenshteinHandler extends SketchChainHandler 
+{
 	 
 	private SketchChainHandler successor;
-	
+	private static int KNN = 5; //Max number of winners by type; it is the K in 'KNN'
 	
 	/**
 	 *@see SketchChainHandler#setSuccessor(SketchChainHandler)
@@ -41,29 +43,79 @@ public class LevenshteinHandler extends SketchChainHandler {
 		String dna = sketch.getDna();
 		String debug = "";
 		
-		HashMap<Object, Integer> result_map = new HashMap<Object, Integer>(); 
+		HashMap<Object, Integer> result_map = new HashMap<Object, Integer>();
 		
-		for(int i=0;i<SketchBank.getInstance().getAvailableTypes().size();i++){
-			Object type = SketchBank.getInstance().getAvailableTypes().get(i);
+		for(int type_i=0;type_i<SketchBank.getInstance().getAvailableTypes().size();type_i++)
+		{
+			Object type = SketchBank.getInstance().getAvailableTypes().get(type_i);
 			//debug += "\n\t is it a "+type.getDisplayName()+"?";
 			
+			LinkedList<Float> scores = new LinkedList<Float>();
+			
 			ArrayList<String> sketches = SketchBank.getInstance().getSketches(type);
-			if(sketches.size()>0){
+			if(sketches!=null && sketches.size()>0)
+			{
 				int sum = 0;
-				for(int x=0;x<sketches.size();x++){
+				int sum2 = 0; //comparison var, can be removed in the release
 				
-					int distance = run(dna,sketches.get(x));
-					sum += distance;
-					
+				for(int sketch_i=0;sketch_i<sketches.size();sketch_i++)
+				{
+					String bankDna = sketches.get(sketch_i);
+					try 
+					{
+						String stretchedDna; 
+						if (bankDna.length() > dna.length())
+							stretchedDna = stretch(dna, bankDna.length());
+						else
+						{
+							stretchedDna = dna;
+							bankDna = stretch(bankDna, dna.length());
+						}
+						
+						debug += (type)+"\n";
+						debug += ("dna : "+stretchedDna)+"\n";
+						debug += ("bank: "+bankDna)+"\n";
+						
+						int distance = run(stretchedDna,bankDna);						
+						float normalized_distance = 100*(float)distance/stretchedDna.length();
+						debug += ("Distance % (stretch)   :"+normalized_distance)+"\n";
+						
+						//This block of code is for comparison, it can be removed in the release 
+							int distance2 = run(dna,sketches.get(sketch_i));						
+							float normalized_distance2 = 100*(float)distance2/Math.max(dna.length(), sketches.get(sketch_i).length()); //can
+							debug += ("Distance % (nostretch) :"+normalized_distance2)+"\n";
+
+						scores.add(normalized_distance);
+							
+						sum += (int)normalized_distance;
+						sum2 += (int)normalized_distance2;
+					}
+					catch (IllegalLengthException e) 
+					{
+						System.err.println("ERROR : can't stretch this dna");
+						e.printStackTrace();
+					}					
 				}
 				
-				int average = sum/sketches.size();
+				Collections.sort(scores);
+				while(scores.size() > KNN)
+					scores.removeLast();
 				
-				result_map.put(type, new Integer(average));
-				debug += "\tAverage distance from "+type+": "+average+"\n";
-			}else{ 
+				float average=0;
+				for (Float score:scores)
+					average+=score;				
+				average /= scores.size();		
+				
+				int average2 = sum/sketches.size(); //can be removed in release
+				int average3 = sum2/sketches.size(); //can be removed in release
+				
+				result_map.put(type, new Integer((int)average));
+				debug += "\tNormalized distance from "+type+":\t"+average+"\t"+average2+"\t"+average3+"\n";
+			}
+			else
+			{ 
 				result_map.put(type, new Integer(-1));
-				debug += "\tAverage distance from "+type+": -1\n";
+				debug += "\tNormalized distance from "+type+":\t-1\n";
 			}
 			
 		}
@@ -74,8 +126,74 @@ public class LevenshteinHandler extends SketchChainHandler {
 		System.out.println(debug);
 		return this;
 	}
-
 	
+	/**
+	 * Stretch the Dna so that it has a given length (bigger than its current length).
+	 * 
+	 * The purpose of this is to scale the sketching so that it has the same size as
+	 * the sketch that is compared with.
+	 * 
+	 * For example, if you train your system with small triangles but huge circles, 
+	 * without stretching the Circle recognition have less chances to be chosen 
+	 * when sketching tiny circles. With stretching, because the tiny circles are
+	 * stretched to represent a big one, the chances are better distributed.
+	 * 
+	 * @param dna the dna to b stretched
+	 * @param length the length to reach
+	 * @throws IllegalLengthException when the length to obtain is smaller than the 
+	 * current length of the Dna
+	 * @return the new Dna, stretched
+	 */
+	private String stretch(String dna, int length) throws IllegalLengthException 
+	{
+		int curlength = dna.length();
+		
+		//Handling lengths that are too big
+			if (curlength > length)
+				throw new IllegalLengthException(length);
+			if (curlength == length)
+				return dna;
+		
+		float step = curlength/(float)(length-curlength);
+		
+		StringBuffer out = new StringBuffer();		
+
+		for (float i=0; i<curlength; i+=step)
+		{
+			if (i+step > curlength)
+			{
+				out.append(dna.substring((int)i));
+				if (out.length() < length)
+					out.append(dna.charAt((int)(dna.length()-1)));
+			}
+			else
+				out.append(dna.substring((int)i,(int)(i+step)))
+				   .append(dna.charAt((int)(i+step-1)));		
+		}
+		
+		return out.toString();
+	}
+	/**
+	 * Test function
+	 */
+	public static void main(String args[])
+	{
+		LevenshteinHandler l = new LevenshteinHandler();
+		try 
+		{
+			String a;
+			a = l.stretch("1234567890", 10); 
+			System.out.println(a+";length:"+a.length());
+			
+			a = l.stretch("3333345555567777899990", 95); 
+			System.out.println(a+";length:"+a.length());
+			
+			a = l.stretch("86666666666655554444443323222222211118117887877770", 95); 
+			System.out.println(a+";length:"+a.length());
+		} 
+		catch (IllegalLengthException e) {e.printStackTrace();}
+	}
+
 	/**
 	 * String distance algorithm as implemented by Chas Emerick (http://www.merriampark.com/ldjava.htm) based on the 
 	 * original source of Michael Gilleland (http://www.merriampark.com/ld.htm) 
