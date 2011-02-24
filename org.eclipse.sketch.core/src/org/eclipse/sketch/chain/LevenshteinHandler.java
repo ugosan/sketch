@@ -157,8 +157,7 @@ public class LevenshteinHandler extends SketchChainHandler
 		float step = curlength/(float)(length-curlength);
 		
 		StringBuffer out = new StringBuffer();		
-		
-		//System.out.println(dna + "; length:"+curlength+"; step:"+step)
+
 		for (float i=0; i<curlength; i+=step)
 		{
 			if (i+step > curlength)
