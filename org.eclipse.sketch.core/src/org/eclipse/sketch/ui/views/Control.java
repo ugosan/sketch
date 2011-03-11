@@ -169,7 +169,10 @@ public class Control extends Composite implements ISketchListener {
 					if(combo.getSelectionIndex()!=0){				
 						
 						System.out.println("selected is "+types.get(combo.getSelectionIndex()-1));
+						sketch.setName((String)types.get(combo.getSelectionIndex()-1));
+						
 						SketchBank.getInstance().add(types.get(combo.getSelectionIndex()-1), sketch.getDna());
+						SketchBank.getInstance().add(sketch);
 						SketchBank.getInstance().dump();
 						SketchBank.getInstance().fetch();
 						
@@ -185,7 +188,10 @@ public class Control extends Composite implements ISketchListener {
 					String type = input.getValue();
 					
 					SketchBank.getInstance().insert(type);
+					sketch.setName(type);
+					
 					SketchBank.getInstance().add(type, sketch.getDna());
+					SketchBank.getInstance().add(sketch);
 					SketchBank.getInstance().dump();
 					SketchBank.getInstance().fetch();					
 					

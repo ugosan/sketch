@@ -12,6 +12,7 @@ package org.eclipse.sketch;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
@@ -20,6 +21,7 @@ import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.sketch.clientobserver.ISketchListener;
 import org.eclipse.sketch.ui.views.SketchRecognizerControlView;
+import org.eclipse.sketch.util.PointList;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Cursor;
@@ -330,9 +332,19 @@ public abstract class SketchTool extends AbstractTool{
 								penuptime=-1;
 								Sketch sketch = new Sketch();
 
-								sketch.setPoints((ArrayList<Point>) points.clone());
-								sketch.setQuantizedPoints((ArrayList<Point>) quantizedPoints.clone());
+								
+								//removes the last point (-1,-1) which is used only to mark pen lifts
+								points.remove(points.size()-1);
+								quantizedPoints.remove(quantizedPoints.size()-1);
+								
+								PointList list = new PointList();
+								list.addAll(points);
 
+								sketch.eSet(SketchPackage.SKETCH__POINTLIST, list);
+								
+								sketch.eSet(SketchPackage.SKETCH__POINTS, points.clone());
+								sketch.eSet(SketchPackage.SKETCH__QUANTIZED_POINTS, quantizedPoints.clone());
+								
 								manager.newSketch(sketch);
 
 								//erases the drawing area

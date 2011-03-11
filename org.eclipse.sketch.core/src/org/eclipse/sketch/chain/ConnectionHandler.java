@@ -46,7 +46,7 @@ public class ConnectionHandler extends SketchChainHandler {
 	@Override
 	public SketchChainHandler perform(Sketch sketch) {
 		
-		ArrayList<Point> points = sketch.getQuantizedPoints();
+		List<Point> points = sketch.getQuantizedPoints();
 		
 		Point first = points.get(1);
 		//Point second = points.get(1);
