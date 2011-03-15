@@ -333,9 +333,6 @@ public abstract class SketchTool extends AbstractTool{
 								Sketch sketch = new Sketch();
 
 								
-								//removes the last point (-1,-1) which is used only to mark pen lifts
-								points.remove(points.size()-1);
-								quantizedPoints.remove(quantizedPoints.size()-1);
 								
 								PointList list = new PointList();
 								list.addAll(points);

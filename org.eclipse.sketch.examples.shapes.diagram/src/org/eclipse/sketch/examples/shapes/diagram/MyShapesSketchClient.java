@@ -86,31 +86,28 @@ public class MyShapesSketchClient implements ISketchListener{
 			Document doc = dom.createDocument(SVGDOMImplementation.SVG_NAMESPACE_URI, "svg", null);
 			
 			SVGGraphics2D generator = new SVGGraphics2D(doc);
-			generator.getGraphicContext().setStroke(new BasicStroke(2f));			
-			generator.setStroke(new BasicStroke(2f));
+			generator.getGraphicContext().setStroke(new BasicStroke(1f));			
+			generator.setStroke(new BasicStroke(1f));
 			
 
 			
 			Dimension size = new Dimension(s.getSize().width,s.getSize().height);			
 			generator.setSVGCanvasSize(size);
 			
-			
-			
-			
 		    //translates the points to a 0,0 location and draws them as lines in the svg
-			for(int i=0;i<s.getPoints().size();i++){
-				Point p = s.getPoints().get(i);
+			for(int i=0;i<s.getPointlist().size();i++){
+				Point p = (Point)s.getPointlist().get(i);
 				Point lastp = p;
 				
-				
+				//System.out.println(p);
 				if(i>0){
-					lastp = s.getPoints().get(i-1);
+					lastp = (Point) s.getPointlist().get(i-1);
 				}
+				
 				
 				if(lastp.x==-1){
 					//if the last point is a pen lift, then consider just the current one
 					generator.drawLine(p.x - s.getLocation().x, p.y - s.getLocation().y, p.x - s.getLocation().x, p.y - s.getLocation().y);
-					
 				}else if(p.x>0){
 					//if is a normal point, then traces a line from the last point to the current
 					generator.drawLine(lastp.x - s.getLocation().x, lastp.y - s.getLocation().y, p.x - s.getLocation().x, p.y - s.getLocation().y);
