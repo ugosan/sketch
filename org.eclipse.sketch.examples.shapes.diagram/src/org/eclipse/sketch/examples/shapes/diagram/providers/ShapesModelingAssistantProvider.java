@@ -10,8 +10,8 @@
  *  
  *
  * $Id$
- */ 
- package org.eclipse.sketch.examples.shapes.diagram.providers;
+ */
+package org.eclipse.sketch.examples.shapes.diagram.providers;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -170,8 +170,8 @@ public class ShapesModelingAssistantProvider extends ModelingAssistantProvider {
 	 */
 	public EObject selectExistingElementForSource(IAdaptable target,
 			IElementType relationshipType) {
-		return selectExistingElement(target, getTypesForSource(target,
-				relationshipType));
+		return selectExistingElement(target,
+				getTypesForSource(target, relationshipType));
 	}
 
 	/**
@@ -179,8 +179,8 @@ public class ShapesModelingAssistantProvider extends ModelingAssistantProvider {
 	 */
 	public EObject selectExistingElementForTarget(IAdaptable source,
 			IElementType relationshipType) {
-		return selectExistingElement(source, getTypesForTarget(source,
-				relationshipType));
+		return selectExistingElement(source,
+				getTypesForTarget(source, relationshipType));
 	}
 
 	/**
@@ -196,9 +196,10 @@ public class ShapesModelingAssistantProvider extends ModelingAssistantProvider {
 			return null;
 		}
 		Diagram diagram = (Diagram) editPart.getRoot().getContents().getModel();
-		Collection elements = new HashSet();
-		for (Iterator it = diagram.getElement().eAllContents(); it.hasNext();) {
-			EObject element = (EObject) it.next();
+		HashSet<EObject> elements = new HashSet<EObject>();
+		for (Iterator<EObject> it = diagram.getElement().eAllContents(); it
+				.hasNext();) {
+			EObject element = it.next();
 			if (isApplicableElement(element, types)) {
 				elements.add(element);
 			}

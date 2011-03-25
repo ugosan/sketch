@@ -88,6 +88,22 @@
             path="/icons/annotation.gif"
             bundle="org.eclipse.sketch.examples.shapes"/>
       </tools>
+      <tools
+          xsi:type="gmftool:PaletteSeparator"/>
+      <tools
+          xsi:type="gmftool:GenericTool"
+          title="Lazy Sketch"
+          description="Lazy Sketch"
+          toolClass="org.eclipse.sketch.examples.shapes.diagram.LazySketchTool">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/annotation.gif"
+            bundle="org.eclipse.sketch.examples.shapes"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/annotation.gif"
+            bundle="org.eclipse.sketch.examples.shapes"/>
+      </tools>
     </tools>
   </palette>
 </gmftool:ToolRegistry>

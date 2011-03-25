@@ -10,8 +10,8 @@
  *  
  *
  * $Id$
- */ 
- package org.eclipse.sketch.examples.shapes.diagram.sheet;
+ */
+package org.eclipse.sketch.examples.shapes.diagram.sheet;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;

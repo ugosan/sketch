@@ -10,8 +10,8 @@
  *  
  *
  * $Id$
- */ 
- package org.eclipse.sketch.examples.shapes.diagram.application;
+ */
+package org.eclipse.sketch.examples.shapes.diagram.application;
 
 import org.eclipse.ui.IFolderLayout;
 import org.eclipse.ui.IPageLayout;
@@ -26,14 +26,13 @@ public class DiagramEditorPerspective implements IPerspectiveFactory {
 	 */
 	public void createInitialLayout(IPageLayout layout) {
 		layout.setEditorAreaVisible(true);
-		layout
-				.addPerspectiveShortcut(DiagramEditorWorkbenchAdvisor.PERSPECTIVE_ID);
+		layout.addPerspectiveShortcut(DiagramEditorWorkbenchAdvisor.PERSPECTIVE_ID);
 		IFolderLayout right = layout.createFolder(
 				"right", IPageLayout.RIGHT, 0.7f, layout.getEditorArea()); //$NON-NLS-1$
 
 		right.addView("org.eclipse.sketch.ui.views.SketchRecognizerControlView");
 		right.addView("org.eclipse.sketch.ui.views.SketchesView");
-		
+
 		IFolderLayout bottom = layout.createFolder(
 				"left", IPageLayout.BOTTOM, 0.7f, layout.getEditorArea()); //$NON-NLS-1$
 

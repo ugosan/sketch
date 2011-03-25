@@ -10,8 +10,8 @@
  *  
  *
  * $Id$
- */ 
- package org.eclipse.sketch.examples.shapes.diagram.providers;
+ */
+package org.eclipse.sketch.examples.shapes.diagram.providers;
 
 import java.util.ArrayList;
 
@@ -129,8 +129,8 @@ public class ShapesViewProvider extends AbstractProvider implements
 			if (elementType != null || domainElement == null) {
 				return false;
 			}
-			visualID = ShapesVisualIDRegistry.getNodeVisualID(op
-					.getContainerView(), domainElement);
+			visualID = ShapesVisualIDRegistry.getNodeVisualID(
+					op.getContainerView(), domainElement);
 		} else {
 			visualID = ShapesVisualIDRegistry.getVisualID(op.getSemanticHint());
 			if (elementType != null) {
@@ -307,9 +307,7 @@ public class ShapesViewProvider extends AbstractProvider implements
 				.add(NotationFactory.eINSTANCE.createDescriptionStyle());
 		node.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node
-				.setType(ShapesVisualIDRegistry
-						.getType(TriangleEditPart.VISUAL_ID));
+		node.setType(ShapesVisualIDRegistry.getType(TriangleEditPart.VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		stampShortcut(containerView, node);
@@ -350,9 +348,9 @@ public class ShapesViewProvider extends AbstractProvider implements
 
 		org.eclipse.swt.graphics.RGB lineRGB = PreferenceConverter.getColor(
 				prefStore, IPreferenceConstants.PREF_LINE_COLOR);
-		ViewUtil.setStructuralFeatureValue(node, NotationPackage.eINSTANCE
-				.getLineStyle_LineColor(), FigureUtilities
-				.RGBToInteger(lineRGB));
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getLineStyle_LineColor(),
+				FigureUtilities.RGBToInteger(lineRGB));
 		FontStyle nodeFontStyle = (FontStyle) node
 				.getStyle(NotationPackage.Literals.FONT_STYLE);
 		if (nodeFontStyle != null) {
@@ -369,11 +367,11 @@ public class ShapesViewProvider extends AbstractProvider implements
 		}
 		org.eclipse.swt.graphics.RGB fillRGB = PreferenceConverter.getColor(
 				prefStore, IPreferenceConstants.PREF_FILL_COLOR);
-		ViewUtil.setStructuralFeatureValue(node, NotationPackage.eINSTANCE
-				.getFillStyle_FillColor(), FigureUtilities
-				.RGBToInteger(fillRGB));
-		Node label5001 = createLabel(node, ShapesVisualIDRegistry
-				.getType(UnknownLabelEditPart.VISUAL_ID));
+		ViewUtil.setStructuralFeatureValue(node,
+				NotationPackage.eINSTANCE.getFillStyle_FillColor(),
+				FigureUtilities.RGBToInteger(fillRGB));
+		Node label5001 = createLabel(node,
+				ShapesVisualIDRegistry.getType(UnknownLabelEditPart.VISUAL_ID));
 		return node;
 	}
 
@@ -388,7 +386,8 @@ public class ShapesViewProvider extends AbstractProvider implements
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
 				.createRelativeBendpoints();
-		ArrayList points = new ArrayList(2);
+		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(
+				2);
 		points.add(new RelativeBendpoint());
 		points.add(new RelativeBendpoint());
 		bendpoints.setPoints(points);
@@ -417,11 +416,13 @@ public class ShapesViewProvider extends AbstractProvider implements
 		Routing routing = Routing.get(prefStore
 				.getInt(IPreferenceConstants.PREF_LINE_STYLE));
 		if (routing != null) {
-			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE
-					.getRoutingStyle_Routing(), routing);
+			ViewUtil.setStructuralFeatureValue(edge,
+					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
+					routing);
 		}
-		Node label6001 = createLabel(edge, ShapesVisualIDRegistry
-				.getType(ConnectionLabelEditPart.VISUAL_ID));
+		Node label6001 = createLabel(edge,
+				ShapesVisualIDRegistry
+						.getType(ConnectionLabelEditPart.VISUAL_ID));
 		label6001.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
 		Location location6001 = (Location) label6001.getLayoutConstraint();
@@ -441,7 +442,8 @@ public class ShapesViewProvider extends AbstractProvider implements
 		edge.getStyles().add(NotationFactory.eINSTANCE.createFontStyle());
 		RelativeBendpoints bendpoints = NotationFactory.eINSTANCE
 				.createRelativeBendpoints();
-		ArrayList points = new ArrayList(2);
+		ArrayList<RelativeBendpoint> points = new ArrayList<RelativeBendpoint>(
+				2);
 		points.add(new RelativeBendpoint());
 		points.add(new RelativeBendpoint());
 		bendpoints.setPoints(points);
@@ -470,11 +472,13 @@ public class ShapesViewProvider extends AbstractProvider implements
 		Routing routing = Routing.get(prefStore
 				.getInt(IPreferenceConstants.PREF_LINE_STYLE));
 		if (routing != null) {
-			ViewUtil.setStructuralFeatureValue(edge, NotationPackage.eINSTANCE
-					.getRoutingStyle_Routing(), routing);
+			ViewUtil.setStructuralFeatureValue(edge,
+					NotationPackage.eINSTANCE.getRoutingStyle_Routing(),
+					routing);
 		}
-		Node label6002 = createLabel(edge, ShapesVisualIDRegistry
-				.getType(DashedConnectionLabelEditPart.VISUAL_ID));
+		Node label6002 = createLabel(edge,
+				ShapesVisualIDRegistry
+						.getType(DashedConnectionLabelEditPart.VISUAL_ID));
 		label6002.setLayoutConstraint(NotationFactory.eINSTANCE
 				.createLocation());
 		Location location6002 = (Location) label6002.getLayoutConstraint();
@@ -517,8 +521,8 @@ public class ShapesViewProvider extends AbstractProvider implements
 		}
 		EObject eObject = (EObject) semanticAdapter.getAdapter(EObject.class);
 		if (eObject != null) {
-			return EMFCoreUtil.resolve(TransactionUtil
-					.getEditingDomain(eObject), eObject);
+			return EMFCoreUtil.resolve(
+					TransactionUtil.getEditingDomain(eObject), eObject);
 		}
 		return null;
 	}

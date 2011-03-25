@@ -331,8 +331,6 @@ public abstract class SketchTool extends AbstractTool{
 
 								penuptime=-1;
 								Sketch sketch = new Sketch();
-
-								
 								
 								PointList list = new PointList();
 								list.addAll(points);

@@ -19,6 +19,8 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.eclipse.sketch.SketchPackage;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -97,13 +99,22 @@ public class ShapesPackage extends EPackageImpl {
 	public static final int DIAGRAM__CONNECTIONS = 1;
 
 	/**
+	 * The feature id for the '<em><b>Root Sketch</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int DIAGRAM__ROOT_SKETCH = 2;
+
+	/**
 	 * The number of structural features of the '<em>Diagram</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DIAGRAM_FEATURE_COUNT = 2;
+	public static final int DIAGRAM_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.sketch.examples.shapes.Shape <em>Shape</em>}' class.
@@ -520,11 +531,16 @@ public class ShapesPackage extends EPackageImpl {
 
 		isInited = true;
 
+		// Obtain or create and register interdependencies
+		SketchPackage theSketchPackage = (SketchPackage)(EPackage.Registry.INSTANCE.getEPackage(SketchPackage.eNS_URI) instanceof SketchPackage ? EPackage.Registry.INSTANCE.getEPackage(SketchPackage.eNS_URI) : SketchPackage.eINSTANCE);
+
 		// Create package meta-data objects
 		theShapesPackage.createPackageContents();
+		theSketchPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theShapesPackage.initializePackageContents();
+		theSketchPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theShapesPackage.freeze();
@@ -573,6 +589,20 @@ public class ShapesPackage extends EPackageImpl {
 	public EReference getDiagram_Connections() {
 		return (EReference)diagramEClass.getEStructuralFeatures().get(1);
 	}
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.sketch.examples.shapes.Diagram#getRootSketch <em>Root Sketch</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Root Sketch</em>'.
+	 * @see org.eclipse.sketch.examples.shapes.Diagram#getRootSketch()
+	 * @see #getDiagram()
+	 * @generated
+	 */
+	public EReference getDiagram_RootSketch() {
+		return (EReference)diagramEClass.getEStructuralFeatures().get(2);
+	}
+
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.sketch.examples.shapes.Shape <em>Shape</em>}'.
@@ -796,6 +826,7 @@ public class ShapesPackage extends EPackageImpl {
 		diagramEClass = createEClass(DIAGRAM);
 		createEReference(diagramEClass, DIAGRAM__SHAPES);
 		createEReference(diagramEClass, DIAGRAM__CONNECTIONS);
+		createEReference(diagramEClass, DIAGRAM__ROOT_SKETCH);
 
 		shapeEClass = createEClass(SHAPE);
 		createEAttribute(shapeEClass, SHAPE__SVG);
@@ -843,6 +874,9 @@ public class ShapesPackage extends EPackageImpl {
 		setNsPrefix(eNS_PREFIX);
 		setNsURI(eNS_URI);
 
+		// Obtain other dependent packages
+		SketchPackage theSketchPackage = (SketchPackage)EPackage.Registry.INSTANCE.getEPackage(SketchPackage.eNS_URI);
+
 		// Create type parameters
 
 		// Set bounds for type parameters
@@ -858,6 +892,7 @@ public class ShapesPackage extends EPackageImpl {
 		initEClass(diagramEClass, Diagram.class, "Diagram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDiagram_Shapes(), this.getShape(), null, "shapes", null, 0, -1, Diagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDiagram_Connections(), this.getAbstractConnection(), null, "connections", null, 0, -1, Diagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDiagram_RootSketch(), theSketchPackage.getSketch(), null, "rootSketch", null, 1, 1, Diagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(shapeEClass, Shape.class, "Shape", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getShape_Svg(), ecorePackage.getEString(), "svg", null, 0, 1, Shape.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -923,6 +958,14 @@ public class ShapesPackage extends EPackageImpl {
 		 * @generated
 		 */
 		public static final EReference DIAGRAM__CONNECTIONS = eINSTANCE.getDiagram_Connections();
+
+		/**
+		 * The meta object literal for the '<em><b>Root Sketch</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public static final EReference DIAGRAM__ROOT_SKETCH = eINSTANCE.getDiagram_RootSketch();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.sketch.examples.shapes.Shape <em>Shape</em>}' class.

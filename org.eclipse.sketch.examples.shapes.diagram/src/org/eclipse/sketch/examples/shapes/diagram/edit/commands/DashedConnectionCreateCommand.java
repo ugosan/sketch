@@ -68,7 +68,7 @@ public class DashedConnectionCreateCommand extends EditElementCommand {
 		if (getContainer() == null) {
 			return false;
 		}
-		return ShapesBaseItemSemanticEditPolicy.LinkConstraints
+		return ShapesBaseItemSemanticEditPolicy.getLinkConstraints()
 				.canCreateDashedConnection_4002(getContainer(), getSource(),
 						getTarget());
 	}

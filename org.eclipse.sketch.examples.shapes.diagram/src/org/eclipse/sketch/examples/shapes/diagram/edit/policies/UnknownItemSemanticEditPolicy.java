@@ -10,8 +10,8 @@
  *  
  *
  * $Id$
- */ 
- package org.eclipse.sketch.examples.shapes.diagram.edit.policies;
+ */
+package org.eclipse.sketch.examples.shapes.diagram.edit.policies;
 
 import java.util.Iterator;
 
@@ -55,7 +55,7 @@ public class UnknownItemSemanticEditPolicy extends
 		CompositeTransactionalCommand cmd = new CompositeTransactionalCommand(
 				getEditingDomain(), null);
 		cmd.setTransactionNestingEnabled(false);
-		for (Iterator it = view.getTargetEdges().iterator(); it.hasNext();) {
+		for (Iterator<?> it = view.getTargetEdges().iterator(); it.hasNext();) {
 			Edge incomingLink = (Edge) it.next();
 			if (ShapesVisualIDRegistry.getVisualID(incomingLink) == ConnectionEditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(
@@ -72,7 +72,7 @@ public class UnknownItemSemanticEditPolicy extends
 				continue;
 			}
 		}
-		for (Iterator it = view.getSourceEdges().iterator(); it.hasNext();) {
+		for (Iterator<?> it = view.getSourceEdges().iterator(); it.hasNext();) {
 			Edge outgoingLink = (Edge) it.next();
 			if (ShapesVisualIDRegistry.getVisualID(outgoingLink) == ConnectionEditPart.VISUAL_ID) {
 				DestroyElementRequest r = new DestroyElementRequest(
@@ -117,12 +117,12 @@ public class UnknownItemSemanticEditPolicy extends
 	protected Command getStartCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
 		if (ShapesElementTypes.Connection_4001 == req.getElementType()) {
-			return getGEFWrapper(new ConnectionCreateCommand(req, req
-					.getSource(), req.getTarget()));
+			return getGEFWrapper(new ConnectionCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		if (ShapesElementTypes.DashedConnection_4002 == req.getElementType()) {
-			return getGEFWrapper(new DashedConnectionCreateCommand(req, req
-					.getSource(), req.getTarget()));
+			return getGEFWrapper(new DashedConnectionCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -133,12 +133,12 @@ public class UnknownItemSemanticEditPolicy extends
 	protected Command getCompleteCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
 		if (ShapesElementTypes.Connection_4001 == req.getElementType()) {
-			return getGEFWrapper(new ConnectionCreateCommand(req, req
-					.getSource(), req.getTarget()));
+			return getGEFWrapper(new ConnectionCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		if (ShapesElementTypes.DashedConnection_4002 == req.getElementType()) {
-			return getGEFWrapper(new DashedConnectionCreateCommand(req, req
-					.getSource(), req.getTarget()));
+			return getGEFWrapper(new DashedConnectionCreateCommand(req,
+					req.getSource(), req.getTarget()));
 		}
 		return null;
 	}

@@ -10,8 +10,8 @@
  *  
  *
  * $Id$
- */ 
- package org.eclipse.sketch.examples.shapes.diagram.edit.parts;
+ */
+package org.eclipse.sketch.examples.shapes.diagram.edit.parts;
 
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Connection;
@@ -74,7 +74,7 @@ public class ConnectionEditPart extends ConnectionNodeEditPart implements
 		if (addFixedChild(childEditPart)) {
 			return;
 		}
-		super.addChildVisual(childEditPart, -1);
+		super.addChildVisual(childEditPart, index);
 	}
 
 	/**
@@ -161,7 +161,6 @@ public class ConnectionEditPart extends ConnectionNodeEditPart implements
 		private RotatableDecoration createTargetDecoration() {
 			PolygonDecoration df = new PolygonDecoration();
 			df.setFill(true);
-			df.setLineWidth(1);
 			df.setBackgroundColor(ColorConstants.darkGray);
 			PointList pl = new PointList();
 			pl.addPoint(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0));

@@ -10,8 +10,8 @@
  *  
  *
  * $Id$
- */ 
- package org.eclipse.sketch.examples.shapes.diagram.part;
+ */
+package org.eclipse.sketch.examples.shapes.diagram.part;
 
 import java.lang.reflect.InvocationTargetException;
 

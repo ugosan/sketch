@@ -15,6 +15,7 @@ package org.eclipse.sketch.examples.shapes;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -23,10 +24,15 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
+
+import org.eclipse.sketch.Sketch;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -38,6 +44,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link org.eclipse.sketch.examples.shapes.Diagram#getShapes <em>Shapes</em>}</li>
  *   <li>{@link org.eclipse.sketch.examples.shapes.Diagram#getConnections <em>Connections</em>}</li>
+ *   <li>{@link org.eclipse.sketch.examples.shapes.Diagram#getRootSketch <em>Root Sketch</em>}</li>
  * </ul>
  * </p>
  *
@@ -65,6 +72,16 @@ public class Diagram extends EObjectImpl implements EObject {
 	 * @ordered
 	 */
 	protected EList<AbstractConnection> connections;
+
+	/**
+	 * The cached value of the '{@link #getRootSketch() <em>Root Sketch</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRootSketch()
+	 * @generated
+	 * @ordered
+	 */
+	protected Sketch rootSketch;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -128,6 +145,56 @@ public class Diagram extends EObjectImpl implements EObject {
 	}
 
 	/**
+	 * Returns the value of the '<em><b>Root Sketch</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Root Sketch</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Root Sketch</em>' reference.
+	 * @see #setRootSketch(Sketch)
+	 * @see org.eclipse.sketch.examples.shapes.ShapesPackage#getDiagram_RootSketch()
+	 * @model required="true"
+	 * @generated
+	 */
+	public Sketch getRootSketch() {
+		if (rootSketch != null && rootSketch.eIsProxy()) {
+			InternalEObject oldRootSketch = (InternalEObject)rootSketch;
+			rootSketch = (Sketch)eResolveProxy(oldRootSketch);
+			if (rootSketch != oldRootSketch) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ShapesPackage.DIAGRAM__ROOT_SKETCH, oldRootSketch, rootSketch));
+			}
+		}
+		return rootSketch;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Sketch basicGetRootSketch() {
+		return rootSketch;
+	}
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.sketch.examples.shapes.Diagram#getRootSketch <em>Root Sketch</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Root Sketch</em>' reference.
+	 * @see #getRootSketch()
+	 * @generated
+	 */
+	public void setRootSketch(Sketch newRootSketch) {
+		Sketch oldRootSketch = rootSketch;
+		rootSketch = newRootSketch;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ShapesPackage.DIAGRAM__ROOT_SKETCH, oldRootSketch, rootSketch));
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -155,6 +222,9 @@ public class Diagram extends EObjectImpl implements EObject {
 				return getShapes();
 			case ShapesPackage.DIAGRAM__CONNECTIONS:
 				return getConnections();
+			case ShapesPackage.DIAGRAM__ROOT_SKETCH:
+				if (resolve) return getRootSketch();
+				return basicGetRootSketch();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -176,6 +246,9 @@ public class Diagram extends EObjectImpl implements EObject {
 				getConnections().clear();
 				getConnections().addAll((Collection<? extends AbstractConnection>)newValue);
 				return;
+			case ShapesPackage.DIAGRAM__ROOT_SKETCH:
+				setRootSketch((Sketch)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -194,6 +267,9 @@ public class Diagram extends EObjectImpl implements EObject {
 			case ShapesPackage.DIAGRAM__CONNECTIONS:
 				getConnections().clear();
 				return;
+			case ShapesPackage.DIAGRAM__ROOT_SKETCH:
+				setRootSketch((Sketch)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -210,6 +286,8 @@ public class Diagram extends EObjectImpl implements EObject {
 				return shapes != null && !shapes.isEmpty();
 			case ShapesPackage.DIAGRAM__CONNECTIONS:
 				return connections != null && !connections.isEmpty();
+			case ShapesPackage.DIAGRAM__ROOT_SKETCH:
+				return rootSketch != null;
 		}
 		return super.eIsSet(featureID);
 	}

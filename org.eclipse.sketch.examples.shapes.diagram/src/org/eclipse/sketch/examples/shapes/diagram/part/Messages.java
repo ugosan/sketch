@@ -10,8 +10,8 @@
  *  
  *
  * $Id$
- */ 
- package org.eclipse.sketch.examples.shapes.diagram.part;
+ */
+package org.eclipse.sketch.examples.shapes.diagram.part;
 
 import org.eclipse.osgi.util.NLS;
 
@@ -347,6 +347,16 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String Annotation6CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String LazySketch8CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String LazySketch8CreationTool_desc;
 
 	/**
 	 * @generated

@@ -10,8 +10,8 @@
  *  
  *
  * $Id$
- */ 
- package org.eclipse.sketch.examples.shapes.diagram.part;
+ */
+package org.eclipse.sketch.examples.shapes.diagram.part;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -48,24 +48,25 @@ public class ShapesDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getSemanticChildren(View view) {
+	public static List<ShapesNodeDescriptor> getSemanticChildren(View view) {
 		switch (ShapesVisualIDRegistry.getVisualID(view)) {
 		case DiagramEditPart.VISUAL_ID:
 			return getDiagram_1000SemanticChildren(view);
 		}
-		return Collections.EMPTY_LIST;
+		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getDiagram_1000SemanticChildren(View view) {
+	public static List<ShapesNodeDescriptor> getDiagram_1000SemanticChildren(
+			View view) {
 		if (!view.isSetElement()) {
-			return Collections.EMPTY_LIST;
+			return Collections.emptyList();
 		}
 		Diagram modelElement = (Diagram) view.getElement();
-		List result = new LinkedList();
-		for (Iterator it = modelElement.getShapes().iterator(); it.hasNext();) {
+		LinkedList<ShapesNodeDescriptor> result = new LinkedList<ShapesNodeDescriptor>();
+		for (Iterator<?> it = modelElement.getShapes().iterator(); it.hasNext();) {
 			Shape childElement = (Shape) it.next();
 			int visualID = ShapesVisualIDRegistry.getNodeVisualID(view,
 					childElement);
@@ -88,7 +89,7 @@ public class ShapesDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getContainedLinks(View view) {
+	public static List<ShapesLinkDescriptor> getContainedLinks(View view) {
 		switch (ShapesVisualIDRegistry.getVisualID(view)) {
 		case DiagramEditPart.VISUAL_ID:
 			return getDiagram_1000ContainedLinks(view);
@@ -103,13 +104,13 @@ public class ShapesDiagramUpdater {
 		case DashedConnectionEditPart.VISUAL_ID:
 			return getDashedConnection_4002ContainedLinks(view);
 		}
-		return Collections.EMPTY_LIST;
+		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getIncomingLinks(View view) {
+	public static List<ShapesLinkDescriptor> getIncomingLinks(View view) {
 		switch (ShapesVisualIDRegistry.getVisualID(view)) {
 		case SquareEditPart.VISUAL_ID:
 			return getSquare_2001IncomingLinks(view);
@@ -122,13 +123,13 @@ public class ShapesDiagramUpdater {
 		case DashedConnectionEditPart.VISUAL_ID:
 			return getDashedConnection_4002IncomingLinks(view);
 		}
-		return Collections.EMPTY_LIST;
+		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getOutgoingLinks(View view) {
+	public static List<ShapesLinkDescriptor> getOutgoingLinks(View view) {
 		switch (ShapesVisualIDRegistry.getVisualID(view)) {
 		case SquareEditPart.VISUAL_ID:
 			return getSquare_2001OutgoingLinks(view);
@@ -141,65 +142,70 @@ public class ShapesDiagramUpdater {
 		case DashedConnectionEditPart.VISUAL_ID:
 			return getDashedConnection_4002OutgoingLinks(view);
 		}
-		return Collections.EMPTY_LIST;
+		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getDiagram_1000ContainedLinks(View view) {
+	public static List<ShapesLinkDescriptor> getDiagram_1000ContainedLinks(
+			View view) {
 		Diagram modelElement = (Diagram) view.getElement();
-		List result = new LinkedList();
-		result
-				.addAll(getContainedTypeModelFacetLinks_Connection_4001(modelElement));
-		result
-				.addAll(getContainedTypeModelFacetLinks_DashedConnection_4002(modelElement));
+		LinkedList<ShapesLinkDescriptor> result = new LinkedList<ShapesLinkDescriptor>();
+		result.addAll(getContainedTypeModelFacetLinks_Connection_4001(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_DashedConnection_4002(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getSquare_2001ContainedLinks(View view) {
-		return Collections.EMPTY_LIST;
+	public static List<ShapesLinkDescriptor> getSquare_2001ContainedLinks(
+			View view) {
+		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getTriangle_2002ContainedLinks(View view) {
-		return Collections.EMPTY_LIST;
+	public static List<ShapesLinkDescriptor> getTriangle_2002ContainedLinks(
+			View view) {
+		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getUnknown_2003ContainedLinks(View view) {
-		return Collections.EMPTY_LIST;
+	public static List<ShapesLinkDescriptor> getUnknown_2003ContainedLinks(
+			View view) {
+		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getConnection_4001ContainedLinks(View view) {
-		return Collections.EMPTY_LIST;
+	public static List<ShapesLinkDescriptor> getConnection_4001ContainedLinks(
+			View view) {
+		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getDashedConnection_4002ContainedLinks(View view) {
-		return Collections.EMPTY_LIST;
+	public static List<ShapesLinkDescriptor> getDashedConnection_4002ContainedLinks(
+			View view) {
+		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getSquare_2001IncomingLinks(View view) {
+	public static List<ShapesLinkDescriptor> getSquare_2001IncomingLinks(
+			View view) {
 		Square modelElement = (Square) view.getElement();
-		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource()
-				.getResourceSet().getResources());
-		List result = new LinkedList();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+				.find(view.eResource().getResourceSet().getResources());
+		LinkedList<ShapesLinkDescriptor> result = new LinkedList<ShapesLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_Connection_4001(
 				modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_DashedConnection_4002(
@@ -210,11 +216,12 @@ public class ShapesDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getTriangle_2002IncomingLinks(View view) {
+	public static List<ShapesLinkDescriptor> getTriangle_2002IncomingLinks(
+			View view) {
 		Triangle modelElement = (Triangle) view.getElement();
-		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource()
-				.getResourceSet().getResources());
-		List result = new LinkedList();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+				.find(view.eResource().getResourceSet().getResources());
+		LinkedList<ShapesLinkDescriptor> result = new LinkedList<ShapesLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_Connection_4001(
 				modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_DashedConnection_4002(
@@ -225,11 +232,12 @@ public class ShapesDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getUnknown_2003IncomingLinks(View view) {
+	public static List<ShapesLinkDescriptor> getUnknown_2003IncomingLinks(
+			View view) {
 		Unknown modelElement = (Unknown) view.getElement();
-		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource()
-				.getResourceSet().getResources());
-		List result = new LinkedList();
+		Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences = EcoreUtil.CrossReferencer
+				.find(view.eResource().getResourceSet().getResources());
+		LinkedList<ShapesLinkDescriptor> result = new LinkedList<ShapesLinkDescriptor>();
 		result.addAll(getIncomingTypeModelFacetLinks_Connection_4001(
 				modelElement, crossReferences));
 		result.addAll(getIncomingTypeModelFacetLinks_DashedConnection_4002(
@@ -240,77 +248,78 @@ public class ShapesDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	public static List getConnection_4001IncomingLinks(View view) {
-		return Collections.EMPTY_LIST;
+	public static List<ShapesLinkDescriptor> getConnection_4001IncomingLinks(
+			View view) {
+		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getDashedConnection_4002IncomingLinks(View view) {
-		return Collections.EMPTY_LIST;
+	public static List<ShapesLinkDescriptor> getDashedConnection_4002IncomingLinks(
+			View view) {
+		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getSquare_2001OutgoingLinks(View view) {
+	public static List<ShapesLinkDescriptor> getSquare_2001OutgoingLinks(
+			View view) {
 		Square modelElement = (Square) view.getElement();
-		List result = new LinkedList();
-		result
-				.addAll(getOutgoingTypeModelFacetLinks_Connection_4001(modelElement));
-		result
-				.addAll(getOutgoingTypeModelFacetLinks_DashedConnection_4002(modelElement));
+		LinkedList<ShapesLinkDescriptor> result = new LinkedList<ShapesLinkDescriptor>();
+		result.addAll(getOutgoingTypeModelFacetLinks_Connection_4001(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_DashedConnection_4002(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getTriangle_2002OutgoingLinks(View view) {
+	public static List<ShapesLinkDescriptor> getTriangle_2002OutgoingLinks(
+			View view) {
 		Triangle modelElement = (Triangle) view.getElement();
-		List result = new LinkedList();
-		result
-				.addAll(getOutgoingTypeModelFacetLinks_Connection_4001(modelElement));
-		result
-				.addAll(getOutgoingTypeModelFacetLinks_DashedConnection_4002(modelElement));
+		LinkedList<ShapesLinkDescriptor> result = new LinkedList<ShapesLinkDescriptor>();
+		result.addAll(getOutgoingTypeModelFacetLinks_Connection_4001(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_DashedConnection_4002(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getUnknown_2003OutgoingLinks(View view) {
+	public static List<ShapesLinkDescriptor> getUnknown_2003OutgoingLinks(
+			View view) {
 		Unknown modelElement = (Unknown) view.getElement();
-		List result = new LinkedList();
-		result
-				.addAll(getOutgoingTypeModelFacetLinks_Connection_4001(modelElement));
-		result
-				.addAll(getOutgoingTypeModelFacetLinks_DashedConnection_4002(modelElement));
+		LinkedList<ShapesLinkDescriptor> result = new LinkedList<ShapesLinkDescriptor>();
+		result.addAll(getOutgoingTypeModelFacetLinks_Connection_4001(modelElement));
+		result.addAll(getOutgoingTypeModelFacetLinks_DashedConnection_4002(modelElement));
 		return result;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getConnection_4001OutgoingLinks(View view) {
-		return Collections.EMPTY_LIST;
+	public static List<ShapesLinkDescriptor> getConnection_4001OutgoingLinks(
+			View view) {
+		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	public static List getDashedConnection_4002OutgoingLinks(View view) {
-		return Collections.EMPTY_LIST;
+	public static List<ShapesLinkDescriptor> getDashedConnection_4002OutgoingLinks(
+			View view) {
+		return Collections.emptyList();
 	}
 
 	/**
 	 * @generated
 	 */
-	private static Collection getContainedTypeModelFacetLinks_Connection_4001(
+	private static Collection<ShapesLinkDescriptor> getContainedTypeModelFacetLinks_Connection_4001(
 			Diagram container) {
-		Collection result = new LinkedList();
-		for (Iterator links = container.getConnections().iterator(); links
+		LinkedList<ShapesLinkDescriptor> result = new LinkedList<ShapesLinkDescriptor>();
+		for (Iterator<?> links = container.getConnections().iterator(); links
 				.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof Connection) {
@@ -333,10 +342,10 @@ public class ShapesDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getContainedTypeModelFacetLinks_DashedConnection_4002(
+	private static Collection<ShapesLinkDescriptor> getContainedTypeModelFacetLinks_DashedConnection_4002(
 			Diagram container) {
-		Collection result = new LinkedList();
-		for (Iterator links = container.getConnections().iterator(); links
+		LinkedList<ShapesLinkDescriptor> result = new LinkedList<ShapesLinkDescriptor>();
+		for (Iterator<?> links = container.getConnections().iterator(); links
 				.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof DashedConnection) {
@@ -359,13 +368,13 @@ public class ShapesDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getIncomingTypeModelFacetLinks_Connection_4001(
-			Shape target, Map crossReferences) {
-		Collection result = new LinkedList();
-		Collection settings = (Collection) crossReferences.get(target);
-		for (Iterator it = settings.iterator(); it.hasNext();) {
-			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it
-					.next();
+	private static Collection<ShapesLinkDescriptor> getIncomingTypeModelFacetLinks_Connection_4001(
+			Shape target,
+			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+		LinkedList<ShapesLinkDescriptor> result = new LinkedList<ShapesLinkDescriptor>();
+		Collection<EStructuralFeature.Setting> settings = crossReferences
+				.get(target);
+		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() != ShapesPackage.eINSTANCE
 					.getAbstractConnection_Target()
 					|| false == setting.getEObject() instanceof Connection) {
@@ -387,13 +396,13 @@ public class ShapesDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getIncomingTypeModelFacetLinks_DashedConnection_4002(
-			Shape target, Map crossReferences) {
-		Collection result = new LinkedList();
-		Collection settings = (Collection) crossReferences.get(target);
-		for (Iterator it = settings.iterator(); it.hasNext();) {
-			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it
-					.next();
+	private static Collection<ShapesLinkDescriptor> getIncomingTypeModelFacetLinks_DashedConnection_4002(
+			Shape target,
+			Map<EObject, Collection<EStructuralFeature.Setting>> crossReferences) {
+		LinkedList<ShapesLinkDescriptor> result = new LinkedList<ShapesLinkDescriptor>();
+		Collection<EStructuralFeature.Setting> settings = crossReferences
+				.get(target);
+		for (EStructuralFeature.Setting setting : settings) {
 			if (setting.getEStructuralFeature() != ShapesPackage.eINSTANCE
 					.getAbstractConnection_Target()
 					|| false == setting.getEObject() instanceof DashedConnection) {
@@ -415,7 +424,7 @@ public class ShapesDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getOutgoingTypeModelFacetLinks_Connection_4001(
+	private static Collection<ShapesLinkDescriptor> getOutgoingTypeModelFacetLinks_Connection_4001(
 			Shape source) {
 		Diagram container = null;
 		// Find container element for the link.
@@ -428,10 +437,10 @@ public class ShapesDiagramUpdater {
 			}
 		}
 		if (container == null) {
-			return Collections.EMPTY_LIST;
+			return Collections.emptyList();
 		}
-		Collection result = new LinkedList();
-		for (Iterator links = container.getConnections().iterator(); links
+		LinkedList<ShapesLinkDescriptor> result = new LinkedList<ShapesLinkDescriptor>();
+		for (Iterator<?> links = container.getConnections().iterator(); links
 				.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof Connection) {
@@ -457,7 +466,7 @@ public class ShapesDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getOutgoingTypeModelFacetLinks_DashedConnection_4002(
+	private static Collection<ShapesLinkDescriptor> getOutgoingTypeModelFacetLinks_DashedConnection_4002(
 			Shape source) {
 		Diagram container = null;
 		// Find container element for the link.
@@ -470,10 +479,10 @@ public class ShapesDiagramUpdater {
 			}
 		}
 		if (container == null) {
-			return Collections.EMPTY_LIST;
+			return Collections.emptyList();
 		}
-		Collection result = new LinkedList();
-		for (Iterator links = container.getConnections().iterator(); links
+		LinkedList<ShapesLinkDescriptor> result = new LinkedList<ShapesLinkDescriptor>();
+		for (Iterator<?> links = container.getConnections().iterator(); links
 				.hasNext();) {
 			EObject linkObject = (EObject) links.next();
 			if (false == linkObject instanceof DashedConnection) {

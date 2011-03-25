@@ -10,8 +10,8 @@
  *  
  *
  * $Id$
- */ 
- package org.eclipse.sketch.examples.shapes.diagram.providers;
+ */
+package org.eclipse.sketch.examples.shapes.diagram.providers;
 
 import java.lang.ref.WeakReference;
 

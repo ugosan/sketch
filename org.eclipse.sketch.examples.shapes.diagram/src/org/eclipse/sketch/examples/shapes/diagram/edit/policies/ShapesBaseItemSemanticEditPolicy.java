@@ -10,8 +10,8 @@
  *  
  *
  * $Id$
- */ 
- package org.eclipse.sketch.examples.shapes.diagram.edit.policies;
+ */
+package org.eclipse.sketch.examples.shapes.diagram.edit.policies;
 
 import java.util.Iterator;
 
@@ -43,9 +43,12 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.sketch.examples.shapes.Connection;
+import org.eclipse.sketch.examples.shapes.DashedConnection;
 import org.eclipse.sketch.examples.shapes.Diagram;
 import org.eclipse.sketch.examples.shapes.Shape;
 import org.eclipse.sketch.examples.shapes.diagram.edit.helpers.ShapesBaseEditHelper;
+import org.eclipse.sketch.examples.shapes.diagram.part.ShapesDiagramEditorPlugin;
 import org.eclipse.sketch.examples.shapes.diagram.part.ShapesVisualIDRegistry;
 import org.eclipse.sketch.examples.shapes.diagram.providers.ShapesElementTypes;
 
@@ -86,8 +89,8 @@ public class ShapesBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			Object view = ((ReconnectRequest) request).getConnectionEditPart()
 					.getModel();
 			if (view instanceof View) {
-				Integer id = new Integer(ShapesVisualIDRegistry
-						.getVisualID((View) view));
+				Integer id = new Integer(
+						ShapesVisualIDRegistry.getVisualID((View) view));
 				request.getExtendedData().put(VISUAL_ID_KEY, id);
 			}
 		}
@@ -137,8 +140,7 @@ public class ShapesBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 			Command editPolicyCommand) {
 		if (editPolicyCommand != null) {
 			ICommand command = editPolicyCommand instanceof ICommandProxy ? ((ICommandProxy) editPolicyCommand)
-					.getICommand()
-					: new CommandProxy(editPolicyCommand);
+					.getICommand() : new CommandProxy(editPolicyCommand);
 			request.setParameter(ShapesBaseEditHelper.EDIT_POLICY_COMMAND,
 					command);
 		}
@@ -311,37 +313,58 @@ public class ShapesBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	/**
 	 * @generated
 	 */
+	public static LinkConstraints getLinkConstraints() {
+		LinkConstraints cached = ShapesDiagramEditorPlugin.getInstance()
+				.getLinkConstraints();
+		if (cached == null) {
+			ShapesDiagramEditorPlugin.getInstance().setLinkConstraints(
+					cached = new LinkConstraints());
+		}
+		return cached;
+	}
+
+	/**
+	 * @generated
+	 */
 	public static class LinkConstraints {
 
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateConnection_4001(Diagram container,
-				Shape source, Shape target) {
-			return canExistConnection_4001(container, source, target);
+		LinkConstraints() {
+			// use static method #getLinkConstraints() to access instance
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateDashedConnection_4002(Diagram container,
+		public boolean canCreateConnection_4001(Diagram container,
 				Shape source, Shape target) {
-			return canExistDashedConnection_4002(container, source, target);
+			return canExistConnection_4001(container, null, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistConnection_4001(Diagram container,
+		public boolean canCreateDashedConnection_4002(Diagram container,
 				Shape source, Shape target) {
+			return canExistDashedConnection_4002(container, null, source,
+					target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public boolean canExistConnection_4001(Diagram container,
+				Connection linkInstance, Shape source, Shape target) {
 			return true;
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistDashedConnection_4002(Diagram container,
-				Shape source, Shape target) {
+		public boolean canExistDashedConnection_4002(Diagram container,
+				DashedConnection linkInstance, Shape source, Shape target) {
 			return true;
 		}
 	}

@@ -28,6 +28,7 @@ Export-Package: org.eclipse.sketch;
    org.eclipse.ui.part,
    org.eclipse.swt.widgets,
    org.eclipse.sketch,
-   org.eclipse.ui.forms.widgets"
+   org.eclipse.ui.forms.widgets",
+ org.eclipse.sketch.util
 Bundle-ClassPath: gallery-0.5.2.jar,
  .

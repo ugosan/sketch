@@ -10,12 +10,13 @@
  *  
  *
  * $Id$
- */ 
- package org.eclipse.sketch.examples.shapes.diagram.edit.parts;
+ */
+package org.eclipse.sketch.examples.shapes.diagram.edit.parts;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.core.resources.IWorkspaceRoot;
@@ -104,7 +105,7 @@ public class UnknownEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected LayoutEditPolicy createLayoutEditPolicy() {
-		LayoutEditPolicy lep = new LayoutEditPolicy() {
+		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child
@@ -131,17 +132,20 @@ public class UnknownEditPart extends ShapeNodeEditPart {
 	 */
 	protected IFigure createNodeShape() {
 
-		Bundle bundle = Platform.getBundle("org.eclipse.sketch.examples.shapes");
+		Bundle bundle = Platform
+				.getBundle("org.eclipse.sketch.examples.shapes");
 		try {
 
 			NodeImpl n = (NodeImpl) getModel();
 			Unknown s = (Unknown) n.basicGetElement();
 
-			if (s!=null&&s.getSvg() != null) {
+			if (s != null && s.getSvg() != null) {
 
-				IWorkspaceRoot myWorkspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
-				File imgfile = myWorkspaceRoot.getLocation().append(
-						"s" + System.currentTimeMillis() + ".svg").toFile();
+				IWorkspaceRoot myWorkspaceRoot = ResourcesPlugin.getWorkspace()
+						.getRoot();
+				File imgfile = myWorkspaceRoot.getLocation()
+						.append("s" + System.currentTimeMillis() + ".svg")
+						.toFile();
 
 				Base64.decodeToFile(s.getSvg(), imgfile.getPath());
 
@@ -153,8 +157,9 @@ public class UnknownEditPart extends ShapeNodeEditPart {
 				primaryShape = new SVGSketchFigure(img);
 
 			} else {
-				primaryShape = new SVGSketchFigure(RenderedImageFactory
-						.getInstance(bundle.getEntry("/icons/square.svg")));
+				primaryShape = new SVGSketchFigure(
+						RenderedImageFactory.getInstance(bundle
+								.getEntry("/icons/square.svg")));
 			}
 
 		} catch (IOException e) {
@@ -321,8 +326,8 @@ public class UnknownEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSource() {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+	public List<IElementType> getMARelTypesOnSource() {
+		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
 		types.add(ShapesElementTypes.Connection_4001);
 		types.add(ShapesElementTypes.DashedConnection_4002);
 		return types;
@@ -331,9 +336,9 @@ public class UnknownEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSourceAndTarget(
+	public List<IElementType> getMARelTypesOnSourceAndTarget(
 			IGraphicalEditPart targetEditPart) {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if (targetEditPart instanceof SquareEditPart) {
 			types.add(ShapesElementTypes.Connection_4001);
 		}
@@ -358,25 +363,15 @@ public class UnknownEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForTarget(
-			IElementType relationshipType) {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+	public List<IElementType> getMATypesForTarget(IElementType relationshipType) {
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if (relationshipType == ShapesElementTypes.Connection_4001) {
 			types.add(ShapesElementTypes.Square_2001);
-		}
-		if (relationshipType == ShapesElementTypes.Connection_4001) {
 			types.add(ShapesElementTypes.Triangle_2002);
-		}
-		if (relationshipType == ShapesElementTypes.Connection_4001) {
 			types.add(ShapesElementTypes.Unknown_2003);
-		}
-		if (relationshipType == ShapesElementTypes.DashedConnection_4002) {
+		} else if (relationshipType == ShapesElementTypes.DashedConnection_4002) {
 			types.add(ShapesElementTypes.Square_2001);
-		}
-		if (relationshipType == ShapesElementTypes.DashedConnection_4002) {
 			types.add(ShapesElementTypes.Triangle_2002);
-		}
-		if (relationshipType == ShapesElementTypes.DashedConnection_4002) {
 			types.add(ShapesElementTypes.Unknown_2003);
 		}
 		return types;
@@ -385,8 +380,8 @@ public class UnknownEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnTarget() {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+	public List<IElementType> getMARelTypesOnTarget() {
+		ArrayList<IElementType> types = new ArrayList<IElementType>(2);
 		types.add(ShapesElementTypes.Connection_4001);
 		types.add(ShapesElementTypes.DashedConnection_4002);
 		return types;
@@ -395,25 +390,15 @@ public class UnknownEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForSource(
-			IElementType relationshipType) {
-		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+	public List<IElementType> getMATypesForSource(IElementType relationshipType) {
+		LinkedList<IElementType> types = new LinkedList<IElementType>();
 		if (relationshipType == ShapesElementTypes.Connection_4001) {
 			types.add(ShapesElementTypes.Square_2001);
-		}
-		if (relationshipType == ShapesElementTypes.Connection_4001) {
 			types.add(ShapesElementTypes.Triangle_2002);
-		}
-		if (relationshipType == ShapesElementTypes.Connection_4001) {
 			types.add(ShapesElementTypes.Unknown_2003);
-		}
-		if (relationshipType == ShapesElementTypes.DashedConnection_4002) {
+		} else if (relationshipType == ShapesElementTypes.DashedConnection_4002) {
 			types.add(ShapesElementTypes.Square_2001);
-		}
-		if (relationshipType == ShapesElementTypes.DashedConnection_4002) {
 			types.add(ShapesElementTypes.Triangle_2002);
-		}
-		if (relationshipType == ShapesElementTypes.DashedConnection_4002) {
 			types.add(ShapesElementTypes.Unknown_2003);
 		}
 		return types;
@@ -450,9 +435,8 @@ public class UnknownEditPart extends ShapeNodeEditPart {
 
 			Unknown model = (Unknown) ((ShapeImpl) getModel())
 					.basicGetElement();
-			if(model !=null)
-			{
-			setToolTip(new Label(model.getElement()));
+			if (model != null) {
+				setToolTip(new Label(model.getElement()));
 			}
 			this.image = i;
 
@@ -495,25 +479,6 @@ public class UnknownEditPart extends ShapeNodeEditPart {
 
 			this.add(fFigureSketchLabelFigure);
 
-		}
-
-		/**
-		 * @generated
-		 */
-		private boolean myUseLocalCoordinates = false;
-
-		/**
-		 * @generated
-		 */
-		protected boolean useLocalCoordinates() {
-			return myUseLocalCoordinates;
-		}
-
-		/**
-		 * @generated
-		 */
-		protected void setUseLocalCoordinates(boolean useLocalCoordinates) {
-			myUseLocalCoordinates = useLocalCoordinates;
 		}
 
 		/**

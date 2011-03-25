@@ -10,8 +10,8 @@
  *  
  *
  * $Id$
- */ 
- package org.eclipse.sketch.examples.shapes.diagram.part;
+ */
+package org.eclipse.sketch.examples.shapes.diagram.part;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.ui.URIEditorInput;
@@ -50,10 +50,19 @@ public class ShapesDiagramEditor extends DiagramDocumentEditor {
 	 */
 	public static final String CONTEXT_ID = "org.eclipse.sketch.examples.shapes.diagram.ui.diagramContext"; //$NON-NLS-1$
 
+	/**
+	 * @generated
+	 */
+	public ShapesDiagramEditor() {
+		super(true);
+	}
+
 	private AdapterFactory fAdapterFactory;
 
 	private AdapterFactoryContentProvider adapterFactoryConentProvider;
 
+	/**
+	 * 	
 	@Override
 	public Object getAdapter(Class type) {
 		if (type == org.eclipse.ui.views.properties.IPropertySheetPage.class) {
@@ -68,8 +77,8 @@ public class ShapesDiagramEditor extends DiagramDocumentEditor {
 						View v = (View) model;
 
 						return new PropertySource(v.getElement(),
-								(IItemPropertySource) fAdapterFactory.adapt(v
-										.getElement(),
+								(IItemPropertySource) fAdapterFactory.adapt(
+										v.getElement(),
 										IItemPropertySource.class));
 					} else {
 						return adapterFactoryConentProvider
@@ -84,9 +93,7 @@ public class ShapesDiagramEditor extends DiagramDocumentEditor {
 		return super.getAdapter(type);
 	}
 
-	/**
-	 * @generated NOT
-	 */
+	
 	public ShapesDiagramEditor() {
 		super(true);
 		fAdapterFactory = new ComposedAdapterFactory(
@@ -94,6 +101,7 @@ public class ShapesDiagramEditor extends DiagramDocumentEditor {
 		adapterFactoryConentProvider = new AdapterFactoryContentProvider(
 				fAdapterFactory);
 	}
+	 */
 
 	/**
 	 * @generated

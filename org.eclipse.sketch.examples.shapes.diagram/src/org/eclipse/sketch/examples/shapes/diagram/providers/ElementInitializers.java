@@ -10,12 +10,31 @@
  *  
  *
  * $Id$
- */ 
- package org.eclipse.sketch.examples.shapes.diagram.providers;
+ */
+package org.eclipse.sketch.examples.shapes.diagram.providers;
+
+import org.eclipse.sketch.examples.shapes.diagram.part.ShapesDiagramEditorPlugin;
 
 /**
  * @generated
  */
 public class ElementInitializers {
+
+	protected ElementInitializers() {
+		// use #getInstance to access cached instance
+	}
+
+	/**
+	 * @generated
+	 */
+	public static ElementInitializers getInstance() {
+		ElementInitializers cached = ShapesDiagramEditorPlugin.getInstance()
+				.getElementInitializers();
+		if (cached == null) {
+			ShapesDiagramEditorPlugin.getInstance().setElementInitializers(
+					cached = new ElementInitializers());
+		}
+		return cached;
+	}
 
 }

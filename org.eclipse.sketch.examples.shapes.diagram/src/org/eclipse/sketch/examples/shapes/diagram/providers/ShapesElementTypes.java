@@ -10,8 +10,8 @@
  *  
  *
  * $Id$
- */ 
- package org.eclipse.sketch.examples.shapes.diagram.providers;
+ */
+package org.eclipse.sketch.examples.shapes.diagram.providers;
 
 import java.util.HashSet;
 import java.util.IdentityHashMap;
@@ -41,7 +41,7 @@ import org.eclipse.swt.graphics.Image;
 /**
  * @generated
  */
-public class ShapesElementTypes extends ElementInitializers {
+public class ShapesElementTypes {
 
 	/**
 	 * @generated
@@ -52,7 +52,7 @@ public class ShapesElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
-	private static Map elements;
+	private static Map<IElementType, ENamedElement> elements;
 
 	/**
 	 * @generated
@@ -62,7 +62,7 @@ public class ShapesElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
-	private static Set KNOWN_ELEMENT_TYPES;
+	private static Set<IElementType> KNOWN_ELEMENT_TYPES;
 
 	/**
 	 * @generated
@@ -203,7 +203,7 @@ public class ShapesElementTypes extends ElementInitializers {
 	public static ENamedElement getElement(IAdaptable hint) {
 		Object type = hint.getAdapter(IElementType.class);
 		if (elements == null) {
-			elements = new IdentityHashMap();
+			elements = new IdentityHashMap<IElementType, ENamedElement>();
 
 			elements.put(Diagram_1000, ShapesPackage.eINSTANCE.getDiagram());
 
@@ -213,11 +213,11 @@ public class ShapesElementTypes extends ElementInitializers {
 
 			elements.put(Unknown_2003, ShapesPackage.eINSTANCE.getUnknown());
 
-			elements.put(Connection_4001, ShapesPackage.eINSTANCE
-					.getConnection());
+			elements.put(Connection_4001,
+					ShapesPackage.eINSTANCE.getConnection());
 
-			elements.put(DashedConnection_4002, ShapesPackage.eINSTANCE
-					.getDashedConnection());
+			elements.put(DashedConnection_4002,
+					ShapesPackage.eINSTANCE.getDashedConnection());
 		}
 		return (ENamedElement) elements.get(type);
 	}
@@ -234,7 +234,7 @@ public class ShapesElementTypes extends ElementInitializers {
 	 */
 	public static boolean isKnownElementType(IElementType elementType) {
 		if (KNOWN_ELEMENT_TYPES == null) {
-			KNOWN_ELEMENT_TYPES = new HashSet();
+			KNOWN_ELEMENT_TYPES = new HashSet<IElementType>();
 			KNOWN_ELEMENT_TYPES.add(Diagram_1000);
 			KNOWN_ELEMENT_TYPES.add(Square_2001);
 			KNOWN_ELEMENT_TYPES.add(Triangle_2002);
