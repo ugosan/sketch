@@ -143,39 +143,8 @@ public class UnknownEditPart extends ShapeNodeEditPart {
 	 */
 	protected IFigure createNodeShape() {
 
-		Bundle bundle = Platform
-				.getBundle("org.eclipse.sketch.examples.shapes");
-		try {
+		primaryShape = new SketchFigure();
 
-			NodeImpl n = (NodeImpl) getModel();
-			Unknown s = (Unknown) n.basicGetElement();
-
-			if (s != null && s.getSvg() != null) {
-
-				IWorkspaceRoot myWorkspaceRoot = ResourcesPlugin.getWorkspace()
-						.getRoot();
-				File imgfile = myWorkspaceRoot.getLocation()
-						.append("s" + System.currentTimeMillis() + ".svg")
-						.toFile();
-
-				Base64.decodeToFile(s.getSvg(), imgfile.getPath());
-
-				RenderedImage img = RenderedImageFactory.getInstance(imgfile
-						.getPath());
-				
-				
-				primaryShape = new SketchFigure();
-
-			} else {
-				primaryShape = new SketchFigure();
-			}
-
-		} catch (IOException e) {
-
-			e.printStackTrace();
-			//primaryShape = new SketchFigure(RenderedImageFactory
-			//		.getInstance(bundle.getEntry("/icons/imgmiss.gif")));
-		}
 
 		return primaryShape;
 
