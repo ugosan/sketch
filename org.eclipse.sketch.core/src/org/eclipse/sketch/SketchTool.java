@@ -38,9 +38,9 @@ import org.eclipse.ui.PlatformUI;
 public abstract class SketchTool extends AbstractTool{
 	
 	//the points of the current sketch
-	private ArrayList<Point> points = new ArrayList<Point>();
+	protected ArrayList<Point> points = new ArrayList<Point>();
 
-	private ArrayList<Point> quantizedPoints = new ArrayList<Point>();
+	protected ArrayList<Point> quantizedPoints = new ArrayList<Point>();
 	
 	protected SketchManager manager = new SketchManager();
 
@@ -57,10 +57,10 @@ public abstract class SketchTool extends AbstractTool{
 	
 	boolean showSamples = false;
 	
-	private GC gc;
+	protected GC gc;
 
-	private int count = 0;		
-	private long penuptime = -1;
+	protected int count = 0;		
+	protected long penuptime = -1;
 	
 	
 	//abstract methods 
@@ -168,7 +168,7 @@ public abstract class SketchTool extends AbstractTool{
 	private Point prev_qp=null;
 	
 	@Override
-	protected final boolean handleDrag() {
+	protected boolean handleDrag() {
 		
 		Point p = new Point();
 		p.setLocation(getLocation().x,getLocation().y);
