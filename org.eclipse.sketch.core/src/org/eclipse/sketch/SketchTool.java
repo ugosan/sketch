@@ -92,6 +92,7 @@ public abstract class SketchTool extends AbstractTool{
 		
 		
 		gc = new GC(manager.getEditor().getDiagramGraphicalViewer().getControl());
+		
 		gc.setAntialias(SWT.ON);
 		
 		int linewidth = control!=null?control.getLineWidth():1;	

@@ -24,6 +24,7 @@ import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -33,6 +34,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.eclipse.sketch.SketchFactory;
 import org.eclipse.sketch.examples.shapes.Diagram;
 import org.eclipse.sketch.examples.shapes.ShapesFactory;
 import org.eclipse.sketch.examples.shapes.ShapesPackage;
@@ -72,8 +74,31 @@ public class DiagramItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addRootSketchPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Root Sketch feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addRootSketchPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Diagram_rootSketch_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Diagram_rootSketch_feature", "_UI_Diagram_type"),
+				 ShapesPackage.Literals.DIAGRAM__ROOT_SKETCH,
+				 false,
+				 false,
+				 false,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -90,6 +115,7 @@ public class DiagramItemProvider
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(ShapesPackage.Literals.DIAGRAM__SHAPES);
 			childrenFeatures.add(ShapesPackage.Literals.DIAGRAM__CONNECTIONS);
+			childrenFeatures.add(ShapesPackage.Literals.DIAGRAM__ROOT_SKETCH);
 		}
 		return childrenFeatures;
 	}
@@ -143,6 +169,7 @@ public class DiagramItemProvider
 		switch (notification.getFeatureID(Diagram.class)) {
 			case ShapesPackage.DIAGRAM__SHAPES:
 			case ShapesPackage.DIAGRAM__CONNECTIONS:
+			case ShapesPackage.DIAGRAM__ROOT_SKETCH:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -184,6 +211,11 @@ public class DiagramItemProvider
 			(createChildParameter
 				(ShapesPackage.Literals.DIAGRAM__CONNECTIONS,
 				 ShapesFactory.eINSTANCE.createDashedConnection()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ShapesPackage.Literals.DIAGRAM__ROOT_SKETCH,
+				 SketchFactory.eINSTANCE.createSketch()));
 	}
 
 	/**

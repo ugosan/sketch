@@ -74,7 +74,7 @@ public class Diagram extends EObjectImpl implements EObject {
 	protected EList<AbstractConnection> connections;
 
 	/**
-	 * The cached value of the '{@link #getRootSketch() <em>Root Sketch</em>}' reference.
+	 * The cached value of the '{@link #getRootSketch() <em>Root Sketch</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getRootSketch()
@@ -145,28 +145,20 @@ public class Diagram extends EObjectImpl implements EObject {
 	}
 
 	/**
-	 * Returns the value of the '<em><b>Root Sketch</b></em>' reference.
+	 * Returns the value of the '<em><b>Root Sketch</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Root Sketch</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Root Sketch</em>' reference.
+	 * @return the value of the '<em>Root Sketch</em>' containment reference.
 	 * @see #setRootSketch(Sketch)
 	 * @see org.eclipse.sketch.examples.shapes.ShapesPackage#getDiagram_RootSketch()
-	 * @model required="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	public Sketch getRootSketch() {
-		if (rootSketch != null && rootSketch.eIsProxy()) {
-			InternalEObject oldRootSketch = (InternalEObject)rootSketch;
-			rootSketch = (Sketch)eResolveProxy(oldRootSketch);
-			if (rootSketch != oldRootSketch) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ShapesPackage.DIAGRAM__ROOT_SKETCH, oldRootSketch, rootSketch));
-			}
-		}
 		return rootSketch;
 	}
 
@@ -175,23 +167,36 @@ public class Diagram extends EObjectImpl implements EObject {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Sketch basicGetRootSketch() {
-		return rootSketch;
+	public NotificationChain basicSetRootSketch(Sketch newRootSketch, NotificationChain msgs) {
+		Sketch oldRootSketch = rootSketch;
+		rootSketch = newRootSketch;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ShapesPackage.DIAGRAM__ROOT_SKETCH, oldRootSketch, newRootSketch);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.sketch.examples.shapes.Diagram#getRootSketch <em>Root Sketch</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.sketch.examples.shapes.Diagram#getRootSketch <em>Root Sketch</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Root Sketch</em>' reference.
+	 * @param value the new value of the '<em>Root Sketch</em>' containment reference.
 	 * @see #getRootSketch()
 	 * @generated
 	 */
 	public void setRootSketch(Sketch newRootSketch) {
-		Sketch oldRootSketch = rootSketch;
-		rootSketch = newRootSketch;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ShapesPackage.DIAGRAM__ROOT_SKETCH, oldRootSketch, rootSketch));
+		if (newRootSketch != rootSketch) {
+			NotificationChain msgs = null;
+			if (rootSketch != null)
+				msgs = ((InternalEObject)rootSketch).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ShapesPackage.DIAGRAM__ROOT_SKETCH, null, msgs);
+			if (newRootSketch != null)
+				msgs = ((InternalEObject)newRootSketch).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ShapesPackage.DIAGRAM__ROOT_SKETCH, null, msgs);
+			msgs = basicSetRootSketch(newRootSketch, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ShapesPackage.DIAGRAM__ROOT_SKETCH, newRootSketch, newRootSketch));
 	}
 
 	/**
@@ -206,6 +211,8 @@ public class Diagram extends EObjectImpl implements EObject {
 				return ((InternalEList<?>)getShapes()).basicRemove(otherEnd, msgs);
 			case ShapesPackage.DIAGRAM__CONNECTIONS:
 				return ((InternalEList<?>)getConnections()).basicRemove(otherEnd, msgs);
+			case ShapesPackage.DIAGRAM__ROOT_SKETCH:
+				return basicSetRootSketch(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -223,8 +230,7 @@ public class Diagram extends EObjectImpl implements EObject {
 			case ShapesPackage.DIAGRAM__CONNECTIONS:
 				return getConnections();
 			case ShapesPackage.DIAGRAM__ROOT_SKETCH:
-				if (resolve) return getRootSketch();
-				return basicGetRootSketch();
+				return getRootSketch();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

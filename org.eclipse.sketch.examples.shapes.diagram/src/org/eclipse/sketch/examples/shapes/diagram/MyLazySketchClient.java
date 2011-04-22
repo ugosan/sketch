@@ -13,6 +13,9 @@
  */ 
  package org.eclipse.sketch.examples.shapes.diagram;
 
+import java.util.Iterator;
+import java.util.List;
+
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.core.runtime.IAdaptable;
@@ -21,15 +24,19 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.draw2d.UpdateManager;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.workspace.AbstractEMFOperation;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.NodeEditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.core.commands.SetPropertyCommand;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditDomain;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
 import org.eclipse.gmf.runtime.diagram.ui.render.editparts.RenderedDiagramRootEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.ChangePropertyValueRequest;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.impl.DiagramImpl;
 import org.eclipse.sketch.Sketch;
 import org.eclipse.sketch.SketchPackage;
@@ -38,6 +45,8 @@ import org.eclipse.sketch.examples.shapes.Diagram;
 import org.eclipse.sketch.examples.shapes.ShapesFactory;
 import org.eclipse.sketch.examples.shapes.ShapesPackage;
 import org.eclipse.sketch.examples.shapes.Triangle;
+import org.eclipse.sketch.examples.shapes.diagram.edit.policies.DiagramCanonicalEditPolicy;
+import org.eclipse.sketch.examples.shapes.diagram.part.ShapesDiagramUpdateCommand;
 import org.eclipse.ui.PlatformUI;
 
 
@@ -59,18 +68,14 @@ public class MyLazySketchClient implements ISketchListener{
 		
 		final DiagramImpl d = (DiagramImpl) editor.getDiagramEditPart().getModel();
 
-		
-		
-		
-		
+
 		AbstractEMFOperation emfOp = new AbstractEMFOperation(editor.getEditingDomain(), "Insert sketch") {
 
 			@Override
 			protected IStatus doExecute(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 				
 				final Sketch rootSketch = ((Diagram)d.getElement()).getRootSketch();
-				
-				
+
 				if(rootSketch==null){
 					DiagramImpl n = (DiagramImpl)editor.getDiagramEditPart().getModel();
 					Diagram d = (Diagram) n.basicGetElement();
@@ -78,14 +83,15 @@ public class MyLazySketchClient implements ISketchListener{
 					
 					d.setRootSketch(s);
 				}else{
-					rootSketch.getPoints().addAll(s.getPoints());
+					
+					s.getPointlist().addAll(rootSketch.getPointlist());
+					s.setWord(s.getWord().concat(rootSketch.getWord()));
 					
 					DiagramImpl n = (DiagramImpl)editor.getDiagramEditPart().getModel();
 					Diagram d = (Diagram) n.basicGetElement();
 					
-					d.getShapes().add(ShapesFactory.eINSTANCE.createTriangle());
 					d.eSet(ShapesPackage.DIAGRAM__ROOT_SKETCH, s);
-					d.setRootSketch(s);
+					
 				}
 				
 				return Status.OK_STATUS;
@@ -109,14 +115,44 @@ public class MyLazySketchClient implements ISketchListener{
 			}
 		
 		};
+		
+		
 
 		try {
 			emfOp.execute(new NullProgressMonitor(), null);
 			//OperationHistoryFactory.getOperationHistory().execute(emfOp, null, null);
-		} catch (ExecutionException e) {}
+			ShapesDiagramUpdateCommand co = new ShapesDiagramUpdateCommand();
+			co.execute(null);
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		}
 		
+		/*EObject modelElement = ((View) ((EditPart) structuredSelection
+				.getFirstElement()).getModel()).getElement();
+		List editPolicies = CanonicalEditPolicy
+				.getRegisteredEditPolicies(modelElement);
+		for (Iterator it = editPolicies.iterator(); it.hasNext();) {
+			CanonicalEditPolicy nextEditPolicy = (CanonicalEditPolicy) it
+					.next();
+			nextEditPolicy.refresh();*/
 		
-		editor.getDiagramEditPart().refresh();
+		EObject modelElement = ((View) (editor.getDiagramEditPart().getModel())).getElement();
+		List editPolicies = CanonicalEditPolicy.getRegisteredEditPolicies(modelElement);
+		for (Iterator it = editPolicies.iterator(); it.hasNext();) {
+			DiagramCanonicalEditPolicy nextEditPolicy = (DiagramCanonicalEditPolicy) it
+			.next();
+			nextEditPolicy.activate();
+			nextEditPolicy.setEnable(true);
+			nextEditPolicy.getViewer().getControl().redraw();
+			nextEditPolicy.refresh();
+		}
+		
+		/*for(Object o : editor.getDiagramEditPart().getChildren()){
+		    if(o instanceof EditPart){//or ur costumized EditPart
+		        EditPart editPart = (EditPart)o;
+		        editPart.refresh();
+		    }
+		} */
 		
 		editor.getDiagramEditDomain().getDiagramCommandStack().execute(selectNewelement);
 		

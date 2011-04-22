@@ -23,12 +23,15 @@ import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.draw2d.ColorConstants;
+import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.PositionConstants;
+import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -41,6 +44,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableShapeLabelEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.draw2d.ui.render.RenderedImage;
@@ -52,13 +56,20 @@ import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.impl.NodeImpl;
 import org.eclipse.gmf.runtime.notation.impl.ShapeImpl;
+import org.eclipse.sketch.Sketch;
 import org.eclipse.sketch.examples.shapes.Unknown;
 import org.eclipse.sketch.examples.shapes.diagram.edit.policies.UnknownItemSemanticEditPolicy;
 import org.eclipse.sketch.examples.shapes.diagram.part.ShapesVisualIDRegistry;
 import org.eclipse.sketch.examples.shapes.diagram.providers.ShapesElementTypes;
 import org.eclipse.sketch.examples.shapes.diagram.util.Base64;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Drawable;
+import org.eclipse.swt.graphics.GC;
+import org.eclipse.swt.graphics.GCData;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.swt.graphics.RGB;
+import org.eclipse.ui.PlatformUI;
 import org.osgi.framework.Bundle;
 
 /**
@@ -151,15 +162,12 @@ public class UnknownEditPart extends ShapeNodeEditPart {
 
 				RenderedImage img = RenderedImageFactory.getInstance(imgfile
 						.getPath());
-				img.getRenderInfo().setValues(0, 0, true, true,
-						new RGB(255, 0, 0), new RGB(255, 0, 0));
-
-				primaryShape = new SVGSketchFigure(img);
+				
+				
+				primaryShape = new SketchFigure();
 
 			} else {
-				primaryShape = new SVGSketchFigure(
-						RenderedImageFactory.getInstance(bundle
-								.getEntry("/icons/square.svg")));
+				primaryShape = new SketchFigure();
 			}
 
 		} catch (IOException e) {
@@ -172,12 +180,14 @@ public class UnknownEditPart extends ShapeNodeEditPart {
 		return primaryShape;
 
 	}
+	
+	
 
 	/**
 	 * @generated
 	 */
-	public SVGSketchFigure getPrimaryShape() {
-		return (SVGSketchFigure) primaryShape;
+	public SketchFigure getPrimaryShape() {
+		return (SketchFigure) primaryShape;
 	}
 
 	/**
@@ -263,7 +273,7 @@ public class UnknownEditPart extends ShapeNodeEditPart {
 	protected IFigure setupContentPane(IFigure nodeShape) {
 		if (nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
-			layout.setSpacing(5);
+			layout.setSpacing(10);
 			nodeShape.setLayoutManager(layout);
 		}
 		return nodeShape; // use nodeShape itself as contentPane
@@ -404,10 +414,12 @@ public class UnknownEditPart extends ShapeNodeEditPart {
 		return types;
 	}
 
+
+	
 	/**
 	 * @generated
 	 */
-	public class SVGSketchFigure extends ScalableImageFigure {
+	public class SketchFigure extends NodeFigure{
 
 		/**
 		 * @generated
@@ -417,55 +429,11 @@ public class UnknownEditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated NOT
 		 */
-		private RenderedImage image;
+		public SketchFigure() {
 
-		/**
-		 * @generated NOT
-		 */
-		public SVGSketchFigure() {
-			super(null, true, true, true);
 			createContents();
 		}
 
-		/**
-		 * @generated NOT
-		 */
-		public SVGSketchFigure(RenderedImage i) {
-			super(i, true, true, true);
-
-			Unknown model = (Unknown) ((ShapeImpl) getModel())
-					.basicGetElement();
-			if (model != null) {
-				setToolTip(new Label(model.getElement()));
-			}
-			this.image = i;
-
-			this.setMaintainAspectRatio(true);
-
-			this.setRenderedImage(image);
-
-			createContents();
-
-			//center the children
-			this.setLayoutManager(new StackLayout() {
-				public void layout(IFigure figure) {
-					Rectangle r = figure.getClientArea();
-					List children = figure.getChildren();
-					IFigure child;
-					Dimension d;
-					for (int i = 0; i < children.size(); i++) {
-						child = (IFigure) children.get(i);
-						d = child.getPreferredSize(r.width, r.height);
-						d.width = Math.min(d.width, r.width);
-						d.height = Math.min(d.height, r.height);
-						Rectangle childRect = new Rectangle(r.x
-								+ (r.width - d.width) / 2, r.y
-								+ (r.height - d.height) / 2, d.width, d.height);
-						child.setBounds(childRect);
-					}
-				}
-			});
-		}
 
 		/**
 		 * @generated NOT
@@ -481,11 +449,56 @@ public class UnknownEditPart extends ShapeNodeEditPart {
 
 		}
 
+
 		/**
 		 * @generated
 		 */
 		public WrappingLabel getFigureSketchLabelFigure() {
 			return fFigureSketchLabelFigure;
+		}
+
+
+
+
+		@Override
+		protected void paintFigure(Graphics graphics) {
+
+			graphics.setForegroundColor(new Color(getParent().getBackgroundColor().getDevice(),0,0,0));
+			graphics.setLineWidth(1);
+
+			Unknown model = (Unknown) ((ShapeImpl) getModel()).basicGetElement();
+			Sketch s = model.getSketch();
+					
+			
+			for(int i=0;i<s.getPointlist().size();i++){
+				Point p = (Point)s.getPointlist().get(i);
+				Point lastp = p;
+				
+
+				if(i>0){
+					lastp = (Point) s.getPointlist().get(i-1);
+				}
+				
+				 //translates the points to a 0,0 location and then draws them as relative to the current figure position 
+				int x1 = Math.abs(s.getLocation().x-lastp.x)+getBounds().x;
+				int y1 = Math.abs(s.getLocation().y-lastp.y)+getBounds().y;
+				int x2 = Math.abs(s.getLocation().x-p.x)+getBounds().x;
+				int y2 = Math.abs(s.getLocation().y-p.y)+getBounds().y;
+	
+				
+				if(lastp.x==-1){
+					//if the last point is a pen lift, then consider just the current one
+					graphics.drawLine(x2,y2,x2,y2);
+							
+				}else if(p.x>0){
+					graphics.drawLine(x1,y1,x2,y2);
+					
+					
+				}
+
+				
+			}
+			
 		}
 
 	}

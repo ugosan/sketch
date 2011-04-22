@@ -239,6 +239,7 @@ public class Sketch extends EObjectImpl implements EObject {
 	 * @see org.eclipse.sketch.SketchPackage#getSketch_Points()
 	 * @model dataType="org.eclipse.sketch.Draw2DPoint" transient="true"
 	 * @generated
+	 * @deprecated
 	 */
 	public List<Point> getPoints() {
 		if (points == null) {

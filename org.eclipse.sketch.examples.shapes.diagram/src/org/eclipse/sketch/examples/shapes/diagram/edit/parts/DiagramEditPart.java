@@ -28,6 +28,7 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
+import org.eclipse.gef.RootEditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.handles.MoveHandle;
@@ -73,19 +74,9 @@ public class DiagramEditPart extends
 	}
 
 	@Override
-	public void refresh() {
-		super.refresh();
-		System.out.println("refresca!");
-
-		contentPane = createFigure();
-		getContentPane();
-
-	}
-
-	@Override
 	/**
 	 * Replaces default figure with layered pane. Lower layer for decorations, upper is original figure.
-	 
+	 */
 	protected IFigure createFigure() {
 		FreeformLayeredPane pane = new FreeformLayeredPane();
 		FreeformLayer roseLayer = new FreeformLayer() {
@@ -112,10 +103,10 @@ public class DiagramEditPart extends
 
 				if (s != null) {
 
-					for (int i = 1; i < s.getPoints().size(); i++) {
-						Point p = s.getPoints().get(i);
+					for (int i = 1; i < s.getPointlist().size(); i++) {
+						Point p = (Point) s.getPointlist().get(i);
 						Point lastp = p;
-						lastp = s.getPoints().get(i - 1);
+						lastp = (Point) s.getPointlist().get(i - 1);
 
 						if (lastp.x == -1) {
 							//if the last point is a pen lift, then consider just the current one
@@ -131,17 +122,15 @@ public class DiagramEditPart extends
 
 			}
 		});
-		System.out.println("pintou");
+		
 		pane.add(contentPane = super.createFigure());
 		return pane;
 	}
-	
+
 	@Override
 	public IFigure getContentPane() {
 		return contentPane;
 	}
-	*
-	*/
 
 	/**
 	 * @generated
@@ -202,7 +191,5 @@ public class DiagramEditPart extends
 			return Collections.singletonList(mh);
 		}
 	}
-
-	
 
 }

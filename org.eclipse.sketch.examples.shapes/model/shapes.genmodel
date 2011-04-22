@@ -32,6 +32,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute shapes.ecore#//Unknown/meta"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute shapes.ecore#//Unknown/element"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute shapes.ecore#//Unknown/dna"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference shapes.ecore#//Unknown/sketch"/>
     </genClasses>
     <genClasses ecoreClass="shapes.ecore#//Connection"/>
     <genClasses ecoreClass="shapes.ecore#//DashedConnection"/>

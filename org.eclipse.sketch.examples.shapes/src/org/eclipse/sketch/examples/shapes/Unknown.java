@@ -15,10 +15,13 @@ package org.eclipse.sketch.examples.shapes;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.sketch.Sketch;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,6 +34,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *   <li>{@link org.eclipse.sketch.examples.shapes.Unknown#getMeta <em>Meta</em>}</li>
  *   <li>{@link org.eclipse.sketch.examples.shapes.Unknown#getElement <em>Element</em>}</li>
  *   <li>{@link org.eclipse.sketch.examples.shapes.Unknown#getDna <em>Dna</em>}</li>
+ *   <li>{@link org.eclipse.sketch.examples.shapes.Unknown#getSketch <em>Sketch</em>}</li>
  * </ul>
  * </p>
  *
@@ -138,6 +142,16 @@ public class Unknown extends EObjectImpl implements Shape {
 	 * @ordered
 	 */
 	protected String dna = DNA_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getSketch() <em>Sketch</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSketch()
+	 * @generated
+	 * @ordered
+	 */
+	protected Sketch sketch;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -326,6 +340,75 @@ public class Unknown extends EObjectImpl implements Shape {
 	}
 
 	/**
+	 * Returns the value of the '<em><b>Sketch</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Sketch</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Sketch</em>' containment reference.
+	 * @see #setSketch(Sketch)
+	 * @see org.eclipse.sketch.examples.shapes.ShapesPackage#getUnknown_Sketch()
+	 * @model containment="true"
+	 * @generated
+	 */
+	public Sketch getSketch() {
+		return sketch;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetSketch(Sketch newSketch, NotificationChain msgs) {
+		Sketch oldSketch = sketch;
+		sketch = newSketch;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ShapesPackage.UNKNOWN__SKETCH, oldSketch, newSketch);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.sketch.examples.shapes.Unknown#getSketch <em>Sketch</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Sketch</em>' containment reference.
+	 * @see #getSketch()
+	 * @generated
+	 */
+	public void setSketch(Sketch newSketch) {
+		if (newSketch != sketch) {
+			NotificationChain msgs = null;
+			if (sketch != null)
+				msgs = ((InternalEObject)sketch).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ShapesPackage.UNKNOWN__SKETCH, null, msgs);
+			if (newSketch != null)
+				msgs = ((InternalEObject)newSketch).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ShapesPackage.UNKNOWN__SKETCH, null, msgs);
+			msgs = basicSetSketch(newSketch, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ShapesPackage.UNKNOWN__SKETCH, newSketch, newSketch));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ShapesPackage.UNKNOWN__SKETCH:
+				return basicSetSketch(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -343,6 +426,8 @@ public class Unknown extends EObjectImpl implements Shape {
 				return getElement();
 			case ShapesPackage.UNKNOWN__DNA:
 				return getDna();
+			case ShapesPackage.UNKNOWN__SKETCH:
+				return getSketch();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -369,6 +454,9 @@ public class Unknown extends EObjectImpl implements Shape {
 				return;
 			case ShapesPackage.UNKNOWN__DNA:
 				setDna((String)newValue);
+				return;
+			case ShapesPackage.UNKNOWN__SKETCH:
+				setSketch((Sketch)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -397,6 +485,9 @@ public class Unknown extends EObjectImpl implements Shape {
 			case ShapesPackage.UNKNOWN__DNA:
 				setDna(DNA_EDEFAULT);
 				return;
+			case ShapesPackage.UNKNOWN__SKETCH:
+				setSketch((Sketch)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -419,6 +510,8 @@ public class Unknown extends EObjectImpl implements Shape {
 				return ELEMENT_EDEFAULT == null ? element != null : !ELEMENT_EDEFAULT.equals(element);
 			case ShapesPackage.UNKNOWN__DNA:
 				return DNA_EDEFAULT == null ? dna != null : !DNA_EDEFAULT.equals(dna);
+			case ShapesPackage.UNKNOWN__SKETCH:
+				return sketch != null;
 		}
 		return super.eIsSet(featureID);
 	}

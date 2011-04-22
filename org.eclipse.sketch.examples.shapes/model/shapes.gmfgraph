@@ -141,6 +141,23 @@
             x="200"/>
       </actualFigure>
     </descriptors>
+    <descriptors
+        name="SketchFigure">
+      <actualFigure
+          xsi:type="gmfgraph:ScalablePolygon"
+          name="CustomSketchFigure"
+          fill="false">
+        <children
+            xsi:type="gmfgraph:Label"
+            name="SketchLabelFigure"
+            text="">
+          <backgroundColor
+              xsi:type="gmfgraph:ConstantColor"/>
+        </children>
+      </actualFigure>
+      <accessors
+          figure="//@figures.0/@descriptors.6/@actualFigure/@children.0"/>
+    </descriptors>
   </figures>
   <nodes
       name="Square"
@@ -150,7 +167,7 @@
       figure="TriangleFigure"/>
   <nodes
       name="Unknown"
-      figure="SVGSketchFigure"/>
+      figure="SketchFigure"/>
   <connections
       name="Connection"
       figure="ConnectionFigure"/>

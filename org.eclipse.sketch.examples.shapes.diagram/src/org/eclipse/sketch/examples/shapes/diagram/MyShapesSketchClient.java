@@ -141,7 +141,7 @@ public class MyShapesSketchClient implements ISketchListener{
 			//creates the sketch element and set the image encoded as Base64
 			final Unknown unknown_element = ShapesFactory.eINSTANCE.createUnknown();
 			unknown_element.eSet(ShapesPackage.Literals.SHAPE__SVG,  Base64.encodeFromFile(file.getPath()));
-			
+			unknown_element.eSet(ShapesPackage.Literals.UNKNOWN__SKETCH, s);
 			this.setMeta(unknown_element, s);
 			
 			
@@ -174,9 +174,9 @@ public class MyShapesSketchClient implements ISketchListener{
 						protected IStatus doExecute(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 							
 							DiagramImpl n = (DiagramImpl)editor.getDiagramEditPart().getModel();
-							Diagram s = (Diagram) n.basicGetElement();
-							s.getShapes().add(unknown_element);
-
+							Diagram d = (Diagram) n.basicGetElement();
+							d.getShapes().add(unknown_element);
+							
 							return Status.OK_STATUS;
 						}
 					};

@@ -99,7 +99,7 @@ public class ShapesPackage extends EPackageImpl {
 	public static final int DIAGRAM__CONNECTIONS = 1;
 
 	/**
-	 * The feature id for the '<em><b>Root Sketch</b></em>' reference.
+	 * The feature id for the '<em><b>Root Sketch</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -283,13 +283,22 @@ public class ShapesPackage extends EPackageImpl {
 	public static final int UNKNOWN__DNA = SHAPE_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Sketch</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int UNKNOWN__SKETCH = SHAPE_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Unknown</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	public static final int UNKNOWN_FEATURE_COUNT = SHAPE_FEATURE_COUNT + 3;
+	public static final int UNKNOWN_FEATURE_COUNT = SHAPE_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.sketch.examples.shapes.AbstractConnection <em>Abstract Connection</em>}' class.
@@ -591,10 +600,10 @@ public class ShapesPackage extends EPackageImpl {
 	}
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.sketch.examples.shapes.Diagram#getRootSketch <em>Root Sketch</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.sketch.examples.shapes.Diagram#getRootSketch <em>Root Sketch</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Root Sketch</em>'.
+	 * @return the meta object for the containment reference '<em>Root Sketch</em>'.
 	 * @see org.eclipse.sketch.examples.shapes.Diagram#getRootSketch()
 	 * @see #getDiagram()
 	 * @generated
@@ -715,6 +724,20 @@ public class ShapesPackage extends EPackageImpl {
 	 */
 	public EAttribute getUnknown_Dna() {
 		return (EAttribute)unknownEClass.getEStructuralFeatures().get(2);
+	}
+
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.sketch.examples.shapes.Unknown#getSketch <em>Sketch</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Sketch</em>'.
+	 * @see org.eclipse.sketch.examples.shapes.Unknown#getSketch()
+	 * @see #getUnknown()
+	 * @generated
+	 */
+	public EReference getUnknown_Sketch() {
+		return (EReference)unknownEClass.getEStructuralFeatures().get(3);
 	}
 
 
@@ -840,6 +863,7 @@ public class ShapesPackage extends EPackageImpl {
 		createEAttribute(unknownEClass, UNKNOWN__META);
 		createEAttribute(unknownEClass, UNKNOWN__ELEMENT);
 		createEAttribute(unknownEClass, UNKNOWN__DNA);
+		createEReference(unknownEClass, UNKNOWN__SKETCH);
 
 		connectionEClass = createEClass(CONNECTION);
 
@@ -892,7 +916,7 @@ public class ShapesPackage extends EPackageImpl {
 		initEClass(diagramEClass, Diagram.class, "Diagram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDiagram_Shapes(), this.getShape(), null, "shapes", null, 0, -1, Diagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDiagram_Connections(), this.getAbstractConnection(), null, "connections", null, 0, -1, Diagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDiagram_RootSketch(), theSketchPackage.getSketch(), null, "rootSketch", null, 1, 1, Diagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDiagram_RootSketch(), theSketchPackage.getSketch(), null, "rootSketch", null, 1, 1, Diagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(shapeEClass, Shape.class, "Shape", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getShape_Svg(), ecorePackage.getEString(), "svg", null, 0, 1, Shape.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -906,6 +930,7 @@ public class ShapesPackage extends EPackageImpl {
 		initEAttribute(getUnknown_Meta(), ecorePackage.getEString(), "meta", "", 0, 1, Unknown.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getUnknown_Element(), ecorePackage.getEString(), "element", null, 0, 1, Unknown.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getUnknown_Dna(), ecorePackage.getEString(), "dna", "####", 0, 1, Unknown.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getUnknown_Sketch(), theSketchPackage.getSketch(), null, "sketch", null, 0, 1, Unknown.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(connectionEClass, Connection.class, "Connection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -960,7 +985,7 @@ public class ShapesPackage extends EPackageImpl {
 		public static final EReference DIAGRAM__CONNECTIONS = eINSTANCE.getDiagram_Connections();
 
 		/**
-		 * The meta object literal for the '<em><b>Root Sketch</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Root Sketch</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1046,6 +1071,14 @@ public class ShapesPackage extends EPackageImpl {
 		 * @generated
 		 */
 		public static final EAttribute UNKNOWN__DNA = eINSTANCE.getUnknown_Dna();
+
+		/**
+		 * The meta object literal for the '<em><b>Sketch</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public static final EReference UNKNOWN__SKETCH = eINSTANCE.getUnknown_Sketch();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.sketch.examples.shapes.Connection <em>Connection</em>}' class.
