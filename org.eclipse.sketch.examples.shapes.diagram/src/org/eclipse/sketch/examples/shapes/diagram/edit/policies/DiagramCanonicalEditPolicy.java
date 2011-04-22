@@ -10,8 +10,8 @@
  *  
  *
  * $Id$
- */ 
- package org.eclipse.sketch.examples.shapes.diagram.edit.policies;
+ */
+package org.eclipse.sketch.examples.shapes.diagram.edit.policies;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -314,17 +314,18 @@ public class DiagramCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 				.hasNext();) {
 			final ShapesLinkDescriptor nextLinkDescriptor = (ShapesLinkDescriptor) linkDescriptorsIterator
 					.next();
-			EditPart sourceEditPart = getEditPart(nextLinkDescriptor
-					.getSource(), domain2NotationMap);
-			EditPart targetEditPart = getEditPart(nextLinkDescriptor
-					.getDestination(), domain2NotationMap);
+			EditPart sourceEditPart = getEditPart(
+					nextLinkDescriptor.getSource(), domain2NotationMap);
+			EditPart targetEditPart = getEditPart(
+					nextLinkDescriptor.getDestination(), domain2NotationMap);
 			if (sourceEditPart == null || targetEditPart == null) {
 				continue;
 			}
 			CreateConnectionViewRequest.ConnectionViewDescriptor descriptor = new CreateConnectionViewRequest.ConnectionViewDescriptor(
-					nextLinkDescriptor.getSemanticAdapter(), String
-							.valueOf(nextLinkDescriptor.getVisualID()),
-					ViewUtil.APPEND, false, ((IGraphicalEditPart) getHost())
+					nextLinkDescriptor.getSemanticAdapter(),
+					String.valueOf(nextLinkDescriptor.getVisualID()),
+					ViewUtil.APPEND, false,
+					((IGraphicalEditPart) getHost())
 							.getDiagramPreferencesHint());
 			CreateConnectionViewRequest ccr = new CreateConnectionViewRequest(
 					descriptor);
@@ -352,8 +353,8 @@ public class DiagramCanonicalEditPolicy extends CanonicalConnectionEditPolicy {
 			Map domain2NotationMap) {
 		View view = (View) domain2NotationMap.get(domainModelElement);
 		if (view != null) {
-			return (EditPart) getHost().getViewer().getEditPartRegistry().get(
-					view);
+			return (EditPart) getHost().getViewer().getEditPartRegistry()
+					.get(view);
 		}
 		return null;
 	}

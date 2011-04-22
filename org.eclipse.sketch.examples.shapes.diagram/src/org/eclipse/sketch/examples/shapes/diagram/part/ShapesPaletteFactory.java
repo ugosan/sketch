@@ -26,6 +26,7 @@ import org.eclipse.gef.palette.ToolEntry;
 import org.eclipse.gmf.runtime.diagram.ui.tools.UnspecifiedTypeConnectionTool;
 import org.eclipse.gmf.runtime.diagram.ui.tools.UnspecifiedTypeCreationTool;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.sketch.examples.shapes.diagram.AnaglyphSketchTool;
 import org.eclipse.sketch.examples.shapes.diagram.AnnotateSketchTool;
 import org.eclipse.sketch.examples.shapes.diagram.LazySketchTool;
 import org.eclipse.sketch.examples.shapes.diagram.ShapesSketchTool;
@@ -59,6 +60,7 @@ public class ShapesPaletteFactory {
 		paletteContainer.add(createAnnotation6CreationTool());
 		paletteContainer.add(new PaletteSeparator());
 		paletteContainer.add(createLazySketch8CreationTool());
+		paletteContainer.add(createAnaglyphSketch9CreationTool());
 		return paletteContainer;
 	}
 
@@ -172,6 +174,23 @@ public class ShapesPaletteFactory {
 		entry.setLargeIcon(ShapesDiagramEditorPlugin
 				.findImageDescriptor("/org.eclipse.sketch.examples.shapes/icons/annotation.gif")); //$NON-NLS-1$
 		entry.setToolClass(LazySketchTool.class);
+		return entry;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ToolEntry createAnaglyphSketch9CreationTool() {
+		ToolEntry entry = new ToolEntry(
+				Messages.AnaglyphSketch9CreationTool_title,
+				Messages.AnaglyphSketch9CreationTool_desc, null, null) {
+		};
+		entry.setId("createAnaglyphSketch9CreationTool"); //$NON-NLS-1$
+		entry.setSmallIcon(ShapesDiagramEditorPlugin
+				.findImageDescriptor("/org.eclipse.sketch.examples.shapes/icons/annotation.gif")); //$NON-NLS-1$
+		entry.setLargeIcon(ShapesDiagramEditorPlugin
+				.findImageDescriptor("/org.eclipse.sketch.examples.shapes/icons/annotation.gif")); //$NON-NLS-1$
+		entry.setToolClass(AnaglyphSketchTool.class);
 		return entry;
 	}
 

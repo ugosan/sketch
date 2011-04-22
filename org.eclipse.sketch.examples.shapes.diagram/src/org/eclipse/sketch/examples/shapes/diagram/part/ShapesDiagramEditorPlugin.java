@@ -124,7 +124,7 @@ public class ShapesDiagramEditorPlugin extends AbstractUIPlugin {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void fillItemProviderFactories(List<AdapterFactory> factories) {
 		factories.add(new ShapesItemProviderAdapterFactory());

@@ -122,7 +122,7 @@ public class DiagramEditPart extends
 
 			}
 		});
-		
+
 		pane.add(contentPane = super.createFigure());
 		return pane;
 	}

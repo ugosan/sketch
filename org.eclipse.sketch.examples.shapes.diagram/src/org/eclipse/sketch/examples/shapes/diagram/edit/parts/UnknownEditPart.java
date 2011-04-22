@@ -28,6 +28,7 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.RectangleFigure;
+import org.eclipse.draw2d.ScalablePolygonShape;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
@@ -145,12 +146,9 @@ public class UnknownEditPart extends ShapeNodeEditPart {
 
 		primaryShape = new SketchFigure();
 
-
 		return primaryShape;
 
 	}
-	
-	
 
 	/**
 	 * @generated
@@ -242,7 +240,7 @@ public class UnknownEditPart extends ShapeNodeEditPart {
 	protected IFigure setupContentPane(IFigure nodeShape) {
 		if (nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
-			layout.setSpacing(10);
+			layout.setSpacing(5);
 			nodeShape.setLayoutManager(layout);
 		}
 		return nodeShape; // use nodeShape itself as contentPane
@@ -383,12 +381,10 @@ public class UnknownEditPart extends ShapeNodeEditPart {
 		return types;
 	}
 
-
-	
 	/**
 	 * @generated
 	 */
-	public class SketchFigure extends NodeFigure{
+	public class SketchFigure extends NodeFigure {
 
 		/**
 		 * @generated
@@ -402,7 +398,6 @@ public class UnknownEditPart extends ShapeNodeEditPart {
 
 			createContents();
 		}
-
 
 		/**
 		 * @generated NOT
@@ -418,7 +413,6 @@ public class UnknownEditPart extends ShapeNodeEditPart {
 
 		}
 
-
 		/**
 		 * @generated
 		 */
@@ -426,48 +420,42 @@ public class UnknownEditPart extends ShapeNodeEditPart {
 			return fFigureSketchLabelFigure;
 		}
 
-
-
-
 		@Override
 		protected void paintFigure(Graphics graphics) {
 
-			graphics.setForegroundColor(new Color(getParent().getBackgroundColor().getDevice(),0,0,0));
+			graphics.setForegroundColor(new Color(getParent()
+					.getBackgroundColor().getDevice(), 0, 0, 0));
 			graphics.setLineWidth(1);
 
-			Unknown model = (Unknown) ((ShapeImpl) getModel()).basicGetElement();
+			Unknown model = (Unknown) ((ShapeImpl) getModel())
+					.basicGetElement();
 			Sketch s = model.getSketch();
-					
-			
-			for(int i=0;i<s.getPointlist().size();i++){
-				Point p = (Point)s.getPointlist().get(i);
+
+			for (int i = 0; i < s.getPointlist().size(); i++) {
+				Point p = (Point) s.getPointlist().get(i);
 				Point lastp = p;
-				
 
-				if(i>0){
-					lastp = (Point) s.getPointlist().get(i-1);
+				if (i > 0) {
+					lastp = (Point) s.getPointlist().get(i - 1);
 				}
-				
-				 //translates the points to a 0,0 location and then draws them as relative to the current figure position 
-				int x1 = Math.abs(s.getLocation().x-lastp.x)+getBounds().x;
-				int y1 = Math.abs(s.getLocation().y-lastp.y)+getBounds().y;
-				int x2 = Math.abs(s.getLocation().x-p.x)+getBounds().x;
-				int y2 = Math.abs(s.getLocation().y-p.y)+getBounds().y;
-	
-				
-				if(lastp.x==-1){
+
+				//translates the points to a 0,0 location and then draws them as relative to the current figure position 
+				int x1 = Math.abs(s.getLocation().x - lastp.x) + getBounds().x;
+				int y1 = Math.abs(s.getLocation().y - lastp.y) + getBounds().y;
+				int x2 = Math.abs(s.getLocation().x - p.x) + getBounds().x;
+				int y2 = Math.abs(s.getLocation().y - p.y) + getBounds().y;
+
+				if (lastp.x == -1) {
 					//if the last point is a pen lift, then consider just the current one
-					graphics.drawLine(x2,y2,x2,y2);
-							
-				}else if(p.x>0){
-					graphics.drawLine(x1,y1,x2,y2);
-					
-					
+					graphics.drawLine(x2, y2, x2, y2);
+
+				} else if (p.x > 0) {
+					graphics.drawLine(x1, y1, x2, y2);
+
 				}
 
-				
 			}
-			
+
 		}
 
 	}

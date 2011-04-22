@@ -42,12 +42,14 @@ public class AnaglyphSketchTool extends SketchTool {
 	 * returns the class responsible for receiving sketches and creating elements
 	 */
 	public ISketchListener getClient(){
-		cyan = new Color(gc.getDevice(),160,0,60);
-		red = new Color(gc.getDevice(),255,0,0);
+		
 		return new MyLazySketchClient();
 	}
 	
-	
+	public AnaglyphSketchTool(){
+		cyan = new Color(gc.getDevice(),0,0,250);
+		red = new Color(gc.getDevice(),250,0,0);
+	}
 	
 	
 	@Override
