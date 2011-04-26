@@ -34,6 +34,7 @@ import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.handles.MoveHandle;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.NonResizableLabelEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.impl.DiagramImpl;
 import org.eclipse.sketch.Sketch;
@@ -79,7 +80,7 @@ public class DiagramEditPart extends
 	 */
 	protected IFigure createFigure() {
 		FreeformLayeredPane pane = new FreeformLayeredPane();
-		FreeformLayer roseLayer = new FreeformLayer() {
+		FreeformLayer sketchLayer = new FreeformLayer() {
 
 			public Rectangle getFreeformExtent() {
 				// Do not count children; they are decorations that should not interfere with diagram contents.
@@ -88,10 +89,9 @@ public class DiagramEditPart extends
 						insets.getHeight());
 			}
 		};
-		roseLayer.setLayoutManager(new StackLayout());
-		//roseLayer.setBorder(new MarginBorder(10));
-		pane.add(roseLayer);
-		roseLayer.add(new Figure() {
+		sketchLayer.setLayoutManager(new StackLayout());
+		pane.add(sketchLayer);
+		sketchLayer.add(new Figure() {
 			@Override
 			public void paint(Graphics g) {
 				g.setLineWidth(1);
@@ -129,6 +129,7 @@ public class DiagramEditPart extends
 
 	@Override
 	public IFigure getContentPane() {
+		performRequest(new Request(RequestConstants.REQ_REFRESH));
 		return contentPane;
 	}
 

@@ -67,11 +67,11 @@
           toolClass="org.eclipse.sketch.examples.shapes.diagram.ShapesSketchTool">
         <smallIcon
             xsi:type="gmftool:BundleImage"
-            path="/icons/Pen.gif"
+            path="/icons/pen-icon.png"
             bundle="org.eclipse.sketch.examples.shapes"/>
         <largeIcon
             xsi:type="gmftool:BundleImage"
-            path="/icons/Pen.gif"
+            path="/icons/pen-icon.png"
             bundle="org.eclipse.sketch.examples.shapes"/>
       </tools>
       <tools
@@ -79,6 +79,22 @@
           title="Annotation"
           description="Annotation tool"
           toolClass="org.eclipse.sketch.examples.shapes.diagram.AnnotateSketchTool">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/highlight.png"
+            bundle="org.eclipse.sketch.examples.shapes"/>
+        <largeIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/highlight.png"
+            bundle="org.eclipse.sketch.examples.shapes"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:PaletteSeparator"/>
+      <tools
+          xsi:type="gmftool:GenericTool"
+          title="Lazy Sketch"
+          description="Lazy Sketch"
+          toolClass="org.eclipse.sketch.examples.shapes.diagram.LazySketchTool">
         <smallIcon
             xsi:type="gmftool:BundleImage"
             path="/icons/annotation.gif"
@@ -89,12 +105,10 @@
             bundle="org.eclipse.sketch.examples.shapes"/>
       </tools>
       <tools
-          xsi:type="gmftool:PaletteSeparator"/>
-      <tools
           xsi:type="gmftool:GenericTool"
-          title="Lazy Sketch"
-          description="Lazy Sketch"
-          toolClass="org.eclipse.sketch.examples.shapes.diagram.LazySketchTool">
+          title="Anaglyph Sketch"
+          description="Anaglyph Sketch"
+          toolClass="org.eclipse.sketch.examples.shapes.diagram.AnaglyphSketchTool">
         <smallIcon
             xsi:type="gmftool:BundleImage"
             path="/icons/annotation.gif"

@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.InvalidPropertiesFormatException;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Properties;
 
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -170,7 +171,11 @@ public class SketchBank {
 		
 		
 		
-		database.getSketch().add(s);
+		List l = new ArrayList();
+		l.addAll(database.getSketch());
+		l.add(s);
+		
+		database.eSet(SketchPackage.SKETCH_DATABASE__SKETCH, l);
 	}
 
 	public void dump() {
@@ -279,7 +284,7 @@ public class SketchBank {
 				for (Iterator j = resource.getContents().iterator(); j
 						.hasNext();) {
 					database = (SketchDatabase) j.next();
-					System.out.println(database);
+					System.out.println("fetching "+database);
 				}
 			} else {
 
@@ -310,6 +315,7 @@ public class SketchBank {
 			FileOutputStream out = new FileOutputStream(pathemf);
 			resource.getContents().add(database);
 			resource.save(out, null);
+			System.out.println("saving "+database+" "+pathemf);
 		} catch (Exception exception) {
 			exception.printStackTrace();
 		}

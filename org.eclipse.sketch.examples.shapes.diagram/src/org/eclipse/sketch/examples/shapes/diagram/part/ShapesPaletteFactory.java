@@ -138,9 +138,9 @@ public class ShapesPaletteFactory {
 		};
 		entry.setId("createFreeSketch5CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(ShapesDiagramEditorPlugin
-				.findImageDescriptor("/org.eclipse.sketch.examples.shapes/icons/Pen.gif")); //$NON-NLS-1$
+				.findImageDescriptor("/org.eclipse.sketch.examples.shapes/icons/pen-icon.png")); //$NON-NLS-1$
 		entry.setLargeIcon(ShapesDiagramEditorPlugin
-				.findImageDescriptor("/org.eclipse.sketch.examples.shapes/icons/Pen.gif")); //$NON-NLS-1$
+				.findImageDescriptor("/org.eclipse.sketch.examples.shapes/icons/pen-icon.png")); //$NON-NLS-1$
 		entry.setToolClass(ShapesSketchTool.class);
 		return entry;
 	}
@@ -154,9 +154,9 @@ public class ShapesPaletteFactory {
 		};
 		entry.setId("createAnnotation6CreationTool"); //$NON-NLS-1$
 		entry.setSmallIcon(ShapesDiagramEditorPlugin
-				.findImageDescriptor("/org.eclipse.sketch.examples.shapes/icons/annotation.gif")); //$NON-NLS-1$
+				.findImageDescriptor("/org.eclipse.sketch.examples.shapes/icons/highlight.png")); //$NON-NLS-1$
 		entry.setLargeIcon(ShapesDiagramEditorPlugin
-				.findImageDescriptor("/org.eclipse.sketch.examples.shapes/icons/annotation.gif")); //$NON-NLS-1$
+				.findImageDescriptor("/org.eclipse.sketch.examples.shapes/icons/highlight.png")); //$NON-NLS-1$
 		entry.setToolClass(AnnotateSketchTool.class);
 		return entry;
 	}

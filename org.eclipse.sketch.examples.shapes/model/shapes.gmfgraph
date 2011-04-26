@@ -144,9 +144,9 @@
     <descriptors
         name="SketchFigure">
       <actualFigure
-          xsi:type="gmfgraph:ScalablePolygon"
+          xsi:type="gmfgraph:CustomFigure"
           name="CustomSketchFigure"
-          fill="false">
+          qualifiedClassName="org.eclipse.sketch.examples.shapes.diagram.edit.parts.CustomSketchFigure">
         <children
             xsi:type="gmfgraph:Label"
             name="SketchLabelFigure"

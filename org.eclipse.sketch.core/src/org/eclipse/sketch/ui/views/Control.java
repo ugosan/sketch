@@ -13,13 +13,21 @@ package org.eclipse.sketch.ui.views;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.emf.workspace.AbstractEMFOperation;
 import org.eclipse.gef.NodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.notation.impl.DiagramImpl;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.sketch.Sketch;
 import org.eclipse.sketch.SketchBank;
+import org.eclipse.sketch.SketchPackage;
 import org.eclipse.sketch.clientobserver.ISketchListener;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.events.MouseEvent;
@@ -169,10 +177,21 @@ public class Control extends Composite implements ISketchListener {
 					if(combo.getSelectionIndex()!=0){				
 						
 						System.out.println("selected is "+types.get(combo.getSelectionIndex()-1));
-						sketch.setName((String)types.get(combo.getSelectionIndex()-1));
+
+						DiagramEditor ed = (DiagramEditor) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+						AbstractEMFOperation emfOp = new AbstractEMFOperation(ed.getEditingDomain(), "Insert sketch") {
+
+							@Override
+							protected IStatus doExecute(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+								
+								sketch.eSet(SketchPackage.SKETCH__NAME, (String)types.get(combo.getSelectionIndex()-1));
+								SketchBank.getInstance().add(types.get(combo.getSelectionIndex()-1), sketch.getDna());
+								SketchBank.getInstance().add(sketch);
+								
+								return Status.OK_STATUS;
+							}
+						};
 						
-						SketchBank.getInstance().add(types.get(combo.getSelectionIndex()-1), sketch.getDna());
-						SketchBank.getInstance().add(sketch);
 						SketchBank.getInstance().dump();
 						SketchBank.getInstance().fetch();
 						

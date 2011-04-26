@@ -29,6 +29,7 @@ import org.eclipse.emf.workspace.AbstractEMFOperation;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.NodeEditPart;
+import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.core.commands.SetPropertyCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
@@ -36,6 +37,7 @@ import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditDomain;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
 import org.eclipse.gmf.runtime.diagram.ui.render.editparts.RenderedDiagramRootEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.ChangePropertyValueRequest;
+import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.impl.DiagramImpl;
 import org.eclipse.sketch.Sketch;
@@ -45,6 +47,7 @@ import org.eclipse.sketch.examples.shapes.Diagram;
 import org.eclipse.sketch.examples.shapes.ShapesFactory;
 import org.eclipse.sketch.examples.shapes.ShapesPackage;
 import org.eclipse.sketch.examples.shapes.Triangle;
+import org.eclipse.sketch.examples.shapes.diagram.edit.parts.DiagramEditPart;
 import org.eclipse.sketch.examples.shapes.diagram.edit.policies.DiagramCanonicalEditPolicy;
 import org.eclipse.sketch.examples.shapes.diagram.part.ShapesDiagramUpdateCommand;
 import org.eclipse.ui.PlatformUI;
@@ -68,7 +71,7 @@ public class MyLazySketchClient implements ISketchListener{
 		
 		final DiagramImpl d = (DiagramImpl) editor.getDiagramEditPart().getModel();
 
-
+		
 		AbstractEMFOperation emfOp = new AbstractEMFOperation(editor.getEditingDomain(), "Insert sketch") {
 
 			@Override
@@ -98,76 +101,22 @@ public class MyLazySketchClient implements ISketchListener{
 			}
 		};
 
-		Command selectNewelement = new Command(){
-			
-			public void execute() {
-				GraphicalViewer viewer = (GraphicalViewer) editor.getAdapter(GraphicalViewer.class);
-			    
-				
-				viewer.getControl().redraw();
-				editor.getDiagramGraphicalViewer().getControl().redraw();
-				
-				viewer.getControl().setFocus();
-
-				viewer.select(editor.getDiagramEditPart());
-				//editor.getDiagramEditPart().refresh();
-				 editor.getDiagramEditPart().getFigure().repaint(0, 0, 1000, 1000);
-			}
-		
-		};
-		
 		
 
 		try {
 			emfOp.execute(new NullProgressMonitor(), null);
-			//OperationHistoryFactory.getOperationHistory().execute(emfOp, null, null);
+			
 			ShapesDiagramUpdateCommand co = new ShapesDiagramUpdateCommand();
 			co.execute(null);
+			editor.getDiagramEditPart().performRequest(new Request(RequestConstants.REQ_REFRESH));
+			
+			editor.getDiagramEditPart().getFigure().repaint(editor.getDiagramEditPart().getFigure().getBounds());
+
 		} catch (ExecutionException e) {
 			e.printStackTrace();
 		}
 		
-		/*EObject modelElement = ((View) ((EditPart) structuredSelection
-				.getFirstElement()).getModel()).getElement();
-		List editPolicies = CanonicalEditPolicy
-				.getRegisteredEditPolicies(modelElement);
-		for (Iterator it = editPolicies.iterator(); it.hasNext();) {
-			CanonicalEditPolicy nextEditPolicy = (CanonicalEditPolicy) it
-					.next();
-			nextEditPolicy.refresh();*/
-		
-		EObject modelElement = ((View) (editor.getDiagramEditPart().getModel())).getElement();
-		List editPolicies = CanonicalEditPolicy.getRegisteredEditPolicies(modelElement);
-		for (Iterator it = editPolicies.iterator(); it.hasNext();) {
-			DiagramCanonicalEditPolicy nextEditPolicy = (DiagramCanonicalEditPolicy) it
-			.next();
-			nextEditPolicy.activate();
-			nextEditPolicy.setEnable(true);
-			nextEditPolicy.getViewer().getControl().redraw();
-			nextEditPolicy.refresh();
-		}
-		
-		/*for(Object o : editor.getDiagramEditPart().getChildren()){
-		    if(o instanceof EditPart){//or ur costumized EditPart
-		        EditPart editPart = (EditPart)o;
-		        editPart.refresh();
-		    }
-		} */
-		
-		editor.getDiagramEditDomain().getDiagramCommandStack().execute(selectNewelement);
-		
-		editor.getDiagramGraphicalViewer().getRootEditPart().refresh();
-		DiagramEditDomain domain = (DiagramEditDomain) editor.getDiagramEditDomain();
-		RenderedDiagramRootEditPart rootEditPart = (RenderedDiagramRootEditPart)
-		domain.getDiagramEditorPart().getDiagramGraphicalViewer().getRootEditPart(); 
-		
-		rootEditPart.refresh();
-		rootEditPart.refreshVisuals();
-		rootEditPart.refresh();
-		
-		editor.getEditorSite().getShell().redraw();
-		
-		
+	
 	}
 	
 	

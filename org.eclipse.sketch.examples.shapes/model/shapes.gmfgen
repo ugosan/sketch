@@ -101,7 +101,7 @@
       <viewmap
           xsi:type="gmfgen:InnerClassViewmap"
           className="SketchFigure"
-          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class SketchFigure extends org.eclipse.draw2d.ScalablePolygonShape {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureSketchLabelFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public SketchFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureSketchLabelFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureSketchLabelFigure.setText(&quot;&quot;);&#xA;&#x9;fFigureSketchLabelFigure.setBackgroundColor(org.eclipse.draw2d.ColorConstants.white);&#xA;&#xA;this.add(fFigureSketchLabelFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureSketchLabelFigure() {&#xA;&#x9;&#x9;return fFigureSketchLabelFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class SketchFigure extends org.eclipse.sketch.examples.shapes.diagram.edit.parts.CustomSketchFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureSketchLabelFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public SketchFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureSketchLabelFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureSketchLabelFigure.setText(&quot;&quot;);&#xA;&#x9;fFigureSketchLabelFigure.setBackgroundColor(org.eclipse.draw2d.ColorConstants.white);&#xA;&#xA;this.add(fFigureSketchLabelFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureSketchLabelFigure() {&#xA;&#x9;&#x9;return fFigureSketchLabelFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
       <modelFacet>
         <metaClass
             href="shapes.genmodel#//shapes/Unknown"/>
@@ -280,15 +280,15 @@
             xsi:type="gmfgen:ToolEntry"
             title="Free Sketch"
             description="Sketch"
-            largeIconPath="/org.eclipse.sketch.examples.shapes/icons/Pen.gif"
-            smallIconPath="/org.eclipse.sketch.examples.shapes/icons/Pen.gif"
+            largeIconPath="/org.eclipse.sketch.examples.shapes/icons/pen-icon.png"
+            smallIconPath="/org.eclipse.sketch.examples.shapes/icons/pen-icon.png"
             qualifiedToolName="org.eclipse.sketch.examples.shapes.diagram.ShapesSketchTool"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
             title="Annotation"
             description="Annotation tool"
-            largeIconPath="/org.eclipse.sketch.examples.shapes/icons/annotation.gif"
-            smallIconPath="/org.eclipse.sketch.examples.shapes/icons/annotation.gif"
+            largeIconPath="/org.eclipse.sketch.examples.shapes/icons/highlight.png"
+            smallIconPath="/org.eclipse.sketch.examples.shapes/icons/highlight.png"
             qualifiedToolName="org.eclipse.sketch.examples.shapes.diagram.AnnotateSketchTool"/>
         <entries
             xsi:type="gmfgen:Separator"/>
@@ -299,6 +299,13 @@
             largeIconPath="/org.eclipse.sketch.examples.shapes/icons/annotation.gif"
             smallIconPath="/org.eclipse.sketch.examples.shapes/icons/annotation.gif"
             qualifiedToolName="org.eclipse.sketch.examples.shapes.diagram.LazySketchTool"/>
+        <entries
+            xsi:type="gmfgen:ToolEntry"
+            title="Anaglyph Sketch"
+            description="Anaglyph Sketch"
+            largeIconPath="/org.eclipse.sketch.examples.shapes/icons/annotation.gif"
+            smallIconPath="/org.eclipse.sketch.examples.shapes/icons/annotation.gif"
+            qualifiedToolName="org.eclipse.sketch.examples.shapes.diagram.AnaglyphSketchTool"/>
       </groups>
     </palette>
     <preferencePages

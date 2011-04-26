@@ -61,17 +61,17 @@ public class AnaglyphSketchTool extends SketchTool {
 		Point point2 = points.get(points.size()-1);
 		
 		gc.setForeground(cyan);
-		int cx1 = point1.x + 10;
+		int cx1 = point1.x + 5;
 		int cy1 = point1.y;
-		int cx2 = point2.x + 10;
+		int cx2 = point2.x + 5;
 		int cy2 = point2.y;
 		
 		gc.drawLine(cx1,cy1,cx2,cy2);
 
 		gc.setForeground(red);
-		int rx1 = point1.x - 10;
+		int rx1 = point1.x - 5;
 		int ry1 = point1.y;
-		int rx2 = point2.x - 10;
+		int rx2 = point2.x - 5;
 		int ry2 = point2.y;
 		
 		gc.drawLine(rx1,ry1,rx2,ry2);
@@ -102,7 +102,7 @@ public class AnaglyphSketchTool extends SketchTool {
 
 	@Override
 	public RGB getStrokeColor(){
-		return new RGB(0,0,0);
+		return new RGB(255,255,255);
 	}
 
 	@Override
