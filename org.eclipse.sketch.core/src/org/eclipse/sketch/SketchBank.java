@@ -33,6 +33,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.sketch.util.PointList;
 import org.eclipse.swt.SWT;
@@ -139,11 +141,6 @@ public class SketchBank {
 
 	public void add(Sketch s) {
 		PointList list = s.pointlist;
-		// sketches.add(s);
-
-		//scale testing
-		//int proportion = s.getSize().width / 128;
-		//System.out.println("PROPORTION IS: "+proportion);
 		
 		Image img = new Image(null, s.getSize().width, s.getSize().height);
 		
@@ -169,8 +166,7 @@ public class SketchBank {
 		imgLoader.data = new ImageData[] { img.getImageData() };
 		imgLoader.save(imgpath, SWT.IMAGE_JPEG);
 		
-		
-		
+		imageGC.dispose();
 		List l = new ArrayList();
 		l.addAll(database.getSketch());
 		l.add(s);
@@ -309,13 +305,12 @@ public class SketchBank {
 						new XMIResourceFactoryImpl());
 
 		try {
-			Resource resource = resourceSet.createResource(URI
-					.createURI("http:///My.sketch"));
-
+			Resource resource = resourceSet.createResource(URI.createURI("http://sketchbank.sketch"));
+			
 			FileOutputStream out = new FileOutputStream(pathemf);
 			resource.getContents().add(database);
 			resource.save(out, null);
-			System.out.println("saving "+database+" "+pathemf);
+			System.out.println("saving "+database.getSketch()+" "+pathemf);
 		} catch (Exception exception) {
 			exception.printStackTrace();
 		}
@@ -331,6 +326,7 @@ public class SketchBank {
 	// test
 	public static void main(String[] args) throws Exception {
 		SketchBank.getInstance().dumpXMI();
+		
 		/*
 		 * ArrayList types = new ArrayList(); types.add("Square");
 		 * types.add("Circle"); SketchBank.getInstance().setTypes(types);

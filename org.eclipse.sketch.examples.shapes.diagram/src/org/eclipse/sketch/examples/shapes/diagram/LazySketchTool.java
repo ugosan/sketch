@@ -35,14 +35,13 @@ public class LazySketchTool extends SketchTool {
 	 * returns the class responsible for receiving sketches and creating elements
 	 */
 	public ISketchListener getClient(){
+		
 		return new MyLazySketchClient();
 	}
 	
 	@Override
 	public ArrayList getTypes() {
-		ArrayList types = new ArrayList();
-		//types.add("Annotation");
-		return types;
+		return new ArrayList();
 	}
 	
 	@Override

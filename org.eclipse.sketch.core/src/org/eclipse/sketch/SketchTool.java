@@ -53,11 +53,11 @@ public abstract class SketchTool extends AbstractTool{
 	
 	//Default Parameters
 	int grid = 6;
-	long penupdownTolerance = 1500;
+	protected long penupdownTolerance = 1500;
 	
 	boolean showSamples = false;
 	
-	protected GC gc;
+	GC gc;
 
 	protected int count = 0;		
 	protected long penuptime = -1;

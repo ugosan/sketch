@@ -55,7 +55,8 @@ public class DiagramEditPart extends
 	public final static String MODEL_ID = "Shapes"; //$NON-NLS-1$
 
 	private IFigure contentPane;
-
+	private boolean firstrefresh = true;
+	
 	/**
 	 * @generated
 	 */
@@ -66,14 +67,11 @@ public class DiagramEditPart extends
 	 */
 	public DiagramEditPart(View view) {
 		super(view);
+		
 	}
 
-	@Override
-	public void performRequest(Request request) {
-
-		super.performRequest(request);
-	}
-
+	
+	
 	@Override
 	/**
 	 * Replaces default figure with layered pane. Lower layer for decorations, upper is original figure.
@@ -115,6 +113,7 @@ public class DiagramEditPart extends
 						} else if (p.x > 0) {
 							//if is a normal point, then traces a line from the last point to the current
 							g.drawLine(lastp.x, lastp.y, p.x, p.y);
+							
 						}
 
 					}
@@ -129,9 +128,14 @@ public class DiagramEditPart extends
 
 	@Override
 	public IFigure getContentPane() {
-		performRequest(new Request(RequestConstants.REQ_REFRESH));
+		if(firstrefresh){
+			performRequest(new Request(RequestConstants.REQ_REFRESH));
+			firstrefresh = false;
+		}
 		return contentPane;
 	}
+
+	
 
 	/**
 	 * @generated

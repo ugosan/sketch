@@ -70,13 +70,13 @@ public class MyShapesSketchClient implements ISketchListener{
 	@Override
 	public void receiveNewProcessedSketch(Sketch s) {	
 		
-		createUnknownNode(s, createTempElementImage(s));
+		createUnknownNode(s);
 	}
 	
 	/**
 	 * Creates a temporary Element node with an SVG file based on Sketch s. 
 	 * @param s
-	 */
+	 
 	private File createTempElementImage(Sketch s){		
 		//creates the image file			
 		File imgfile = ResourcesPlugin.getWorkspace().getRoot().getLocation().append("sketch-"+System.currentTimeMillis()+".svg").toFile();
@@ -131,22 +131,22 @@ public class MyShapesSketchClient implements ISketchListener{
 		}
 		return imgfile;
 		
-	}
+	}*/
 	
 	
-	private void createUnknownNode(final Sketch s, File file){
+	private void createUnknownNode(final Sketch s){
 		try{
 			CompoundCommand command = new CompoundCommand();
 			
 			//creates the sketch element and set the image encoded as Base64
 			final Unknown unknown_element = ShapesFactory.eINSTANCE.createUnknown();
-			unknown_element.eSet(ShapesPackage.Literals.SHAPE__SVG,  Base64.encodeFromFile(file.getPath()));
+			//unknown_element.eSet(ShapesPackage.Literals.SHAPE__SVG,  Base64.encodeFromFile(file.getPath()));
 			unknown_element.eSet(ShapesPackage.Literals.UNKNOWN__SKETCH, s);
 			this.setMeta(unknown_element, s);
 			
 			
 			//discard the file
-			file.delete();
+			//file.delete();
 			
 			
 			final DiagramEditor editor = (DiagramEditor) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
@@ -155,9 +155,7 @@ public class MyShapesSketchClient implements ISketchListener{
 					new EObjectAdapter(unknown_element), Node.class, ((IHintedType)ShapesElementTypes.Unknown_2003).getSemanticHint(), true,
 					editor.getDiagramEditPart().getDiagramPreferencesHint()); 
 
-			viewDescriptor.setPersisted(true);
 			
-
 			CreateViewRequest createRequest = new CreateViewRequest(viewDescriptor);
 			createRequest.setLocation(s.getLocation());
 			createRequest.setSize(s.getSize());
@@ -180,7 +178,6 @@ public class MyShapesSketchClient implements ISketchListener{
 							return Status.OK_STATUS;
 						}
 					};
-
 
 					try {
 						OperationHistoryFactory.getOperationHistory().execute(emfOp, null, null);

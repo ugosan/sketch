@@ -143,8 +143,9 @@ public class UnknownEditPart extends ShapeNodeEditPart {
 	 * @generated NOT
 	 */
 	protected IFigure createNodeShape() {
+		Unknown model = (Unknown) ((ShapeImpl) getModel()).basicGetElement();
 
-		primaryShape = new SketchFigure();
+		primaryShape = new SketchFigure(model.getSketch());
 
 		return primaryShape;
 
@@ -390,12 +391,14 @@ public class UnknownEditPart extends ShapeNodeEditPart {
 		 * @generated
 		 */
 		private WrappingLabel fFigureSketchLabelFigure;
-
+		
+		private Sketch sketch;
+		
 		/**
 		 * @generated NOT
 		 */
-		public SketchFigure() {
-
+		public SketchFigure(Sketch s) {
+			this.sketch = s;
 			createContents();
 		}
 
@@ -422,28 +425,26 @@ public class UnknownEditPart extends ShapeNodeEditPart {
 
 		@Override
 		protected void paintFigure(Graphics graphics) {
-
-			graphics.setForegroundColor(new Color(getParent()
-					.getBackgroundColor().getDevice(), 0, 0, 0));
+			super.paintFigure(graphics);
+			
+			graphics.setForegroundColor(new Color(null, 0, 0, 0));
 			graphics.setLineWidth(1);
 
-			Unknown model = (Unknown) ((ShapeImpl) getModel())
-					.basicGetElement();
-			Sketch s = model.getSketch();
+			
 
-			for (int i = 0; i < s.getPointlist().size(); i++) {
-				Point p = (Point) s.getPointlist().get(i);
+			for (int i = 0; i < sketch.getPointlist().size(); i++) {
+				Point p = (Point) sketch.getPointlist().get(i);
 				Point lastp = p;
 
 				if (i > 0) {
-					lastp = (Point) s.getPointlist().get(i - 1);
+					lastp = (Point) sketch.getPointlist().get(i - 1);
 				}
 
 				//translates the points to a 0,0 location and then draws them as relative to the current figure position 
-				int x1 = Math.abs(s.getLocation().x - lastp.x) + getBounds().x;
-				int y1 = Math.abs(s.getLocation().y - lastp.y) + getBounds().y;
-				int x2 = Math.abs(s.getLocation().x - p.x) + getBounds().x;
-				int y2 = Math.abs(s.getLocation().y - p.y) + getBounds().y;
+				int x1 = Math.abs(sketch.getLocation().x - lastp.x) + getBounds().x;
+				int y1 = Math.abs(sketch.getLocation().y - lastp.y) + getBounds().y;
+				int x2 = Math.abs(sketch.getLocation().x - p.x) + getBounds().x;
+				int y2 = Math.abs(sketch.getLocation().y - p.y) + getBounds().y;
 
 				if (lastp.x == -1) {
 					//if the last point is a pen lift, then consider just the current one

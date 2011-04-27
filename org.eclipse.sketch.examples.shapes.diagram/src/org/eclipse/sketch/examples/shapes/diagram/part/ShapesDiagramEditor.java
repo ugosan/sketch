@@ -13,6 +13,7 @@
  */
 package org.eclipse.sketch.examples.shapes.diagram.part;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -21,15 +22,18 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.PropertySource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.Request;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gef.ui.properties.UndoablePropertySheetEntry;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.actions.ActionIds;
+import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocumentProvider;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.views.properties.IPropertySource;
 import org.eclipse.ui.views.properties.IPropertySourceProvider;
@@ -178,6 +182,9 @@ public class ShapesDiagramEditor extends DiagramDocumentEditor {
 		getDiagramGraphicalViewer().setContextMenu(provider);
 		getSite().registerContextMenu(ActionIds.DIAGRAM_EDITOR_CONTEXT_MENU,
 				provider, getDiagramGraphicalViewer());
+		
 	}
+
+	
 
 }

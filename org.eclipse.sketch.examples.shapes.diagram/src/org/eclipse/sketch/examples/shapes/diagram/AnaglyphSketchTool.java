@@ -23,6 +23,7 @@ import org.eclipse.sketch.clientobserver.ISketchListener;
 import org.eclipse.sketch.examples.shapes.diagram.providers.ShapesElementTypes;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Cursor;
+import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.RGB;
 
 /**
@@ -33,6 +34,7 @@ import org.eclipse.swt.graphics.RGB;
 public class AnaglyphSketchTool extends SketchTool {
 
 
+	GC mygc;
 	
 	private Color cyan;
 	private Color red;
@@ -47,8 +49,10 @@ public class AnaglyphSketchTool extends SketchTool {
 	}
 	
 	public AnaglyphSketchTool(){
-		cyan = new Color(gc.getDevice(),0,0,250);
-		red = new Color(gc.getDevice(),250,0,0);
+		mygc = new GC(manager.getEditor().getDiagramGraphicalViewer().getControl());
+		cyan = new Color(mygc.getDevice(),0,0,250);
+		red = new Color(mygc.getDevice(),250,0,0);
+		
 	}
 	
 	
@@ -56,25 +60,25 @@ public class AnaglyphSketchTool extends SketchTool {
 	protected boolean handleDrag() {
 		super.handleDrag();
 		
-		gc.setAlpha(50);
+		mygc.setAlpha(50);
 		Point point1 = points.get(points.size()-2);
 		Point point2 = points.get(points.size()-1);
 		
-		gc.setForeground(cyan);
+		mygc.setForeground(cyan);
 		int cx1 = point1.x + 5;
 		int cy1 = point1.y;
 		int cx2 = point2.x + 5;
 		int cy2 = point2.y;
 		
-		gc.drawLine(cx1,cy1,cx2,cy2);
+		mygc.drawLine(cx1,cy1,cx2,cy2);
 
-		gc.setForeground(red);
+		mygc.setForeground(red);
 		int rx1 = point1.x - 5;
 		int ry1 = point1.y;
 		int rx2 = point2.x - 5;
 		int ry2 = point2.y;
 		
-		gc.drawLine(rx1,ry1,rx2,ry2);
+		mygc.drawLine(rx1,ry1,rx2,ry2);
 		
 		
 		return true;

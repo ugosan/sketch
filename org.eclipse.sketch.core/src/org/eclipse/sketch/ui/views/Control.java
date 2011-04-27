@@ -17,6 +17,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.workspace.AbstractEMFOperation;
@@ -172,7 +173,7 @@ public class Control extends Composite implements ISketchListener {
 
 			@Override
 			public void mouseDown(MouseEvent e) {
-				if(combo.getSelectionIndex()<(combo.getItemCount()-1)){
+				if(combo.getSelectionIndex() < (combo.getItemCount()-1)){
 					disableNewSketch();
 					if(combo.getSelectionIndex()!=0){				
 						
@@ -187,21 +188,25 @@ public class Control extends Composite implements ISketchListener {
 								sketch.eSet(SketchPackage.SKETCH__NAME, (String)types.get(combo.getSelectionIndex()-1));
 								SketchBank.getInstance().add(types.get(combo.getSelectionIndex()-1), sketch.getDna());
 								SketchBank.getInstance().add(sketch);
+								SketchBank.getInstance().dump();
+								SketchBank.getInstance().fetch();
 								
 								return Status.OK_STATUS;
 							}
 						};
 						
-						SketchBank.getInstance().dump();
-						SketchBank.getInstance().fetch();
-						
-						PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().setFocus();
+						try{
+							emfOp.execute(new NullProgressMonitor(), null);
+							//PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().setFocus();
+						}catch(Exception ex){
+							ex.printStackTrace();
+						}
 						
 					}
 				}else{
 					//new element
 					
-					InputDialog input = new InputDialog(getShell(),"Enter the element's name","Name:","", null);
+					InputDialog input = new InputDialog(getShell(), "Enter the element's name","Name:","", null);
 					input.open();
 						
 					String type = input.getValue();

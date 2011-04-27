@@ -13,42 +13,21 @@
  */ 
  package org.eclipse.sketch.examples.shapes.diagram;
 
-import java.util.Iterator;
-import java.util.List;
-
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.commands.operations.OperationHistoryFactory;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.draw2d.UpdateManager;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.workspace.AbstractEMFOperation;
-import org.eclipse.gef.EditPart;
-import org.eclipse.gef.GraphicalViewer;
-import org.eclipse.gef.NodeEditPart;
 import org.eclipse.gef.Request;
-import org.eclipse.gef.commands.Command;
-import org.eclipse.gmf.runtime.diagram.core.commands.SetPropertyCommand;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
-import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditDomain;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
-import org.eclipse.gmf.runtime.diagram.ui.render.editparts.RenderedDiagramRootEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.requests.ChangePropertyValueRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
-import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.impl.DiagramImpl;
 import org.eclipse.sketch.Sketch;
-import org.eclipse.sketch.SketchPackage;
 import org.eclipse.sketch.clientobserver.ISketchListener;
 import org.eclipse.sketch.examples.shapes.Diagram;
-import org.eclipse.sketch.examples.shapes.ShapesFactory;
 import org.eclipse.sketch.examples.shapes.ShapesPackage;
-import org.eclipse.sketch.examples.shapes.Triangle;
-import org.eclipse.sketch.examples.shapes.diagram.edit.parts.DiagramEditPart;
-import org.eclipse.sketch.examples.shapes.diagram.edit.policies.DiagramCanonicalEditPolicy;
 import org.eclipse.sketch.examples.shapes.diagram.part.ShapesDiagramUpdateCommand;
 import org.eclipse.ui.PlatformUI;
 
